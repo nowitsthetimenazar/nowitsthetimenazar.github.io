@@ -88,3 +88,58 @@ footer a {
     color: #2481cc;
     text-decoration: none;
 }
+/* ОБЩИЕ стили для фона */
+.body-background {
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    color: #fff;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+.body-background::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+/* КОНКРЕТНЫЕ фоны для разных страниц */
+
+/* 1. Фон для ГЛАВНОЙ СТРАНИЦЫ (index.html) */
+body.index-page {
+    /* ЗАМЕНИТЕ на ссылку для главной */
+    background-image: url('https://i.ibb.co/.../main-bg.jpg');
+}
+body.index-page::before {
+    background: rgba(0, 0, 0, 0.5); /* Степень затемнения для главной */
+}
+
+/* 2. Фон для страницы бокса US 8 (box_us8.html) */
+body.box-us8-page {
+    /* ЗАМЕНИТЕ на ссылку для US8 */
+    background-image: url('https://i.ibb.co/.../box-us8-bg.jpg');
+}
+body.box-us8-page::before {
+    background: rgba(0, 0, 0, 0.6); /* Степень затемнения для US8 */
+}
+
+/* 3. Фон для страницы бокса US 9 (box_us9.html) */
+body.box-us9-page {
+    /* ЗАМЕНИТЕ на ссылку для US9 */
+    background-image: url('https://i.ibb.co/.../box-us9-bg.jpg');
+}
+body.box-us9-page::before {
+    background: rgba(0, 0, 0, 0.6);
+}
+
+/* Не забудьте добавить контейнеру свойство */
+.container {
+    position: relative;
+    z-index: 1;
