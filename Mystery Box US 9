@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mystery Box US 9 | Shoes With History</title>
+    <!-- Остальные теги head как в index.html -->
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>MYSTERY BOX #09</h1>
+            <p>Размер US 9 (EU 42)</p>
+        </header>
+
+        <div class="box-page">
+            <img src="https://i.ibb.co/.../cover-us8.jpg" alt="Mystery Box US 8" class="box-cover">
+            <div class="box-description">
+                <h3>Что скрывается внутри?</h3>
+                <p>Этот бокс собран специально для размера US 8. Здесь может быть всё что угодно: от классических Air Force 1 до редких Dunk. Каждая пара — это сюрприз, история и уникальный стиль. <strong>Гарантируем только одно: это будут крутые кросовки.</strong></p>
+                <p>Состояние: 7/10 - 9/10</p>
+                <p>Бренды: Nike, Jordan, New Balance, Asics</p>
+
+                <!-- Кнопка покупки со своей ссылкой для этого размера -->
+                <a href="https://your-lavapay-link-for-size-8" class="buy-btn" target="_blank">
+                    <i class="fas fa-shopping-cart"></i> Заказать этот бокс
+                </a>
+            </div>
+        </div>
+
+        <footer>
+            <p><a href="index.html">← Назад к каталогу боксов</a></p>
+        </footer>
+    </div>
+</body>
+</html>
