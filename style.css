@@ -25,8 +25,8 @@ header {
 
 .sneaker-card img {
     width: 100%;
-    aspect-ratio: 1 / 1; /* Сохраняет пропорции квадрата */
-    object-fit: cover;   /* Аккуратно вписывает фото в квадрат */
+    aspect-ratio: 1 / 1; //
+    object-fit: cover;   //
     display: block;
     transition: transform 0.3s ease;
 }
