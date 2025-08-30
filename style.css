@@ -1,24 +1,59 @@
-/* === СТИЛИ ДЛЯ ГАЛЕРЕИ MYSTERY BOXОВ (НОВЫЕ) === */
+/* Базовые стили для всего сайта */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+    color: #333;
+    line-height: 1.6;
+}
 
-/* Сетка боксов на главной */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Заголовок */
+header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    color: #222;
+}
+
+header p {
+    font-size: 1.1rem;
+    color: #666;
+}
+
+/* Сетка боксов */
 .boxes-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 30px;
-    margin-top: 40px;
 }
 
 .box-card {
     background: white;
     border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    text-align: center;
 }
+
 .box-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+}
+
+.box-card a {
+    text-decoration: none;
+    color: inherit;
 }
 
 .box-card img {
@@ -30,33 +65,26 @@
 
 .box-card h3 {
     margin: 20px 15px 10px 15px;
-    font-size: 20px;
-    color: #333;
+    font-size: 1.4rem;
+    text-align: center;
 }
 
 .box-card p {
     margin: 0 15px 20px 15px;
-    color: #666;
-    font-size: 16px;
-}
-
-/* Стили для страницы одного бокса (пока можете не добавлять, будете делать позже) */
-/*
-.box-page {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.box-cover {
-    width: 100%;
-    max-width: 400px;
-    border-radius: 15px;
-    margin-bottom: 30px;
-}
-
-.box-description {
-    max-width: 600px;
     text-align: center;
+    color: #666;
 }
-*/
+
+/* Подвал */
+footer {
+    text-align: center;
+    margin-top: 60px;
+    padding: 20px;
+    font-size: 0.9rem;
+    color: #999;
+}
+
+footer a {
+    color: #2481cc;
+    text-decoration: none;
+}
