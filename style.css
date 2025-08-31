@@ -286,7 +286,14 @@ body.box-us9-page {
 /* Для мобильных устройств */
 @media (max-width: 768px) {
     .box-cover {
-        max-width: 95%;
+   .raffle-container {
+        margin-top: 20px !important; /* Важно для мобильных */
+    }
+    
+    .buy-btn {
+        margin-bottom: 10px;
+    }
+}        max-width: 95%;
         max-height: 40vh;
     }
     
