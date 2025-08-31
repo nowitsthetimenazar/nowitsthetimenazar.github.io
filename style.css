@@ -196,11 +196,12 @@ body.index-page {
     background-image: url('https://i.ibb.co/xqcJzkXw/1.jpg');
 }
 
-/* Сетка боксов */
+/* Улучшенные стили для сетки боксов */
 .boxes-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    padding: 0 10px;
 }
 
 .box-card {
@@ -208,8 +209,10 @@ body.index-page {
     border-radius: 20px;
     overflow: hidden;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    color: #333 !important;
+    transition: all 0.3s ease;
+    color: #333;
+    display: flex;
+    flex-direction: column;
 }
 
 .box-card:hover {
@@ -220,6 +223,9 @@ body.index-page {
 .box-card a {
     text-decoration: none;
     color: inherit;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .box-card img {
@@ -229,29 +235,58 @@ body.index-page {
     display: block;
 }
 
+.box-card-content {
+    padding: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
 .box-card h3 {
-    margin: 20px 15px 10px 15px;
+    margin: 0 0 10px 0;
     font-size: 1.4rem;
     text-align: center;
     color: #333;
 }
 
 .box-card p {
-    margin: 0 15px 20px 15px;
+    margin: 0 0 15px 0;
     text-align: center;
     color: #666;
+    flex-grow: 1;
 }
 
-/* Стили для цены бокса */
 .box-price {
     background: linear-gradient(135deg, #28a745, #20c997);
     color: white;
-    padding: 8px 15px;
+    padding: 10px 20px;
     border-radius: 20px;
     font-weight: bold;
-    margin: 0 15px 20px 15px;
+    text-align: center;
+    margin: 0 auto;
     display: inline-block;
 }
+
+/* Анимация загрузки */
+.box-card {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Задержки для анимации */
+.box-card:nth-child(1) { animation-delay: 0.1s; }
+.box-card:nth-child(2) { animation-delay: 0.2s; }
+.box-card:nth-child(3) { animation-delay: 0.3s; }
 
 /* Кнопка аукциона */
 .auction-btn {
@@ -504,6 +539,270 @@ body.box-us10-page {
     text-decoration: underline;
 }
 
+/* Стили для рулетки */
+.roulette-wrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    margin: 20px 0;
+}
+
+.roulette-container {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 12px;
+    box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+.roulette-items {
+    display: flex;
+    position: absolute;
+    left: 0;
+    transition: left 4s cubic-bezier(0.1, 0.8, 0.2, 1);
+}
+
+.roulette-item {
+    width: 140px;
+    height: 140px;
+    margin: 20px 12px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.roulette-item.active {
+    transform: scale(1.12);
+    box-shadow: 0 0 20px gold;
+    border: 2px solid gold;
+    z-index: 5;
+}
+
+.roulette-item img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.roulette-item p {
+    margin: 6px 0 0 0;
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-align: center;
+    color: #333;
+    padding: 0 5px;
+}
+
+.roulette-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 4px;
+    height: 80%;
+    background: gold;
+    box-shadow: 0 0 15px gold;
+    z-index: 10;
+}
+
+.spin-button {
+    display: block;
+    margin: 20px auto;
+    padding: 14px 35px;
+    background: linear-gradient(135deg, #ff6b35, #e55a2a);
+    color: white;
+    border: none;
+    border-radius: 45px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(229, 90, 42, 0.5);
+    width: 90%;
+    max-width: 300px;
+}
+
+.pay-first-button {
+    display: block;
+    margin: 20px auto;
+    padding: 14px 35px;
+    background: linear-gradient(135deg, #28a745, #20c997);
+    color: white;
+    border: none;
+    border-radius: 45px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(40, 167, 69, 0.5);
+    width: 90%;
+    max-width: 300px;
+}
+
+.result-container {
+    text-align: center;
+    margin: 20px 0;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 12px;
+    display: none;
+    animation: fadeIn 0.5s ease;
+}
+
+.payment-container {
+    text-align: center;
+    margin: 20px 0;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 12px;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.result-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.result-item img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    border: 2px solid gold;
+}
+
+.result-text {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+}
+
+.winner-text {
+    color: #28a745;
+    font-weight: bold;
+    margin-top: 10px;
+    font-size: 1rem;
+}
+
+.roulette-instruction {
+    text-align: center;
+    color: #fff;
+    margin-bottom: 12px;
+    font-style: italic;
+    font-size: 0.9rem;
+    padding: 0 10px;
+}
+
+.payment-info {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.payment-status {
+    padding: 8px;
+    border-radius: 6px;
+    margin: 12px 0;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.payment-pending {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.payment-success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.hidden {
+    display: none;
+}
+
+.congratulations-message {
+    text-align: center;
+    margin: 20px 0;
+    padding: 20px;
+    background: linear-gradient(135deg, #d4edda, #c3e6cb);
+    border-radius: 12px;
+    border-left: 4px solid #28a745;
+    color: #155724;
+    font-weight: bold;
+    font-size: 1.2rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.contact-options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.contact-option {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #212529;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.warning-note {
+    background: #fff3cd;
+    color: #856404;
+    padding: 8px;
+    border-radius: 6px;
+    margin-top: 12px;
+    font-size: 0.8rem;
+    line-height: 1.4;
+}
+
+.test-controls {
+    margin-top: 15px;
+    padding: 12px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.test-button {
+    padding: 8px 16px;
+    background: #17a2b8;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 0 4px;
+    font-weight: bold;
+    font-size: 0.8rem;
+}
+
 /* Для мобильных устройств */
 @media (max-width: 768px) {
     .container {
@@ -607,6 +906,22 @@ body.box-us10-page {
         right: 8px;
     }
     
+    /* Рулетка */
+    .roulette-item {
+        width: 120px;
+        height: 120px;
+        margin: 15px 10px;
+    }
+    
+    .roulette-item img {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .roulette-container {
+        height: 180px;
+    }
+    
     /* Общие */
     .language-switcher a {
         padding: 10px 15px;
@@ -659,95 +974,56 @@ body.box-us10-page {
     .availability-table td {
         padding: 8px;
     }
-}
-/* Улучшенные стили для сетки боксов */
-.boxes-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 25px;
-    padding: 0 10px;
-}
-
-.box-card {
-    background: rgba(255, 255, 255, 0.95);
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    transition: all 0.3s ease;
-    color: #333;
-    display: flex;
-    flex-direction: column;
-}
-
-.box-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-}
-
-.box-card a {
-    text-decoration: none;
-    color: inherit;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-}
-
-.box-card img {
-    width: 100%;
-    height: 250px;
-    object-fit: cover;
-    display: block;
-}
-
-.box-card-content {
-    padding: 20px;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-.box-card h3 {
-    margin: 0 0 10px 0;
-    font-size: 1.4rem;
-    text-align: center;
-    color: #333;
-}
-
-.box-card p {
-    margin: 0 0 15px 0;
-    text-align: center;
-    color: #666;
-    flex-grow: 1;
-}
-
-.box-price {
-    background: linear-gradient(135deg, #28a745, #20c997);
-    color: white;
-    padding: 10px 20px;
-    border-radius: 20px;
-    font-weight: bold;
-    text-align: center;
-    margin: 0 auto;
-    display: inline-block;
-}
-
-/* Анимация загрузки */
-.box-card {
-    animation: fadeInUp 0.6s ease-out;
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
+    
+    /* Рулетка */
+    .roulette-item {
+        width: 110px;
+        height: 110px;
+        margin: 15px 8px;
     }
-    to {
-        opacity: 1;
-        transform: translateY(0);
+    
+    .roulette-item img {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .roulette-item p {
+        font-size: 0.75rem;
+    }
+    
+    .result-item img {
+        width: 85px;
+        height: 85px;
+    }
+    
+    .result-text {
+        font-size: 1.1rem;
+    }
+    
+    .congratulations-message {
+        font-size: 1.1rem;
+        padding: 15px;
+    }
+    
+    .contact-option {
+        font-size: 0.85rem;
+        padding: 10px;
+    }
+    
+    .test-button {
+        padding: 7px 14px;
+        font-size: 0.75rem;
     }
 }
 
-/* Задержки для анимации */
-.box-card:nth-child(1) { animation-delay: 0.1s; }
-.box-card:nth-child(2) { animation-delay: 0.2s; }
-.box-card:nth-child(3) { animation-delay: 0.3s; }
+/* Для очень высоких экранов */
+@media (min-height: 1000px) {
+    .container {
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+    
+    .box-cover {
+        max-height: 40vh;
+    }
+}
