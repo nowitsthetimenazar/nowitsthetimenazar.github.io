@@ -269,15 +269,17 @@
                 { name: "Asics Gel-Lyte", image: "https://i.ibb.co/7QvLzC0/off-white.jpg" }
             ];
             
-            // Заполняем рулетку элементами (5 видимых + дубликаты для бесшовной анимации)
+            // Заполняем рулетку элементами
             function initializeRoulette() {
                 rouletteItems.innerHTML = '';
                 
-                // Добавляем элементы (больше чем нужно для видимой области)
-                for (let i = 0; i < 20; i++) {
-                    const item = items[i % items.length];
+                // Добавляем элементы (дублируем для бесшовной анимации)
+                for (let i = 0; i < items.length * 2; i++) {
+                    const itemIndex = i % items.length;
+                    const item = items[itemIndex];
                     const itemElement = document.createElement('div');
                     itemElement.className = 'roulette-item';
+                    itemElement.dataset.index = itemIndex;
                     itemElement.innerHTML = `
                         <img src="${item.image}" alt="${item.name}">
                         <p>${item.name}</p>
@@ -291,6 +293,21 @@
             let isSpinning = false;
             let currentWinner = null;
             
+            // Функция определения элемента под указателем
+            function getElementUnderPointer() {
+                const centerLine = document.querySelector('.roulette-center');
+                const centerX = centerLine.getBoundingClientRect().left + centerLine.offsetWidth / 2;
+                
+                const items = document.querySelectorAll('.roulette-item');
+                for (let item of items) {
+                    const rect = item.getBoundingClientRect();
+                    if (centerX >= rect.left && centerX <= rect.right) {
+                        return item;
+                    }
+                }
+                return null;
+            }
+            
             // Функция запуска рулетки
             spinButton.addEventListener('click', function() {
                 if (isSpinning) return;
@@ -299,30 +316,38 @@
                 spinButton.disabled = true;
                 resultContainer.style.display = 'none';
                 
-                // Случайный выбор приза
-                const winnerIndex = Math.floor(Math.random() * items.length);
-                currentWinner = items[winnerIndex];
-                
-                // Расчет позиции для остановки (центрируем выбранный элемент)
+                // Случайное смещение для анимации
                 const itemWidth = 190; // width + margin
-                const visibleItems = 5; // Количество видимых элементов
-                const targetPosition = -((winnerIndex + 2) * itemWidth);
+                const spinDistance = -(items.length * itemWidth * 2 + Math.random() * items.length * itemWidth);
                 
-                // Начальная позиция (немного левее для эффекта разгона)
+                // Начальная позиция
                 rouletteItems.style.transition = 'none';
                 rouletteItems.style.left = '0px';
                 
                 // Запускаем анимацию
                 setTimeout(() => {
                     rouletteItems.style.transition = 'left 5s cubic-bezier(0.2, 0.8, 0.2, 1)';
-                    rouletteItems.style.left = `${targetPosition}px`;
+                    rouletteItems.style.left = `${spinDistance}px`;
                 }, 10);
                 
-                // Показываем результат после завершения анимации
+                // Определяем победителя после завершения анимации
                 setTimeout(() => {
-                    resultImage.src = currentWinner.image;
-                    resultName.textContent = currentWinner.name;
-                    resultContainer.style.display = 'block';
+                    const winningElement = getElementUnderPointer();
+                    if (winningElement) {
+                        const winnerIndex = parseInt(winningElement.dataset.index);
+                        currentWinner = items[winnerIndex];
+                        
+                        // Подсвечиваем выигрышный элемент
+                        document.querySelectorAll('.roulette-item').forEach(item => {
+                            item.classList.remove('active');
+                        });
+                        winningElement.classList.add('active');
+                        
+                        // Показываем результат
+                        resultImage.src = currentWinner.image;
+                        resultName.textContent = currentWinner.name;
+                        resultContainer.style.display = 'block';
+                    }
                     
                     // Блокируем кнопку прокрутки до нажатия "Забрать приз"
                     spinButton.disabled = true;
@@ -339,6 +364,12 @@
                     spinButton.disabled = false;
                     spinButton.textContent = 'Крутить рулетку';
                     resultContainer.style.display = 'none';
+                    
+                    // Убираем подсветку
+                    document.querySelectorAll('.roulette-item').forEach(item => {
+                        item.classList.remove('active');
+                    });
+                    
                     initializeRoulette();
                 }, 100);
             });
