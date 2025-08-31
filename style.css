@@ -12,8 +12,6 @@
     min-height: 100vh;
 }
 
-}
-
 /* Затемнение фона для лучшей читаемости */
 .body-background::before {
     content: "";
@@ -125,4 +123,11 @@ body.box-us8-page {
 /* Фон для страницы бокса US 9 (box_us9.html) */
 body.box-us9-page {
     background-image: url('https://i.ibb.co/.../box-us9-bg.jpg');
+}
+.box-cover {
+    max-width: 100%; /* Максимальная ширина - не больше родительского контейнера */
+    height: auto;    /* Высота подстраивается автоматически */
+    border-radius: 15px;
+    display: block;
+    margin: 0 auto;  /* Автоматические отступы по бокам (центрирование) */
 }
