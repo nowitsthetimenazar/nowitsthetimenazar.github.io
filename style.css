@@ -1,34 +1,3 @@
-/* Фон для ГЛАВНОЙ СТРАНИЦЫ (index.html) */
-body.index-page {
-    background-image: url('https://i.ibb.co/xqcJzkXw/1.jpg');
-}
-
-/* Фон для страницы бокса US 8 (box_us8.html) */
-body.box-us8-page {
-    background-image: url('https://i.ibb.co/5WpQS3K9/images.jpg');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-}
-
-/* Фон для страницы бокса US 9 (box_us9.html) */
-body.box-us9-page {
-    background-image: url('https://i.ibb.co/.../box-us9-bg.jpg');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-}/* УДАЛИТЕ весь этот блок - он конфликтует с .body-background */
-/*
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f5f5f5;
-    color: #333;
-    line-height: 1.6;
-}
-*/
-
 /* ОБЩИЕ стили для всего сайта */
 .body-background {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -74,13 +43,13 @@ header {
 header h1 {
     font-size: 2.5rem;
     margin-bottom: 10px;
-    color: #fff; /* Белый цвет для заголовка */
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5); /* Тень для лучшей читаемости */
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
 }
 
 header p {
     font-size: 1.1rem;
-    color: #ccc; /* Светло-серый для подзаголовка */
+    color: #ccc;
 }
 
 /* Сетка боксов */
@@ -91,7 +60,7 @@ header p {
 }
 
 .box-card {
-    background: rgba(255, 255, 255, 0.95); /* Полупрозрачный белый */
+    background: rgba(255, 255, 255, 0.95);
     border-radius: 20px;
     overflow: hidden;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
@@ -119,13 +88,13 @@ header p {
     margin: 20px 15px 10px 15px;
     font-size: 1.4rem;
     text-align: center;
-    color: #333; /* Темный текст на белом фоне */
+    color: #333;
 }
 
 .box-card p {
     margin: 0 15px 20px 15px;
     text-align: center;
-    color: #666; /* Серый текст на белом фоне */
+    color: #666;
 }
 
 /* Подвал */
@@ -134,7 +103,7 @@ footer {
     margin-top: 60px;
     padding: 20px;
     font-size: 0.9rem;
-    color: #ccc; /* Светлый текст на темном фоне */
+    color: #ccc;
 }
 
 footer a {
@@ -144,16 +113,12 @@ footer a {
 
 /* Фон для ГЛАВНОЙ СТРАНИЦЫ (index.html) */
 body.index-page {
-    background-image: url('body.box-us8-page {
-    background-image: url('https://i.ibb.co/5WpQS3K9/images.jpg');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;');
+    background-image: url('https://i.ibb.co/xqcJzkXw/1.jpg');
 }
 
 /* Фон для страницы бокса US 8 (box_us8.html) */
 body.box-us8-page {
-    background-image: url('https://i.ibb.co/pvHCqFPj/2.jpg');
+    background-image: url('https://i.ibb.co/5WpQS3K9/images.jpg');
 }
 
 /* Фон для страницы бокса US 9 (box_us9.html) */
