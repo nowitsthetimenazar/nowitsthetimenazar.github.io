@@ -301,3 +301,34 @@ body.box-us9-page {
 .rules li {
     margin-bottom: 8px;
 }
+/* Исправляем цвет текста для карточек и аукциона */
+.box-card,
+.raffle-container,
+.box-description,
+.rules {
+    color: #333 !important; /* Темный текст для читаемости */
+}
+
+/* Заголовки в карточках */
+.box-card h3,
+.raffle-info h2,
+.rules h3 {
+    color: #222 !important;
+}
+
+/* Текст в карточках */
+.box-card p,
+.raffle-info p,
+.rules li {
+    color: #666 !important;
+}
+
+/* Ссылки в подвале */
+footer a {
+    color: #2481cc !important;
+}
+
+/* Особенно для аукциона */
+.raffle-info strong {
+    color: #000 !important;
+}
