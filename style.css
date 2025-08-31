@@ -1,3 +1,213 @@
+/* Подключаем красивый шрифт */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+
+/* ОБЩИЕ стили для всего сайта */
+.body-background {
+    font-family: 'Montserrat', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    color: #fff;
+    min-height: 100vh;
+}
+
+/* Затемнение фона для лучшей читаемости */
+.body-background::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+}
+
+/* Контейнер */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Заголовок */
+header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+header p {
+    font-size: 1.1rem;
+    color: #ccc;
+}
+
+/* Сетка боксов */
+.boxes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.box-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    color: #333 !important; /* Добавляем цвет текста */
+}
+
+.box-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+}
+
+.box-card a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.box-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    display: block;
+}
+
+.box-card h3 {
+    margin: 20px 15px 10px 15px;
+    font-size: 1.4rem;
+    text-align: center;
+    color: #333;
+}
+
+.box-card p {
+    margin: 0 15px 20px 15px;
+    text-align: center;
+    color: #666;
+}
+
+/* Подвал */
+footer {
+    text-align: center;
+    margin-top: 60px;
+    padding: 20px;
+    font-size: 0.9rem;
+    color: #ccc;
+}
+
+footer a {
+    color: #2481cc;
+    text-decoration: none;
+}
+
+/* Фон для ГЛАВНОЙ СТРАНИЦЫ */
+body.index-page {
+    background-image: url('https://i.ibb.co/xqcJzkXw/1.jpg');
+}
+
+/* Фон для страницы бокса US 8 */
+body.box-us8-page {
+    background-image: url('https://i.ibb.co/5WpQS3K9/images.jpg');
+}
+
+/* Фон для страницы бокса US 9 */
+body.box-us9-page {
+    background-image: url('https://i.ibb.co/.../box-us9-bg.jpg');
+}
+
+/* Стили для картинки в боксе */
+.box-cover {
+    max-width: 100%;
+    height: auto;
+    border-radius: 15px;
+    display: block;
+    margin: 0 auto;
+}
+
+/* Стили для страницы отдельного бокса */
+.box-page {
+    text-align: center;
+}
+
+.box-description {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 25px;
+    border-radius: 15px;
+    margin: 20px 0;
+    color: #333;
+}
+
+.box-description h3 {
+    color: #222;
+    margin-top: 0;
+}
+
+.box-description p {
+    color: #666;
+    line-height: 1.5;
+}
+
+/* БОЛЬШАЯ ЗЕЛЕНАЯ кнопка покупки */
+.buy-btn {
+    display: inline-block;
+    background: linear-gradient(135deg, #28a745, #20c997);
+    color: white !important;
+    padding: 20px 40px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-top: 20px;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.buy-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4);
+    background: linear-gradient(135deg, #25a03e, #1baa80);
+}
+
+/* КРАСНАЯ кнопка "Назад" */
+.back-btn {
+    display: inline-block;
+    background: linear-gradient(135deg, #dc3545, #c82333);
+    color: white !important;
+    padding: 15px 30px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1rem;
+    margin-top: 15px;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
+}
+
+.back-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(220, 53, 69, 0.4);
+}
+
 /* Стили для страницы аукциона */
 .raffle-container {
     max-width: 800px;
@@ -6,6 +216,7 @@
     padding: 30px;
     border-radius: 20px;
     text-align: center;
+    color: #333 !important; /* Добавляем цвет текста */
 }
 
 .raffle-cover {
@@ -17,6 +228,18 @@
 
 .raffle-info {
     margin: 20px 0;
+}
+
+.raffle-info h2 {
+    color: #222 !important;
+}
+
+.raffle-info p {
+    color: #666 !important;
+}
+
+.raffle-info strong {
+    color: #000 !important;
 }
 
 .progress-bar {
@@ -43,6 +266,11 @@
     padding: 20px;
     border-radius: 10px;
     margin-top: 20px;
+    color: #333 !important;
+}
+
+.rules h3 {
+    color: #222 !important;
 }
 
 .rules ul {
@@ -52,37 +280,10 @@
 
 .rules li {
     margin-bottom: 8px;
-}
-
-/* Исправляем цвет текста для карточек и аукциона */
-.box-card,
-.raffle-container,
-.box-description,
-.rules {
-    color: #333 !important;
-}
-
-.box-card h3,
-.raffle-info h2,
-.rules h3 {
-    color: #222 !important;
-}
-
-.box-card p,
-.raffle-info p,
-.rules li {
     color: #666 !important;
 }
 
-footer a {
-    color: #2481cc !important;
-}
-
-.raffle-info strong {
-    color: #000 !important;
-}
-
-/* ОДИН медиа-запрос для мобильных */
+/* Для мобильных устройств */
 @media (max-width: 768px) {
     .box-cover {
         max-width: 95%;
@@ -117,7 +318,7 @@ footer a {
         text-align: center;
     }
     
-    /* Добавляем адаптацию для аукциона */
+    /* Стили для аукциона на мобильных */
     .raffle-container {
         padding: 15px;
         margin: 10px;
@@ -139,5 +340,9 @@ footer a {
     .boxes-grid {
         grid-template-columns: 1fr;
         gap: 20px;
+    }
+    
+    .box-card {
+        margin: 0 10px;
     }
 }
