@@ -447,3 +447,58 @@ body.box-us9-page {
         font-size: 1rem;
     }
 }
+/* Стили для цены бокса */
+.box-price {
+    background: linear-gradient(135deg, #28a745, #20c997);
+    color: white;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    margin: 0 15px 20px 15px;
+    display: inline-block;
+}
+
+/* Улучшенные стили для переключателя языка */
+.language-switcher {
+    text-align: center;
+    padding: 12px;
+    background: rgba(0,0,0,0.7);
+    margin-bottom: 20px;
+}
+
+.language-switcher a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.1);
+    transition: all 0.3s ease;
+}
+
+.language-switcher a:hover {
+    background: rgba(255,255,255,0.2);
+    transform: translateY(-2px);
+}
+
+/* Социальные иконки */
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.social-links a {
+    color: #2481cc;
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+    color: #1a5f9e;
+    transform: translateY(-3px);
+}
