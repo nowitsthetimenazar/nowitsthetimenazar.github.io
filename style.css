@@ -426,3 +426,46 @@ p {
         padding: 20px;
     }
 }
+/* Стили для видеофона */
+#video-background {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translateX(-50%) translateY(-50%);
+    z-index: -100;
+    object-fit: cover;
+}
+
+#video-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: -99;
+}
+
+/* Обновляем фон экранов для лучшей читаемости поверх видео */
+.welcome-screen, 
+.city-screen, 
+.info-screen {
+    background: rgba(0, 0, 0, 0.6) !important;
+}
+
+/* Делаем события более заметными на фоне видео */
+.event {
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(245, 245, 245, 0.95)) !important;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(76, 175, 80, 0.8) !important;
+}
+
+/* Обновляем информационный блок */
+.info-box {
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(10px);
+}
