@@ -474,6 +474,25 @@
             font-size: 0.8rem;
             text-align: center;
         }
+        
+        .reset-button {
+            display: block;
+            margin: 20px auto;
+            padding: 12px 25px;
+            background: linear-gradient(135deg, #6c757d, #495057);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .reset-button:hover {
+            background: linear-gradient(135deg, #5a6268, #343a40);
+            transform: translateY(-2px);
+        }
     </style>
 </head>
 <body class="body-background box-us8-page">
@@ -549,6 +568,9 @@
                 </div>
                 
                 <button class="spin-button" id="spinButton">Открыть кейс</button>
+                
+                <!-- Кнопка сброса для тестирования -->
+                <button class="reset-button" id="resetForTesting">Сбросить и начать заново</button>
             </div>
             
             <div class="result-container" id="resultContainer">
@@ -588,6 +610,9 @@
                         пожалуйста, используйте альтернативные способы связи (Email или WhatsApp).
                     </div>
                 </div>
+                
+                <!-- Кнопка сброса для тестирования -->
+                <button class="reset-button" id="resetAfterResult">Протестировать снова</button>
             </div>
             
             <div class="rules">
@@ -630,6 +655,8 @@
             const resultContainer = document.getElementById('resultContainer');
             const resultImage = document.getElementById('resultImage');
             const resultName = document.getElementById('resultName');
+            const resetForTesting = document.getElementById('resetForTesting');
+            const resetAfterResult = document.getElementById('resetAfterResult');
             
             // Элементы для тестирования
             const testToggle = document.getElementById('testToggle');
@@ -698,6 +725,7 @@
             function showRouletteSection() {
                 paymentContainer.classList.add('hidden');
                 afterPaymentSection.classList.remove('hidden');
+                resultContainer.style.display = 'none';
                 
                 initializeRoulette();
             }
@@ -731,6 +759,13 @@
                     `;
                     rouletteItems.appendChild(itemElement);
                 }
+                
+                // Сбрасываем позицию рулетки
+                rouletteItems.style.transition = 'none';
+                rouletteItems.style.left = '0px';
+                
+                // Включаем кнопку
+                spinButton.disabled = false;
             }
             
             let isSpinning = false;
@@ -786,6 +821,26 @@
                 }, 4100); // Чуть больше времени чем анимация
             });
             
+            // Функция сброса для тестирования
+            function resetTest() {
+                localStorage.removeItem('box_us8_payment_confirmed');
+                localStorage.removeItem('box_us8_prize_received');
+                localStorage.removeItem('box_us8_prize_index');
+                
+                paymentContainer.classList.remove('hidden');
+                afterPaymentSection.classList.add('hidden');
+                resultContainer.style.display = 'none';
+                
+                // Сбрасываем анимацию рулетки
+                initializeRoulette();
+                
+                alert('Все данные сброшены! Страница возвращена в исходное состояние.');
+            }
+            
+            // Обработчики для кнопок сброса
+            resetForTesting.addEventListener('click', resetTest);
+            resetAfterResult.addEventListener('click', resetTest);
+            
             // Функции для тестирования
             testToggle.addEventListener('click', function() {
                 testButtons.classList.toggle('hidden');
@@ -809,17 +864,7 @@
                 }, 1000);
             });
             
-            resetAllBtn.addEventListener('click', function() {
-                localStorage.removeItem('box_us8_payment_confirmed');
-                localStorage.removeItem('box_us8_prize_received');
-                localStorage.removeItem('box_us8_prize_index');
-                
-                paymentContainer.classList.remove('hidden');
-                afterPaymentSection.classList.add('hidden');
-                resultContainer.style.display = 'none';
-                
-                alert('Все данные сброшены! Страница возвращена в исходное состояние.');
-            });
+            resetAllBtn.addEventListener('click', resetTest);
         });
     </script>
 </body>
