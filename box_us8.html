@@ -739,155 +739,152 @@
     </div>
 
     <script>
-        // JavaScript код остается без изменений, как в предыдущей версии
-        document.addEventListener('DOMContentLoaded', function() {
-            const paymentContainer = document.getElementById('paymentContainer');
-            const paymentStatus = document.getElementById('paymentStatus');
-            const paymentButton = document.getElementById('paymentButton');
-            const afterPaymentSection = document.getElementById('afterPaymentSection');
-            const rouletteItems = document.getElementById('rouletteItems');
-            const spinButton = document.getElementById('spinButton');
-            const resultContainer = document.getElementById('resultContainer');
-            const resultImage = document.getElementById('resultImage');
-            const resultName = document.getElementById('resultName');
-            const simulatePaymentBtn = document.getElementById('simulatePayment');
-            const resetButton = document.getElementById('resetButton');
-            const resetAfterResult = document.getElementById('resetAfterResult');
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const paymentContainer = document.getElementById('paymentContainer');
+        const paymentStatus = document.getElementById('paymentStatus');
+        const paymentButton = document.getElementById('paymentButton');
+        const afterPaymentSection = document.getElementById('afterPaymentSection');
+        const rouletteItems = document.getElementById('rouletteItems');
+        const spinButton = document.getElementById('spinButton');
+        const resultContainer = document.getElementById('resultContainer');
+        const resultImage = document.getElementById('resultImage');
+        const resultName = document.getElementById('resultName');
+        const simulatePaymentBtn = document.getElementById('simulatePayment');
+        const resetButton = document.getElementById('resetButton');
+        const resetAfterResult = document.getElementById('resetAfterResult');
+        
+        // Данные для рулетки
+        const items = [
+            { name: "Nike Air Max 90", image: "https://i.ibb.co/0Q8N4y2/travis-scott.jpg" },
+            { name: "Adidas Ultraboost", image: "https://i.ibb.co/7QvLzC0/off-white.jpg" },
+            { name: "Jordan 1 Retro", image: "https://i.ibb.co/kg3Kw6d7/3.jpg" },
+            { name: "New Balance 550", image: "https://i.ibb.co/0Q8N4y2/travis-scott.jpg" },
+            { name: "Puma RS-X", image: "https://i.ibb.co/7QvLzC0/off-white.jpg" },
+            { name: "Reebok Classic", image: "https://i.ibb.co/kg3Kw6d7/3.jpg" },
+            { name: "Vans Old Skool", image: "https://i.ibb.co/0Q8N4y2/travis-scott.jpg" },
+            { name: "Converse Chuck Taylor", image: "https://i.ibb.co/7QvLzC0/off-white.jpg" },
+            { name: "Nike Dunk Low", image: "https://i.ibb.co/0Q8N4y2/travis-scott.jpg" },
+            { name: "Asics Gel-Lyte", image: "https://i.ibb.co/7QvLzC0/off-white.jpg" }
+        ];
+        
+        // Обработчик для кнопки оплаты
+        paymentButton.addEventListener('click', function(e) {
+            paymentStatus.textContent = "Перенаправление на страницу оплаты...";
+            paymentStatus.className = "payment-status payment-pending";
             
-            // Данные для рулетки
-            const items = [
-                { name: "Nike Air Max 90", image: "https://i.ibb.co/0Q8N4y2/travis-scott.jpg" },
-                { name: "Adidas Ultraboost", image: "https://i.ibb.co/7QvLzC0/off-white.jpg" },
-                { name: "Jordan 1 Retro", image: "https://i.ibb.co/kg3Kw6d7/3.jpg" },
-                { name: "New Balance 550", image: "https://i.ibb.co/0Q8N4y2/travis-scott.jpg" },
-                { name: "Puma RS-X", image: "https://i.ibb.co/7QvLzC0/off-white.jpg" },
-                { name: "Reebok Classic", image: "https://i.ibb.co/kg3Kw6d7/3.jpg" },
-                { name: "Vans Old Skool", image: "https://i.ibb.co/0Q8N4y2/travis-scott.jpg" },
-                { name: "Converse Chuck Taylor", image: "https://i.ibb.co/7QvLzC0/off-white.jpg" },
-                { name: "Nike Dunk Low", image: "https://i.ibb.co/0Q8N4y2/travis-scott.jpg" },
-                { name: "Asics Gel-Lyte", image: "https://i.ibb.co/7QvLzC0/off-white.jpg" }
-            ];
+            setTimeout(function() {
+                alert("В реальном сценарии здесь произойдет перенаправление на страницу платежного шлюза.");
+            }, 1000);
+        });
+        
+        // Обработчик для кнопки симуляции оплаты
+        simulatePaymentBtn.addEventListener('click', function() {
+            paymentStatus.textContent = "Оплата прошла успешно!";
+            paymentStatus.className = "payment-status payment-success";
             
-            // Обработчик для кнопки оплаты
-            paymentButton.addEventListener('click', function(e) {
-                paymentStatus.textContent = "Перенаправление на страницу оплаты...";
-                paymentStatus.className = "payment-status payment-pending";
-                
-                setTimeout(function() {
-                    alert("В реальном сценарии здесь произойдет перенаправление на страницу платежного шлюза.");
-                }, 1000);
-            });
+            setTimeout(function() {
+                showRouletteSection();
+            }, 1000);
+        });
+        
+        function showRouletteSection() {
+            paymentContainer.classList.add('hidden');
+            afterPaymentSection.classList.remove('hidden');
+            resultContainer.style.display = 'none';
             
-            // Обработчик для кнопки симуляции оплаты
-            simulatePaymentBtn.addEventListener('click', function() {
-                paymentStatus.textContent = "Оплата прошла успешно!";
-                paymentStatus.className = "payment-status payment-success";
-                
-                setTimeout(function() {
-                    showRouletteSection();
-                }, 1000);
-            });
+            initializeRoulette();
+        }
+        
+        function showResult() {
+            paymentContainer.classList.add('hidden');
+            afterPaymentSection.classList.add('hidden');
+            resultContainer.style.display = 'block';
             
-            function showRouletteSection() {
-                paymentContainer.classList.add('hidden');
-                afterPaymentSection.classList.remove('hidden');
-                resultContainer.style.display = 'none';
-                
-                initializeRoulette();
+            const prizeIndex = parseInt(localStorage.getItem('box_us8_prize_index') || '0');
+            const prize = items[prizeIndex];
+            resultImage.src = prize.image;
+            resultName.textContent = prize.name;
+        }
+        
+        // Заполняем рулетку элементами
+        function initializeRoulette() {
+            rouletteItems.innerHTML = '';
+            
+            for (let i = 0; i < items.length * 3; i++) {
+                const itemIndex = i % items.length;
+                const item = items[itemIndex];
+                const itemElement = document.createElement('div');
+                itemElement.className = 'roulette-item';
+                itemElement.dataset.index = itemIndex;
+                itemElement.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}">
+                    <p>${item.name}</p>
+                `;
+                rouletteItems.appendChild(itemElement);
             }
             
-            function showResult() {
-                paymentContainer.classList.add('hidden');
-                afterPaymentSection.classList.add('hidden');
-                resultContainer.style.display = 'block';
-                
-                const prizeIndex = parseInt(localStorage.getItem('box_us8_prize_index') || '0');
-                const prize = items[prizeIndex];
-                resultImage.src = prize.image;
-                resultName.textContent = prize.name;
-            }
+            rouletteItems.style.transition = 'none';
+            rouletteItems.style.left = '0px';
+            spinButton.disabled = false;
+        }
+        
+        let isSpinning = false;
+        
+        // ИСПРАВЛЕННАЯ Функция запуска рулетки
+        spinButton.addEventListener('click', function() {
+            if (isSpinning) return;
             
-            // Заполняем рулетку элементами
-            function initializeRoulette() {
-                rouletteItems.innerHTML = '';
-                
-                for (let i = 0; i < items.length * 3; i++) {
-                    const itemIndex = i % items.length;
-                    const item = items[itemIndex];
-                    const itemElement = document.createElement('div');
-                    itemElement.className = 'roulette-item';
-                    itemElement.dataset.index = itemIndex;
-                    itemElement.innerHTML = `
-                        <img src="${item.image}" alt="${item.name}">
-                        <p>${item.name}</p>
-                    `;
-                    rouletteItems.appendChild(itemElement);
-                }
-                
-                rouletteItems.style.transition = 'none';
-                rouletteItems.style.left = '0px';
-                spinButton.disabled = false;
-            }
+            isSpinning = true;
+            spinButton.disabled = true;
             
-            let isSpinning = false;
+            const winnerIndex = Math.floor(Math.random() * items.length);
+            const winner = items[winnerIndex];
             
-            // Функция запуска рулетки
-            spinButton.addEventListener('click', function() {
-                if (isSpinning) return;
-                
-                isSpinning = true;
-                spinButton.disabled = true;
-                
-                const winnerIndex = Math.floor(Math.random() * items.length);
-                const winner = items[winnerIndex];
-                
-                const itemWidth = 164; // width + margin
-                const targetPosition = -((winnerIndex + items.length) * itemWidth);
-                
-                rouletteItems.style.transition = 'none';
-                rouletteItems.style.left = '0px';
-                
-                setTimeout(() => {
-                    rouletteItems.style.transition = 'left 4s cubic-bezier(0.1, 0.8, 0.2, 1)';
-                    rouletteItems.style.left = `${targetPosition}px`;
-                }, 10);
-                
-                setTimeout(() => {
-                    document.querySelectorAll('.roulette-item').forEach(item => {
-                        item.classList.remove('active');
-                        if (parseInt(item.dataset.index) === winnerIndex) {
-                            item.classList.add('active');
-                        }
-                    });
-                    
-                    resultImage.src = winner.image;
-                    resultName.textContent = winner.name;
-                    resultContainer.style.display = 'block';
-                    afterPaymentSection.classList.add('hidden');
-                    
-                    isSpinning = false;
-                }, 4100);
-            });
+            // Сохраняем выигрышный индекс
+            localStorage.setItem('box_us8_prize_index', winnerIndex);
             
-            // Функция сброса для тестирования
-            function resetTest() {
-                localStorage.removeItem('box_us8_payment_confirmed');
-                localStorage.removeItem('box_us8_prize_received');
-                localStorage.removeItem('box_us8_prize_index');
-                
-                paymentContainer.classList.remove('hidden');
-                afterPaymentSection.classList.add('hidden');
-                resultContainer.style.display = 'none';
-                
-                paymentStatus.textContent = "Ожидание оплаты...";
-                paymentStatus.className = "payment-status payment-pending";
-                
-                initializeRoulette();
-            }
+            const itemWidth = 164; // width + margin
+            // Вычисляем позицию так, чтобы выигрышный элемент оказался в центре
+            const targetPosition = -((winnerIndex + items.length * 1) * itemWidth);
             
-            // Обработчики для кнопок сброса
-            resetButton.addEventListener('click', resetTest);
-            resetAfterResult.addEventListener('click', resetTest);
+            rouletteItems.style.transition = 'none';
+            rouletteItems.style.left = '0px';
+            
+            setTimeout(() => {
+                rouletteItems.style.transition = 'left 4s cubic-bezier(0.1, 0.8, 0.2, 1)';
+                rouletteItems.style.left = `${targetPosition}px`;
+            }, 10);
+            
+            setTimeout(() => {
+                // Показываем результат после завершения анимации
+                showResult();
+                isSpinning = false;
+            }, 4100);
+        });
+        
+        // Функция сброса для тестирования
+        function resetTest() {
+            localStorage.removeItem('box_us8_payment_confirmed');
+            localStorage.removeItem('box_us8_prize_received');
+            localStorage.removeItem('box_us8_prize_index');
+            
+            paymentContainer.classList.remove('hidden');
+            afterPaymentSection.classList.add('hidden');
+            resultContainer.style.display = 'none';
+            
+            paymentStatus.textContent = "Ожидание оплаты...";
+            paymentStatus.className = "payment-status payment-pending";
+            
+            initializeRoulette();
+        }
+        
+        // Обработчики для кнопок сброса
+        resetButton.addEventListener('click', resetTest);
+        resetAfterResult.addEventListener('click', resetTest);
+        
+        // Инициализация при загрузке страницы
+        initializeRoulette();
         });
     </script>
 </body>
