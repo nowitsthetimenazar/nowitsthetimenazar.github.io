@@ -4,10 +4,143 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Mystery Box US 8 | Shoes With History</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* Стили для анимации рулетки */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            color: #fff;
+            min-height: 100vh;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(30, 30, 46, 0.8);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            color: #ff6b35;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        header p {
+            font-size: 1.2rem;
+            color: #e0e0e0;
+        }
+        
+        .back-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 50px;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .box-cover {
+            width: 100%;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+        
+        .box-description {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .box-description h3 {
+            color: #ff6b35;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .box-description p {
+            margin-bottom: 10px;
+            color: #e0e0e0;
+        }
+        
+        .payment-container {
+            text-align: center;
+            margin: 25px 0;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            animation: fadeIn 0.5s ease;
+            color: #333;
+        }
+        
+        .payment-info {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .payment-status {
+            padding: 10px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-weight: bold;
+        }
+        
+        .payment-pending {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+        
+        .payment-success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        
+        .buy-btn {
+            display: inline-block;
+            padding: 16px 45px;
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            box-shadow: 0 5px 20px rgba(40, 167, 69, 0.5);
+            margin-top: 15px;
+        }
+        
+        .buy-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(40, 167, 69, 0.7);
+        }
+        
         .roulette-wrapper {
             position: relative;
             width: 100%;
@@ -107,26 +240,6 @@
             box-shadow: none;
         }
         
-        .pay-first-button {
-            display: block;
-            margin: 25px auto;
-            padding: 16px 45px;
-            background: linear-gradient(135deg, #28a745, #20c997);
-            color: white;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.3rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 20px rgba(40, 167, 69, 0.5);
-        }
-        
-        .pay-first-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(40, 167, 69, 0.7);
-        }
-        
         .result-container {
             text-align: center;
             margin: 25px 0;
@@ -135,15 +248,7 @@
             border-radius: 15px;
             display: none;
             animation: fadeIn 0.5s ease;
-        }
-        
-        .payment-container {
-            text-align: center;
-            margin: 25px 0;
-            padding: 25px;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 15px;
-            animation: fadeIn 0.5s ease;
+            color: #333;
         }
         
         @keyframes fadeIn {
@@ -187,28 +292,6 @@
             color: #fff;
             margin-bottom: 15px;
             font-style: italic;
-        }
-        
-        .payment-info {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        
-        .payment-status {
-            padding: 10px;
-            border-radius: 8px;
-            margin: 15px 0;
-            font-weight: bold;
-        }
-        
-        .payment-pending {
-            background-color: #fff3cd;
-            color: #856404;
-        }
-        
-        .payment-success {
-            background-color: #d4edda;
-            color: #155724;
         }
         
         .hidden {
@@ -274,14 +357,137 @@
             margin-top: 15px;
             font-size: 0.9rem;
         }
+        
+        .rules {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 25px;
+        }
+        
+        .rules h3 {
+            color: #ff6b35;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .rules ul {
+            padding-left: 20px;
+            color: #e0e0e0;
+        }
+        
+        .rules li {
+            margin-bottom: 10px;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .footer-content p {
+            color: #e0e0e0;
+            margin-bottom: 15px;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+        }
+        
+        /* Стили для режима тестирования */
+        .test-mode-panel {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px;
+            border-radius: 10px;
+            z-index: 1000;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .test-toggle {
+            background: #ff6b35;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-bottom: 10px;
+            width: 100%;
+        }
+        
+        .test-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .test-btn {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+        
+        .test-btn.simulate {
+            background: #2196F3;
+        }
+        
+        .test-btn.reset {
+            background: #f44336;
+        }
+        
+        .developer-note {
+            background: #ff9800;
+            color: #000;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+            font-size: 0.8rem;
+            text-align: center;
+        }
     </style>
 </head>
 <body class="body-background box-us8-page">
-    <!-- Переключатель языка -->
-    <div class="language-switcher">
-        <a href="box_us8-en.html">
-            <i class="fas fa-globe"></i> 🇺🇸 English Version
-        </a> 
+    <!-- Панель тестирования для разработчика -->
+    <div class="test-mode-panel">
+        <button class="test-toggle" id="testToggle">Режим тестирования</button>
+        <div class="test-buttons hidden" id="testButtons">
+            <button class="test-btn simulate" id="simulatePayment">Симулировать оплату</button>
+            <button class="test-btn" id="testRoulette">Протестировать рулетку</button>
+            <button class="test-btn reset" id="resetAll">Сбросить всё</button>
+            <div class="developer-note">
+                Только для разработчика
+            </div>
+        </div>
     </div>
 
     <div class="container">
@@ -424,6 +630,13 @@
             const resultContainer = document.getElementById('resultContainer');
             const resultImage = document.getElementById('resultImage');
             const resultName = document.getElementById('resultName');
+            
+            // Элементы для тестирования
+            const testToggle = document.getElementById('testToggle');
+            const testButtons = document.getElementById('testButtons');
+            const simulatePaymentBtn = document.getElementById('simulatePayment');
+            const testRouletteBtn = document.getElementById('testRoulette');
+            const resetAllBtn = document.getElementById('resetAll');
             
             // Проверяем, была ли уже произведена оплата
             const paymentConfirmed = localStorage.getItem('box_us8_payment_confirmed') === 'true';
@@ -571,6 +784,41 @@
                     
                     isSpinning = false;
                 }, 4100); // Чуть больше времени чем анимация
+            });
+            
+            // Функции для тестирования
+            testToggle.addEventListener('click', function() {
+                testButtons.classList.toggle('hidden');
+            });
+            
+            simulatePaymentBtn.addEventListener('click', function() {
+                localStorage.setItem('box_us8_payment_confirmed', 'true');
+                showRouletteSection();
+                alert('Оплата успешно симулирована! Теперь вы можете протестировать рулетку.');
+            });
+            
+            testRouletteBtn.addEventListener('click', function() {
+                if (!localStorage.getItem('box_us8_payment_confirmed')) {
+                    alert('Сначала симулируйте оплату!');
+                    return;
+                }
+                
+                showRouletteSection();
+                setTimeout(function() {
+                    spinButton.click();
+                }, 1000);
+            });
+            
+            resetAllBtn.addEventListener('click', function() {
+                localStorage.removeItem('box_us8_payment_confirmed');
+                localStorage.removeItem('box_us8_prize_received');
+                localStorage.removeItem('box_us8_prize_index');
+                
+                paymentContainer.classList.remove('hidden');
+                afterPaymentSection.classList.add('hidden');
+                resultContainer.style.display = 'none';
+                
+                alert('Все данные сброшены! Страница возвращена в исходное состояние.');
             });
         });
     </script>
