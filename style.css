@@ -131,3 +131,18 @@ body.box-us9-page {
     display: block;
     margin: 0 auto;  /* Автоматические отступы по бокам (центрирование) */
 }
+/* Для мобильных устройств */
+@media (max-width: 768px) {
+    .box-cover {
+        max-width: 95%;
+        max-height: 40vh;
+    }
+    
+    .container {
+        padding: 10px;
+    }
+    
+    header h1 {
+        font-size: 2rem;
+    }
+}
