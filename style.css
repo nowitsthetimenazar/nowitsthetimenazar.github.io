@@ -1,4 +1,4 @@
-/* style.css */
+/* style.css - Дневная версия с растительностью */
 * {
     margin: 0;
     padding: 0;
@@ -8,8 +8,8 @@
 
 body {
     overflow: hidden;
-    background: linear-gradient(135deg, #1a1a2e, #16213e);
-    color: #fff;
+    background: linear-gradient(135deg, #87CEEB, #E0F7FA);
+    color: #333;
     height: 100vh;
     perspective: 1000px;
 }
@@ -45,11 +45,11 @@ body {
 }
 
 .welcome-screen {
-    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect fill="%23222" width="100" height="100"/><path fill="%23333" d="M0 0L100 100M100 0L0 100"/></svg>');
+    background: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect fill="%23e8f5e9" width="100" height="100"/><path fill="%23c8e6c9" d="M0 0L100 100M100 0L0 100"/></svg>');
 }
 
 .city-screen {
-    background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200"><rect fill="%23333" width="200" height="200"/><path fill="%23444" d="M0 0L200 200M200 0L0 200"/></svg>');
+    background: linear-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.8)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200"><rect fill="%23e8f5e9" width="200" height="200"/><path fill="%23c8e6c9" d="M0 0L200 200M200 0L0 200"/></svg>');
     justify-content: flex-start;
     padding-top: 80px;
 }
@@ -60,19 +60,19 @@ body {
     margin-bottom: 20px;
     text-transform: uppercase;
     letter-spacing: 5px;
-    color: #ff7b00;
-    text-shadow: 0 0 10px rgba(255, 123, 0, 0.7);
+    color: #4CAF50;
+    text-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
 }
 
 .subtitle {
     font-size: 1.5rem;
     margin-bottom: 40px;
-    color: #eee;
+    color: #388E3C;
 }
 
 .btn {
     padding: 15px 40px;
-    background: #ff7b00;
+    background: #4CAF50;
     color: white;
     border: none;
     border-radius: 50px;
@@ -81,44 +81,46 @@ body {
     cursor: pointer;
     transition: all 0.3s ease;
     margin: 10px;
-    box-shadow: 0 5px 15px rgba(255, 123, 0, 0.4);
+    box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
 }
 
 .btn:hover {
     transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(255, 123, 0, 0.6);
-    background: #ff8c1a;
+    box-shadow: 0 8px 20px rgba(76, 175, 80, 0.6);
+    background: #66BB6A;
 }
 
 .event {
     position: absolute;
     width: 280px;
     height: 320px;
-    background: linear-gradient(145deg, #2a2a4a, #1c1c3a);
+    background: linear-gradient(145deg, #ffffff, #f5f5f5);
     border-radius: 15px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     padding: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
     transition: all 0.5s ease;
     cursor: pointer;
     transform-style: preserve-3d;
     transform: translateZ(0);
     backface-visibility: hidden;
+    z-index: 100;
+    border: 2px solid #4CAF50;
 }
 
 .event:hover {
     transform: translateZ(20px) scale(1.05);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
-    background: linear-gradient(145deg, #3a3a5a, #2c2c4a);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(145deg, #ffffff, #e8f5e9);
 }
 
 .event-icon {
     font-size: 4rem;
     margin-bottom: 20px;
-    color: #ff7b00;
+    color: #4CAF50;
 }
 
 .event-title {
@@ -126,12 +128,13 @@ body {
     font-weight: 700;
     margin-bottom: 15px;
     text-align: center;
+    color: #2E7D32;
 }
 
 .event-desc {
     font-size: 1rem;
     text-align: center;
-    color: #ccc;
+    color: #616161;
 }
 
 #event1 {
@@ -185,11 +188,11 @@ body {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background: #333;
+    background: #4CAF50;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #ff7b00;
+    color: white;
     font-size: 1.2rem;
     transition: all 0.3s ease;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
@@ -197,7 +200,7 @@ body {
 
 .social-icon:hover {
     transform: translateY(-3px);
-    background: #ff7b00;
+    background: #66BB6A;
     color: white;
 }
 
@@ -207,10 +210,10 @@ body {
     left: 0;
     width: 100%;
     height: 150px;
-    background: #444;
+    background: #78909C;
     transform-origin: bottom center;
     transform: rotateX(80deg);
-    box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.1);
 }
 
 .road-line {
@@ -219,7 +222,7 @@ body {
     left: 0;
     width: 100%;
     height: 10px;
-    background: repeating-linear-gradient(90deg, transparent, transparent 20px, #ff7b00 20px, #ff7b00 40px);
+    background: repeating-linear-gradient(90deg, transparent, transparent 20px, #FFFFFF 20px, #FFFFFF 40px);
     animation: roadMove 1s linear infinite;
 }
 
@@ -231,29 +234,84 @@ body {
 .building {
     position: absolute;
     bottom: 150px;
-    background: #2c2c4a;
+    background: #BDBDBD;
     transform-origin: bottom center;
     transform-style: preserve-3d;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
 .window {
     position: absolute;
-    background: #ffd700;
+    background: #FFF9C4;
     border-radius: 2px;
+}
+
+.tree {
+    position: absolute;
+    bottom: 150px;
+    width: 60px;
+    height: 120px;
+    background: #4CAF50;
+    clip-path: polygon(0% 100%, 50% 0%, 100% 100%);
+    z-index: 5;
+}
+
+.bush {
+    position: absolute;
+    bottom: 150px;
+    width: 80px;
+    height: 40px;
+    background: #388E3C;
+    border-radius: 50%;
+    z-index: 5;
+}
+
+.grass {
+    position: absolute;
+    bottom: 150px;
+    width: 100%;
+    height: 20px;
+    background: linear-gradient(to bottom, #81C784, #4CAF50);
+    z-index: 4;
+}
+
+.cloud {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.8;
+    animation: cloudMove 30s linear infinite;
+}
+
+@keyframes cloudMove {
+    0% { transform: translateX(-100px); }
+    100% { transform: translateX(calc(100vw + 100px)); }
+}
+
+.sun {
+    position: absolute;
+    top: 50px;
+    right: 50px;
+    width: 80px;
+    height: 80px;
+    background: #FFEB3B;
+    border-radius: 50%;
+    box-shadow: 0 0 40px #FFEB3B;
+    z-index: 1;
 }
 
 .info-box {
     max-width: 800px;
-    background: rgba(30, 30, 50, 0.9);
+    background: rgba(255, 255, 255, 0.95);
     padding: 30px;
     border-radius: 15px;
     margin: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border: 2px solid #4CAF50;
 }
 
 .info-screen {
-    background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200"><rect fill="%23333" width="200" height="200"/><path fill="%23444" d="M0 0L200 200M200 0L0 200"/></svg>');
+    background: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200"><rect fill="%23e8f5e9" width="200" height="200"/><path fill="%23c8e6c9" d="M0 0L200 200M200 0L0 200"/></svg>');
 }
 
 video {
@@ -261,20 +319,21 @@ video {
     max-width: 600px;
     border-radius: 10px;
     margin: 20px 0;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    border: 2px solid #4CAF50;
 }
 
 h1 {
     font-size: 2.5rem;
     margin-bottom: 20px;
-    color: #ff7b00;
+    color: #4CAF50;
 }
 
 p {
     font-size: 1.2rem;
     line-height: 1.6;
     margin-bottom: 20px;
-    color: #eee;
+    color: #424242;
 }
 
 /* Адаптивность для мобильных устройств */
@@ -324,6 +383,13 @@ p {
     
     p {
         font-size: 1rem;
+    }
+    
+    .sun {
+        width: 60px;
+        height: 60px;
+        top: 30px;
+        right: 30px;
     }
 }
 
