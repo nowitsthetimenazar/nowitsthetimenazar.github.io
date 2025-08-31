@@ -2,35 +2,305 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Mystery Box US 8 | Shoes With History</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Roulette animation styles */
+        .roulette-container {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            margin: 30px 0;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+        
+        .roulette-items {
+            display: flex;
+            position: absolute;
+            left: 0;
+            transition-timing-function: cubic-bezier(0.17, 0.67, 0.83, 0.67);
+            transition-duration: 0s;
+        }
+        
+        .roulette-item {
+            width: 150px;
+            height: 150px;
+            margin: 25px 15px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        .roulette-item.active {
+            transform: scale(1.1);
+            box-shadow: 0 0 25px gold;
+            border: 2px solid gold;
+        }
+        
+        .roulette-item img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+        
+        .roulette-item p {
+            margin: 8px 0 0 0;
+            font-size: 0.9rem;
+            font-weight: bold;
+            text-align: center;
+            color: #333;
+        }
+        
+        .roulette-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 5px;
+            height: 80%;
+            background: gold;
+            box-shadow: 0 0 15px gold;
+            z-index: 10;
+        }
+        
+        .spin-button {
+            display: block;
+            margin: 20px auto;
+            padding: 15px 40px;
+            background: linear-gradient(135deg, #ff6b35, #e55a2a);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(229, 90, 42, 0.4);
+        }
+        
+        .spin-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(229, 90, 42, 0.6);
+        }
+        
+        .spin-button:disabled {
+            background: #cccccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .result-container {
+            text-align: center;
+            margin: 20px 0;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            display: none;
+        }
+        
+        .result-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .result-item img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .result-text {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .winner-text {
+            color: #28a745;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body class="body-background box-us8-page">
+    <!-- Language switcher -->
+    <div class="language-switcher">
+        <a href="box_us8.html">
+            <i class="fas fa-globe"></i> 🇷🇺 Russian Version
+        </a> 
+    </div>
+
     <div class="container">
         <header>
             <h1>MYSTERY BOX #08</h1>
-            <p>US Size 8 (EU 41)</p>
+            <p>Size US 8 (EU 41)</p>
+            
+            <!-- Back button -->
+            <div style="text-align: center; margin-bottom: 20px;">
+                <a href="index-en.html" class="back-btn">
+                    <i class="fas fa-arrow-left"></i> Back to Main
+                </a>
+            </div>
         </header>
 
         <div class="box-page">
             <img src="https://i.ibb.co/pvHCqFPj/2.jpg" alt="Mystery Box US 8" class="box-cover">
+            
             <div class="box-description">
                 <h3>What's inside?</h3>
-                <p>This box is curated specifically for US size 8. It could be anything from classic Air Force 1s to rare Dunks. Each pair is a surprise, a story, and a unique style. <strong>We guarantee only one thing: they will be awesome sneakers.</strong></p>
+                <p>This box is specially assembled for US size 8. It could be anything: from classic Air Force 1 to rare Dunks. Each pair is a surprise, a story, and a unique style. <strong>We guarantee only one thing: these will be cool sneakers.</strong></p>
                 <p>Condition: 7/10 - 9/10</p>
                 <p>Brands: Nike, Jordan, New Balance, Asics</p>
-
-                <a href="https://your-lavapay-link-for-size-8" class="buy-btn" target="_blank">
-                    <i class="fas fa-shopping-cart"></i> Order this box
+            </div>
+            
+            <!-- Roulette -->
+            <div class="roulette-container">
+                <div class="roulette-center"></div>
+                <div class="roulette-items" id="rouletteItems">
+                    <!-- Items will be added via JavaScript -->
+                </div>
+            </div>
+            
+            <button class="spin-button" id="spinButton">Spin the Wheel</button>
+            
+            <div class="result-container" id="resultContainer">
+                <h3>Congratulations! You won:</h3>
+                <div class="result-item">
+                    <img id="resultImage" src="" alt="Prize">
+                    <div class="result-text">
+                        <span id="resultName"></span>
+                        <div class="winner-text">This is a great result!</div>
+                    </div>
+                </div>
+                
+                <a href="https://your-lavapay-link-for-size-8" class="buy-btn" style="margin-top: 20px;" target="_blank">
+                    🎉 Claim Prize
                 </a>
+            </div>
+            
+            <div class="rules">
+                <h3>How does it work?</h3>
+                <ul>
+                    <li>Click the "Spin the Wheel" button to start the animation</li>
+                    <li>The wheel will stop on a random item from the box</li>
+                    <li>After stopping, you will see what you won</li>
+                    <li>Click "Claim Prize" to complete your order</li>
+                </ul>
             </div>
         </div>
 
         <footer>
-            <a href="index-en.html" class="back-btn">← Back to catalog</a>
+            <div class="footer-content">
+                <p>Find your unique style. Contact us:</p>
+                <div class="social-links">
+                    <a href="https://t.me/taizario">
+                        <i class="fab fa-telegram"></i>
+                    </a>
+                    <a href="https://instagram.com/taizario">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
         </footer>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const rouletteItems = document.getElementById('rouletteItems');
+            const spinButton = document.getElementById('spinButton');
+            const resultContainer = document.getElementById('resultContainer');
+            const resultImage = document.getElementById('resultImage');
+            const resultName = document.getElementById('resultName');
+            
+            // Roulette data (items in the box)
+            const items = [
+                { name: "Nike Air Max 90", image: "https://i.ibb.co/0Q8N4y2/travis-scott.jpg" },
+                { name: "Adidas Ultraboost", image: "https://i.ibb.co/7QvLzC0/off-white.jpg" },
+                { name: "Jordan 1 Retro", image: "https://i.ibb.co/kg3Kw6d7/3.jpg" },
+                { name: "New Balance 550", image: "https://i.ibb.co/0Q8N4y2/travis-scott.jpg" },
+                { name: "Puma RS-X", image: "https://i.ibb.co/7QvLzC0/off-white.jpg" },
+                { name: "Reebok Classic", image: "https://i.ibb.co/kg3Kw6d7/3.jpg" },
+                { name: "Vans Old Skool", image: "https://i.ibb.co/0Q8N4y2/travis-scott.jpg" },
+                { name: "Converse Chuck Taylor", image: "https://i.ibb.co/7QvLzC0/off-white.jpg" }
+            ];
+            
+            // Fill the roulette with items
+            items.forEach((item, index) => {
+                const itemElement = document.createElement('div');
+                itemElement.className = 'roulette-item';
+                itemElement.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}">
+                    <p>${item.name}</p>
+                `;
+                rouletteItems.appendChild(itemElement);
+            });
+            
+            // Duplicate items for infinite scrolling
+            items.forEach((item, index) => {
+                const itemElement = document.createElement('div');
+                itemElement.className = 'roulette-item';
+                itemElement.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}">
+                    <p>${item.name}</p>
+                `;
+                rouletteItems.appendChild(itemElement);
+            });
+            
+            let isSpinning = false;
+            
+            // Roulette spin function
+            spinButton.addEventListener('click', function() {
+                if (isSpinning) return;
+                
+                isSpinning = true;
+                spinButton.disabled = true;
+                resultContainer.style.display = 'none';
+                
+                // Random prize selection
+                const winnerIndex = Math.floor(Math.random() * items.length);
+                const winner = items[winnerIndex];
+                
+                // Calculate stopping position
+                const itemWidth = 180; // width + margin
+                const targetPosition = -(winnerIndex * itemWidth);
+                
+                // Scrolling animation with easing effect
+                rouletteItems.style.transition = 'none';
+                rouletteItems.style.left = '0px';
+                
+                setTimeout(() => {
+                    rouletteItems.style.transition = 'left 5s cubic-bezier(0.17, 0.67, 0.83, 0.67)';
+                    rouletteItems.style.left = `${targetPosition - 360}px`;
+                }, 10);
+                
+                // Show result after animation completes
+                setTimeout(() => {
+                    resultImage.src = winner.image;
+                    resultName.textContent = winner.name;
+                    resultContainer.style.display = 'block';
+                    
+                    isSpinning = false;
+                    spinButton.disabled = false;
+                }, 5000);
+            });
+        });
+    </script>
 </body>
 </html>
