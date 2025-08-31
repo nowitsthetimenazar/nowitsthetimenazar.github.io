@@ -660,3 +660,94 @@ body.box-us10-page {
         padding: 8px;
     }
 }
+/* Улучшенные стили для сетки боксов */
+.boxes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    padding: 0 10px;
+}
+
+.box-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+}
+
+.box-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+}
+
+.box-card a {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.box-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    display: block;
+}
+
+.box-card-content {
+    padding: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.box-card h3 {
+    margin: 0 0 10px 0;
+    font-size: 1.4rem;
+    text-align: center;
+    color: #333;
+}
+
+.box-card p {
+    margin: 0 0 15px 0;
+    text-align: center;
+    color: #666;
+    flex-grow: 1;
+}
+
+.box-price {
+    background: linear-gradient(135deg, #28a745, #20c997);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-weight: bold;
+    text-align: center;
+    margin: 0 auto;
+    display: inline-block;
+}
+
+/* Анимация загрузки */
+.box-card {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Задержки для анимации */
+.box-card:nth-child(1) { animation-delay: 0.1s; }
+.box-card:nth-child(2) { animation-delay: 0.2s; }
+.box-card:nth-child(3) { animation-delay: 0.3s; }
