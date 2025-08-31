@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,64 +8,69 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body class="body-background index-page">
-    <!-- Language switcher -->
-    <div style="text-align: center; padding: 12px; background: rgba(0,0,0,0.7);">
-        <a href="index.html" style="color: white; text-decoration: none; font-weight: bold;">
-            <i class="fas fa-globe"></i> 🇷🇺 Russian
+    <!-- Переключатель языка -->
+    <div class="language-switcher">
+        <a href="index-en.html">
+            <i class="fas fa-globe"></i> 🇺🇸 English Version
         </a> 
     </div>
 
     <div class="container">
         <header>
             <h1>MYSTERY BOXES</h1>
-            <p>Choose your size box. The mystery is waiting inside.</p>
+            <p>Выбери бокс своего размера. Тайна ждёт тебя внутри.</p>
             
-            <!-- AUCTION BUTTON -->
-            <div style="margin: 20px 0;">
-                <a href="auction-en.html" class="buy-btn" style="display: inline-block; background: #ff6b35;">
-                    🎯 Join Raffle Auction
+            <!-- КНОПКА ПЕРЕХОДА НА АУКЦИОН -->
+            <div class="auction-button-container">
+                <a href="auction.html" class="buy-btn auction-btn">
+                    🎯 Участвовать в аукционе
                 </a>
             </div>
         </header>
 
         <div class="boxes-grid">
-            <!-- Box for US 8 -->
+            <!-- Бокс на размер US 8 -->
             <div class="box-card">
-                <a href="box_us8-en.html">
+                <a href="box_us8.html">
                     <img src="https://i.ibb.co/kg3Kw6d7/3.jpg" alt="Mystery Box US 8">
                     <h3>MYSTERY BOX #08</h3>
-                    <p>For US Size 8 (EU 41)</p>
+                    <p>Для размера US 8 (EU 41)</p>
+                    <div class="box-price">$39</div>
                 </a>
             </div>
 
-            <!-- Box for US 9 -->
+            <!-- Бокс на размер US 9 -->
             <div class="box-card">
-                <a href="box_us9-en.html">
-                    <img src="https://via.placeholder.com/300x300?text=Box+US+9" alt="Mystery Box US 9">
+                <a href="box_us9.html">
+                    <img src="https://i.ibb.co/7QvLzC0/off-white.jpg" alt="Mystery Box US 9">
                     <h3>MYSTERY BOX #09</h3>
-                    <p>For US Size 9 (EU 42.5)</p>
+                    <p>Для размера US 9 (EU 42.5)</p>
+                    <div class="box-price">$39</div>
                 </a>
             </div>
 
-            <!-- Box for US 10 -->
+            <!-- Бокс на размер US 10 -->
             <div class="box-card">
-                <a href="box_us10-en.html">
-                    <img src="https://via.placeholder.com/300x300?text=Box+US+10" alt="Mystery Box US 10">
+                <a href="box_us10.html">
+                    <img src="https://i.ibb.co/0Q8N4y2/travis-scott.jpg" alt="Mystery Box US 10">
                     <h3>MYSTERY BOX #10</h3>
-                    <p>For US Size 10 (EU 44)</p>
+                    <p>Для размера US 10 (EU 44)</p>
+                    <div class="box-price">$39</div>
                 </a>
             </div>
         </div>
 
-        <footer style="background: rgba(0,0,0,0.7); padding: 25px; border-radius: 10px; margin-top: 40px; text-align: center;">
-            <p style="color: #fff; font-size: 1rem; margin-bottom: 15px;">Find your unique style. Contact us:</p>
-            <div style="display: flex; justify-content: center; gap: 20px;">
-                <a href="https://t.me/taizario" style="color: #4da6ff; text-decoration: none; font-size: 1.8rem;">
-                    <i class="fab fa-telegram"></i>
-                </a>
-                <a href="https://instagram.com/taizario" style="color: #4da6ff; text-decoration: none; font-size: 1.8rem;">
-                    <i class="fab fa-instagram"></i>
-                </a>
+        <footer>
+            <div class="footer-content">
+                <p>Найди свой уникальный стиль. Свяжись с нами:</p>
+                <div class="social-links">
+                    <a href="https://t.me/taizario">
+                        <i class="fab fa-telegram"></i>
+                    </a>
+                    <a href="https://instagram.com/taizario">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
             </div>
         </footer>
     </div>
