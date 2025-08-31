@@ -28,7 +28,7 @@
             display: flex;
             position: absolute;
             left: 0;
-            transition: left 5s cubic-bezier(0.2, 0.8, 0.2, 1);
+            transition: left 4s cubic-bezier(0.1, 0.8, 0.2, 1);
         }
         
         .roulette-item {
@@ -107,6 +107,26 @@
             box-shadow: none;
         }
         
+        .pay-first-button {
+            display: block;
+            margin: 25px auto;
+            padding: 16px 45px;
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(40, 167, 69, 0.5);
+        }
+        
+        .pay-first-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(40, 167, 69, 0.7);
+        }
+        
         .result-container {
             text-align: center;
             margin: 25px 0;
@@ -114,6 +134,15 @@
             background: rgba(255, 255, 255, 0.95);
             border-radius: 15px;
             display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .payment-container {
+            text-align: center;
+            margin: 25px 0;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
             animation: fadeIn 0.5s ease;
         }
         
@@ -159,6 +188,32 @@
             margin-bottom: 15px;
             font-style: italic;
         }
+        
+        .payment-info {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .payment-status {
+            padding: 10px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-weight: bold;
+        }
+        
+        .payment-pending {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+        
+        .payment-success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        
+        .hidden {
+            display: none;
+        }
     </style>
 </head>
 <body class="body-background box-us8-page">
@@ -192,8 +247,25 @@
                 <p>Бренды: Nike, Jordan, New Balance, Asics</p>
             </div>
             
-            <!-- Рулетка -->
-            <div class="roulette-wrapper">
+            <!-- Контейнер оплаты -->
+            <div class="payment-container" id="paymentContainer">
+                <h3>Оплата заказа</h3>
+                <div class="payment-info">
+                    <p>Для открытия бокса необходимо произвести оплату</p>
+                    <p><strong>Стоимость: $99</strong></p>
+                    
+                    <div class="payment-status payment-pending" id="paymentStatus">
+                        Ожидание оплаты...
+                    </div>
+                    
+                    <a href="https://your-lavapay-link-for-size-8" class="buy-btn" target="_blank" id="paymentButton">
+                        💳 Оплатить заказ
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Рулетка (изначально скрыта) -->
+            <div class="roulette-wrapper hidden" id="rouletteWrapper">
                 <p class="roulette-instruction">Прокрутите рулетку, чтобы узнать, что вам достанется!</p>
                 
                 <div class="roulette-container">
@@ -204,7 +276,7 @@
                 </div>
             </div>
             
-            <button class="spin-button" id="spinButton">Крутить рулетку</button>
+            <button class="spin-button hidden" id="spinButton">Крутить рулетку</button>
             
             <div class="result-container" id="resultContainer">
                 <h3>Поздравляем! Вы выиграли:</h3>
@@ -216,7 +288,7 @@
                     </div>
                 </div>
                 
-                <a href="https://your-lavapay-link-for-size-8" class="buy-btn" style="margin-top: 20px;" target="_blank" id="claimButton">
+                <a href="#" class="buy-btn" style="margin-top: 20px;" id="claimButton">
                     🎉 Забрать приз
                 </a>
             </div>
@@ -224,10 +296,11 @@
             <div class="rules">
                 <h3>Как это работает?</h3>
                 <ul>
-                    <li>Нажмите кнопку "Крутить рулетку" для запуска анимации</li>
+                    <li>Сначала необходимо оплатить заказ</li>
+                    <li>После подтверждения оплаты станет доступна рулетка</li>
                     <li>Рулетка остановится на случайном предмете из бокса</li>
                     <li>После остановки вы увидите, что вы выиграли</li>
-                    <li>Нажмите "Забрать приз" для оформления заказа</li>
+                    <li>Нажмите "Забрать приз" для оформления доставки</li>
                 </ul>
             </div>
         </div>
@@ -249,12 +322,24 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            const paymentContainer = document.getElementById('paymentContainer');
+            const paymentStatus = document.getElementById('paymentStatus');
+            const paymentButton = document.getElementById('paymentButton');
+            const rouletteWrapper = document.getElementById('rouletteWrapper');
             const rouletteItems = document.getElementById('rouletteItems');
             const spinButton = document.getElementById('spinButton');
             const resultContainer = document.getElementById('resultContainer');
             const resultImage = document.getElementById('resultImage');
             const resultName = document.getElementById('resultName');
             const claimButton = document.getElementById('claimButton');
+            
+            // Проверяем, была ли уже произведена оплата
+            const isPaid = localStorage.getItem('box_us8_paid') === 'true';
+            
+            if (isPaid) {
+                // Если оплата уже была, показываем рулетку
+                showRoulette();
+            }
             
             // Данные для рулетки (предметы в боксе)
             const items = [
@@ -269,6 +354,38 @@
                 { name: "Nike Dunk Low", image: "https://i.ibb.co/0Q8N4y2/travis-scott.jpg" },
                 { name: "Asics Gel-Lyte", image: "https://i.ibb.co/7QvLzC0/off-white.jpg" }
             ];
+            
+            // Обработчик для кнопки оплаты
+            paymentButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // В реальном приложении здесь would be redirect to payment system
+                // После успешной оплаты payment system would redirect back with success parameter
+                
+                // Имитация успешной оплаты через 2 секунды
+                paymentStatus.textContent = "Обработка платежа...";
+                paymentStatus.className = "payment-status payment-pending";
+                
+                setTimeout(function() {
+                    // Сохраняем статус оплаты в localStorage
+                    localStorage.setItem('box_us8_paid', 'true');
+                    
+                    // Меняем статус
+                    paymentStatus.textContent = "Оплата прошла успешно!";
+                    paymentStatus.className = "payment-status payment-success";
+                    
+                    // Показываем рулетку
+                    setTimeout(showRoulette, 1000);
+                }, 2000);
+            });
+            
+            function showRoulette() {
+                paymentContainer.classList.add('hidden');
+                rouletteWrapper.classList.remove('hidden');
+                spinButton.classList.remove('hidden');
+                
+                initializeRoulette();
+            }
             
             // Заполняем рулетку элементами
             function initializeRoulette() {
@@ -288,8 +405,6 @@
                     rouletteItems.appendChild(itemElement);
                 }
             }
-            
-            initializeRoulette();
             
             let isSpinning = false;
             let currentWinner = null;
@@ -359,29 +474,28 @@
                         resultContainer.style.display = 'block';
                     }
                     
-                    // Блокируем кнопку прокрутки до нажатия "Забрать приз"
+                    // Блокируем кнопку прокрутки
                     spinButton.disabled = true;
                     spinButton.textContent = 'Прокрутка завершена';
                     
                     isSpinning = false;
+                    
+                    // Помечаем, что рулетка уже была прокручена
+                    localStorage.setItem('box_us8_spun', 'true');
                 }, 4100); // Чуть больше времени чем анимация
             });
             
             // Сброс рулетки при нажатии "Забрать приз"
-            claimButton.addEventListener('click', function() {
-                // В реальном приложении здесь would be redirect to payment
-                setTimeout(function() {
-                    spinButton.disabled = false;
-                    spinButton.textContent = 'Крутить рулетку';
-                    resultContainer.style.display = 'none';
-                    
-                    // Убираем подсветку
-                    document.querySelectorAll('.roulette-item').forEach(item => {
-                        item.classList.remove('active');
-                    });
-                    
-                    initializeRoulette();
-                }, 100);
+            claimButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                alert("Спасибо за заказ! Мы свяжемся с вами для уточнения деталей доставки.");
+                
+                // Очищаем данные о оплате и прокрутке
+                localStorage.removeItem('box_us8_paid');
+                localStorage.removeItem('box_us8_spun');
+                
+                // Перезагружаем страницу
+                location.reload();
             });
         });
     </script>
