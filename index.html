@@ -1,1 +1,502 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SneakerRun - Магазин кроссовок</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            overflow: hidden;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            color: #fff;
+            height: 100vh;
+            perspective: 1000px;
+        }
+        
+        #scene {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transition: transform 0.5s ease-out;
+        }
+        
+        .screen {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            backface-visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.8s ease;
+            pointer-events: none;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .screen.active {
+            opacity: 1;
+            pointer-events: all;
+            z-index: 10;
+        }
+        
+        .welcome-screen {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect fill="%23222" width="100" height="100"/><path fill="%23333" d="M0 0L100 100M100 0L0 100"/></svg>');
+        }
+        
+        .city-screen {
+            background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200"><rect fill="%23333" width="200" height="200"/><path fill="%23444" d="M0 0L200 200M200 0L0 200"/></svg>');
+            justify-content: flex-start;
+            padding-top: 80px;
+        }
+        
+        .logo {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            color: #ff7b00;
+            text-shadow: 0 0 10px rgba(255, 123, 0, 0.7);
+        }
+        
+        .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+            color: #eee;
+        }
+        
+        .btn {
+            padding: 15px 40px;
+            background: #ff7b00;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 10px;
+            box-shadow: 0 5px 15px rgba(255, 123, 0, 0.4);
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 123, 0, 0.6);
+            background: #ff8c1a;
+        }
+        
+        .event {
+            position: absolute;
+            width: 280px;
+            height: 320px;
+            background: linear-gradient(145deg, #2a2a4a, #1c1c3a);
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: all 0.5s ease;
+            cursor: pointer;
+            transform-style: preserve-3d;
+            transform: translateZ(0);
+            backface-visibility: hidden;
+        }
+        
+        .event:hover {
+            transform: translateZ(20px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+            background: linear-gradient(145deg, #3a3a5a, #2c2c4a);
+        }
+        
+        .event-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            color: #ff7b00;
+        }
+        
+        .event-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .event-desc {
+            font-size: 1rem;
+            text-align: center;
+            color: #ccc;
+        }
+        
+        #event1 {
+            top: 20%;
+            left: 10%;
+        }
+        
+        #event2 {
+            top: 20%;
+            right: 10%;
+        }
+        
+        #event3 {
+            bottom: 20%;
+            left: 10%;
+        }
+        
+        #event4 {
+            bottom: 20%;
+            right: 10%;
+        }
+        
+        .social-icons {
+            position: absolute;
+            display: flex;
+            gap: 20px;
+            z-index: 100;
+        }
+        
+        .social-top-left {
+            top: 20px;
+            left: 20px;
+        }
+        
+        .social-top-right {
+            top: 20px;
+            right: 20px;
+        }
+        
+        .social-bottom-left {
+            bottom: 20px;
+            left: 20px;
+        }
+        
+        .social-bottom-right {
+            bottom: 20px;
+            right: 20px;
+        }
+        
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ff7b00;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .social-icon:hover {
+            transform: translateY(-3px);
+            background: #ff7b00;
+            color: white;
+        }
+        
+        .road {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 150px;
+            background: #444;
+            transform-origin: bottom center;
+            transform: rotateX(80deg);
+            box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.5);
+        }
+        
+        .road-line {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: repeating-linear-gradient(90deg, transparent, transparent 20px, #ff7b00 20px, #ff7b00 40px);
+            animation: roadMove 1s linear infinite;
+        }
+        
+        @keyframes roadMove {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-40px); }
+        }
+        
+        .building {
+            position: absolute;
+            bottom: 150px;
+            background: #2c2c4a;
+            transform-origin: bottom center;
+            transform-style: preserve-3d;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+        
+        .window {
+            position: absolute;
+            background: #ffd700;
+            border-radius: 2px;
+        }
+        
+        .info-box {
+            max-width: 800px;
+            background: rgba(30, 30, 50, 0.9);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+        
+        video {
+            width: 100%;
+            max-width: 600px;
+            border-radius: 10px;
+            margin: 20px 0;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #ff7b00;
+        }
+        
+        p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: #eee;
+        }
+    </style>
+</head>
+<body>
+    <div id="scene">
+        <!-- Экран приветствия -->
+        <div class="screen welcome-screen active">
+            <div class="logo">SneakerRun</div>
+            <div class="subtitle">Магазин кроссовок с immersive-опытом</div>
+            <button class="btn" onclick="showCity()">Начать бег</button>
+        </div>
+        
+        <!-- Экран города с событиями -->
+        <div class="screen city-screen">
+            <h1>Выберите направление</h1>
+            <p>Двигайте мышью чтобы осмотреться и выберите одно из доступных действий</p>
+            
+            <div class="event" id="event1" onclick="selectEvent(1)">
+                <div class="event-icon">👟</div>
+                <div class="event-title">Продажа ваших кроссовок</div>
+                <div class="event-desc">Продайте свои кроссовки быстро и выгодно через нашу платформу</div>
+            </div>
+            
+            <div class="event" id="event2" onclick="selectEvent(2)">
+                <div class="event-icon">🛒</div>
+                <div class="event-title">Покупка кроссовок</div>
+                <div class="event-desc">Огромный выбор кроссовок от лучших брендов по выгодным ценам</div>
+            </div>
+            
+            <div class="event" id="event3" onclick="selectEvent(3)">
+                <div class="event-icon">🎰</div>
+                <div class="event-title">Испытай удачу</div>
+                <div class="event-desc">Купи билет всего за $10 и получи шанс выиграть $1000! Всего 200 мест</div>
+            </div>
+            
+            <div class="event" id="event4" onclick="selectEvent(4)">
+                <div class="event-icon">📢</div>
+                <div class="event-title">Наш Telegram канал</div>
+                <div class="event-desc">Присоединяйтесь к нашему сообществу любителей кроссовок</div>
+            </div>
+            
+            <div class="road">
+                <div class="road-line"></div>
+            </div>
+        </div>
+        
+        <!-- Экран с информацией -->
+        <div class="screen info-screen">
+            <div class="info-box">
+                <h1>Добро пожаловать в SneakerRun!</h1>
+                <p>Мы создали уникальный опыт покупки и продажи кроссовок, где вы можете буквально "пробежаться" по всем возможностям нашего магазина.</p>
+                
+                <video controls poster="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='600' height='400' viewBox='0 0 600 400'><rect fill='%23333' width='600' height='400'/><text x='300' y='200' font-family='Arial' font-size='30' fill='%23ff7b00' text-anchor='middle'>Видео о SneakerRun</text></svg>">
+                    <source src="#" type="video/mp4">
+                    Ваш браузер не поддерживает видео.
+                </video>
+                
+                <p>На нашей платформе вы можете не только покупать и продавать кроссовки, но и участвовать в розыгрышах, получать эксклюзивные предложения и быть частью сообщества единомышленников.</p>
+                
+                <button class="btn" onclick="showCity()">Понятно, вперед!</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Социальные иконки -->
+    <div class="social-icons social-top-left">
+        <div class="social-icon">📧</div>
+    </div>
+    
+    <div class="social-icons social-top-right">
+        <div class="social-icon">📱</div>
+    </div>
+    
+    <div class="social-icons social-bottom-left">
+        <div class="social-icon">✉️</div>
+    </div>
+    
+    <div class="social-icons social-bottom-right">
+        <div class="social-icon">📷</div>
+    </div>
 
+    <script>
+        // Элементы DOM
+        const scene = document.getElementById('scene');
+        const screens = document.querySelectorAll('.screen');
+        const events = document.querySelectorAll('.event');
+        
+        // Переменные для управления движением
+        let mouseX = 0;
+        let mouseY = 0;
+        let targetRotationX = 0;
+        let targetRotationY = 0;
+        let currentRotationX = 0;
+        let currentRotationY = 0;
+        
+        // Инициализация сцены
+        function init() {
+            // Создаем здания для города
+            createBuildings();
+            
+            // Слушаем движение мыши
+            document.addEventListener('mousemove', handleMouseMove);
+            
+            // Запускаем анимацию
+            animate();
+        }
+        
+        // Обработка движения мыши
+        function handleMouseMove(e) {
+            mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+            mouseY = (e.clientY / window.innerHeight) * 2 - 1;
+            
+            targetRotationY = mouseX * 10;
+            targetRotationX = mouseY * 5;
+        }
+        
+        // Анимация сцены
+        function animate() {
+            // Плавное перемещение к целевой позиции
+            currentRotationX += (targetRotationX - currentRotationX) * 0.1;
+            currentRotationY += (targetRotationY - currentRotationY) * 0.1;
+            
+            // Применяем преобразования к сцене
+            scene.style.transform = `rotateX(${currentRotationX}deg) rotateY(${currentRotationY}deg)`;
+            
+            // Параллакс эффект для событий
+            events.forEach(event => {
+                const speedX = parseInt(event.dataset.speedx) || 5;
+                const speedY = parseInt(event.dataset.speedy) || 2;
+                
+                const moveX = currentRotationY * speedX;
+                const moveY = currentRotationX * speedY;
+                
+                event.style.transform = `translate(${moveX}px, ${moveY}px) translateZ(20px)`;
+            });
+            
+            requestAnimationFrame(animate);
+        }
+        
+        // Создание зданий
+        function createBuildings() {
+            const cityScreen = document.querySelector('.city-screen');
+            const buildingColors = ['#2c2c4a', '#252542', '#30305a', '#1e1e3c'];
+            
+            for (let i = 0; i < 20; i++) {
+                const building = document.createElement('div');
+                building.className = 'building';
+                
+                // Случайные параметры здания
+                const width = Math.random() * 100 + 50;
+                const height = Math.random() * 300 + 200;
+                const left = Math.random() * 100;
+                const color = buildingColors[Math.floor(Math.random() * buildingColors.length)];
+                
+                building.style.width = `${width}px`;
+                building.style.height = `${height}px`;
+                building.style.left = `${left}%`;
+                building.style.background = color;
+                
+                // Добавляем окна
+                const windowCount = Math.floor((width * height) / 1000);
+                for (let w = 0; w < windowCount; w++) {
+                    const window = document.createElement('div');
+                    window.className = 'window';
+                    
+                    const windowSize = Math.random() * 10 + 5;
+                    const windowLeft = Math.random() * (width - windowSize);
+                    const windowTop = Math.random() * (height - windowSize);
+                    
+                    window.style.width = `${windowSize}px`;
+                    window.style.height = `${windowSize}px`;
+                    window.style.left = `${windowLeft}px`;
+                    window.style.top = `${windowTop}px`;
+                    
+                    // Случайно включаем свет в окнах
+                    if (Math.random() > 0.5) {
+                        window.style.background = '#ffd700';
+                    } else {
+                        window.style.background = '#444';
+                    }
+                    
+                    building.appendChild(window);
+                }
+                
+                cityScreen.appendChild(building);
+            }
+        }
+        
+        // Показать город
+        function showCity() {
+            // Скрываем текущий активный экран
+            document.querySelector('.screen.active').classList.remove('active');
+            
+            // Показываем экран города
+            document.querySelector('.city-screen').classList.add('active');
+        }
+        
+        // Выбор события
+        function selectEvent(eventNumber) {
+            // Анимация выбора события
+            const selectedEvent = document.getElementById(`event${eventNumber}`);
+            selectedEvent.style.transform = 'translateZ(100px) scale(1.2)';
+            selectedEvent.style.boxShadow = '0 20px 40px rgba(255, 123, 0, 0.8)';
+            
+            // В зависимости от выбранного события
+            setTimeout(() => {
+                if (eventNumber === 1) {
+                    alert('Переход к продаже кроссовок');
+                } else if (eventNumber === 2) {
+                    alert('Переход к покупке кроссовок');
+                } else if (eventNumber === 3) {
+                    alert('Переход к лотерее');
+                } else if (eventNumber === 4) {
+                    alert('Переход к Telegram каналу');
+                }
+            }, 1000);
+        }
+        
+        // Запуск инициализации после загрузки страницы
+        window.addEventListener('load', init);
+    </script>
+</body>
+</html>
