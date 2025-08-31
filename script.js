@@ -50,7 +50,9 @@ function animate() {
     currentRotationY += (targetRotationY - currentRotationY) * 0.1;
     
     // Применяем преобразования к сцене
-    scene.style.transform = `rotateX(${currentRotationX}deg) rotateY(${currentRotationY}deg)`;
+    if (scene) {
+        scene.style.transform = `rotateX(${currentRotationX}deg) rotateY(${currentRotationY}deg)`;
+    }
     
     // Параллакс эффект для событий
     events.forEach(event => {
@@ -69,6 +71,8 @@ function animate() {
 // Создание зданий
 function createBuildings() {
     const cityScreen = document.querySelector('.city-screen');
+    if (!cityScreen) return;
+    
     const buildingColors = ['#BDBDBD', '#9E9E9E', '#757575', '#616161'];
     
     for (let i = 0; i < 20; i++) {
@@ -118,6 +122,7 @@ function createBuildings() {
 // Функция для создания растительности
 function createVegetation() {
     const cityScreen = document.querySelector('.city-screen');
+    if (!cityScreen) return;
     
     // Добавляем траву вдоль дороги
     const grass = document.createElement('div');
@@ -173,6 +178,7 @@ function createVegetation() {
 // Функция для создания облаков
 function createClouds() {
     const cityScreen = document.querySelector('.city-screen');
+    if (!cityScreen) return;
     
     for (let i = 0; i < 5; i++) {
         const cloud = document.createElement('div');
@@ -195,24 +201,35 @@ function createClouds() {
 
 // Функция для создания солнца
 function createSun() {
+    const cityScreen = document.querySelector('.city-screen');
+    if (!cityScreen) return;
+    
     const sun = document.createElement('div');
     sun.className = 'sun';
-    document.querySelector('.city-screen').appendChild(sun);
+    cityScreen.appendChild(sun);
 }
 
 // Показать город
 function showCity() {
     // Скрываем текущий активный экран
-    document.querySelector('.screen.active').classList.remove('active');
+    const activeScreen = document.querySelector('.screen.active');
+    if (activeScreen) {
+        activeScreen.classList.remove('active');
+    }
     
     // Показываем экран города
-    document.querySelector('.city-screen').classList.add('active');
+    const cityScreen = document.querySelector('.city-screen');
+    if (cityScreen) {
+        cityScreen.classList.add('active');
+    }
 }
 
 // Выбор события
 function selectEvent(eventNumber) {
     // Анимация выбора события
     const selectedEvent = document.getElementById(`event${eventNumber}`);
+    if (!selectedEvent) return;
+    
     selectedEvent.style.transform = 'translateZ(100px) scale(1.2)';
     selectedEvent.style.boxShadow = '0 20px 40px rgba(76, 175, 80, 0.8)';
     
