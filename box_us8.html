@@ -28,7 +28,7 @@
             display: flex;
             position: absolute;
             left: 0;
-            transition-timing-function: cubic-bezier(0.17, 0.67, 0.83, 0.67);
+            transition: left 5s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
         
         .roulette-item {
@@ -43,6 +43,7 @@
             justify-content: center;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
             transition: all 0.3s ease;
+            flex-shrink: 0;
         }
         
         .roulette-item.active {
@@ -274,7 +275,7 @@
                 rouletteItems.innerHTML = '';
                 
                 // Добавляем элементы (дублируем для бесшовной анимации)
-                for (let i = 0; i < items.length * 2; i++) {
+                for (let i = 0; i < items.length * 3; i++) {
                     const itemIndex = i % items.length;
                     const item = items[itemIndex];
                     const itemElement = document.createElement('div');
@@ -316,9 +317,13 @@
                 spinButton.disabled = true;
                 resultContainer.style.display = 'none';
                 
-                // Случайное смещение для анимации
+                // Случайный выбор приза
+                const winnerIndex = Math.floor(Math.random() * items.length);
+                currentWinner = items[winnerIndex];
+                
+                // Расчет позиции для остановки (центрируем выбранный элемент)
                 const itemWidth = 190; // width + margin
-                const spinDistance = -(items.length * itemWidth * 2 + Math.random() * items.length * itemWidth);
+                const targetPosition = -((winnerIndex + items.length) * itemWidth);
                 
                 // Начальная позиция
                 rouletteItems.style.transition = 'none';
@@ -326,8 +331,8 @@
                 
                 // Запускаем анимацию
                 setTimeout(() => {
-                    rouletteItems.style.transition = 'left 5s cubic-bezier(0.2, 0.8, 0.2, 1)';
-                    rouletteItems.style.left = `${spinDistance}px`;
+                    rouletteItems.style.transition = 'left 4s cubic-bezier(0.1, 0.8, 0.2, 1)';
+                    rouletteItems.style.left = `${targetPosition}px`;
                 }, 10);
                 
                 // Определяем победителя после завершения анимации
@@ -347,6 +352,11 @@
                         resultImage.src = currentWinner.image;
                         resultName.textContent = currentWinner.name;
                         resultContainer.style.display = 'block';
+                    } else {
+                        // Fallback - если не удалось определить элемент под указателем
+                        resultImage.src = currentWinner.image;
+                        resultName.textContent = currentWinner.name;
+                        resultContainer.style.display = 'block';
                     }
                     
                     // Блокируем кнопку прокрутки до нажатия "Забрать приз"
@@ -354,7 +364,7 @@
                     spinButton.textContent = 'Прокрутка завершена';
                     
                     isSpinning = false;
-                }, 5000);
+                }, 4100); // Чуть больше времени чем анимация
             });
             
             // Сброс рулетки при нажатии "Забрать приз"
