@@ -261,22 +261,28 @@
                     <a href="https://your-lavapay-link-for-size-8" class="buy-btn" target="_blank" id="paymentButton">
                         💳 Оплатить заказ
                     </a>
-                </div>
-            </div>
-            
-            <!-- Рулетка (изначально скрыта) -->
-            <div class="roulette-wrapper hidden" id="rouletteWrapper">
-                <p class="roulette-instruction">Прокрутите рулетку, чтобы узнать, что вам достанется!</p>
-                
-                <div class="roulette-container">
-                    <div class="roulette-center"></div>
-                    <div class="roulette-items" id="rouletteItems">
-                        <!-- Элементы будут добавлены через JavaScript -->
+                    
+                    <div style="margin-top: 20px; font-size: 0.9rem; color: #666;">
+                        <p>После успешной оплаты вы сможете открыть кейс и узнать свой приз</p>
                     </div>
                 </div>
             </div>
             
-            <button class="spin-button hidden" id="spinButton">Крутить рулетку</button>
+            <!-- Рулетка (изначально скрыта) -->
+            <div class="hidden" id="afterPaymentSection">
+                <div class="roulette-wrapper">
+                    <p class="roulette-instruction">Ваша оплата подтверждена! Теперь вы можете открыть кейс</p>
+                    
+                    <div class="roulette-container">
+                        <div class="roulette-center"></div>
+                        <div class="roulette-items" id="rouletteItems">
+                            <!-- Элементы будут добавлены через JavaScript -->
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="spin-button" id="spinButton">Открыть кейс</button>
+            </div>
             
             <div class="result-container" id="resultContainer">
                 <h3>Поздравляем! Вы выиграли:</h3>
@@ -288,19 +294,22 @@
                     </div>
                 </div>
                 
-                <a href="#" class="buy-btn" style="margin-top: 20px;" id="claimButton">
-                    🎉 Забрать приз
-                </a>
+                <div style="margin-top: 20px;">
+                    <p>Мы уже готовим ваш приз к отправке</p>
+                    <p>Свяжитесь с нами в Telegram для уточнения деталей доставки</p>
+                    <a href="https://t.me/taizario" class="buy-btn" style="margin-top: 15px;">
+                        📞 Связаться для доставки
+                    </a>
+                </div>
             </div>
             
             <div class="rules">
                 <h3>Как это работает?</h3>
                 <ul>
                     <li>Сначала необходимо оплатить заказ</li>
-                    <li>После подтверждения оплаты станет доступна рулетка</li>
-                    <li>Рулетка остановится на случайном предмете из бокса</li>
-                    <li>После остановки вы увидите, что вы выиграли</li>
-                    <li>Нажмите "Забрать приз" для оформления доставки</li>
+                    <li>После подтверждения оплаты станет доступно открытие кейса</li>
+                    <li>Кейс откроется и покажет ваш выигрыш</li>
+                    <li>После этого мы свяжемся с вами для оформления доставки</li>
                 </ul>
             </div>
         </div>
@@ -325,20 +334,23 @@
             const paymentContainer = document.getElementById('paymentContainer');
             const paymentStatus = document.getElementById('paymentStatus');
             const paymentButton = document.getElementById('paymentButton');
-            const rouletteWrapper = document.getElementById('rouletteWrapper');
+            const afterPaymentSection = document.getElementById('afterPaymentSection');
             const rouletteItems = document.getElementById('rouletteItems');
             const spinButton = document.getElementById('spinButton');
             const resultContainer = document.getElementById('resultContainer');
             const resultImage = document.getElementById('resultImage');
             const resultName = document.getElementById('resultName');
-            const claimButton = document.getElementById('claimButton');
             
             // Проверяем, была ли уже произведена оплата
-            const isPaid = localStorage.getItem('box_us8_paid') === 'true';
+            const paymentConfirmed = localStorage.getItem('box_us8_payment_confirmed') === 'true';
+            const prizeReceived = localStorage.getItem('box_us8_prize_received') === 'true';
             
-            if (isPaid) {
-                // Если оплата уже была, показываем рулетку
-                showRoulette();
+            if (paymentConfirmed && !prizeReceived) {
+                // Если оплата подтверждена, но приз еще не получен
+                showRouletteSection();
+            } else if (prizeReceived) {
+                // Если приз уже был получен
+                showResult();
             }
             
             // Данные для рулетки (предметы в боксе)
@@ -359,8 +371,8 @@
             paymentButton.addEventListener('click', function(e) {
                 e.preventDefault();
                 
-                // В реальном приложении здесь would be redirect to payment system
-                // После успешной оплаты payment system would redirect back with success parameter
+                // В реальном приложении здесь будет редирект на платежную систему
+                // После успешной оплаты платежная система вернет пользователя с параметром успеха
                 
                 // Имитация успешной оплаты через 2 секунды
                 paymentStatus.textContent = "Обработка платежа...";
@@ -368,23 +380,34 @@
                 
                 setTimeout(function() {
                     // Сохраняем статус оплаты в localStorage
-                    localStorage.setItem('box_us8_paid', 'true');
+                    localStorage.setItem('box_us8_payment_confirmed', 'true');
                     
                     // Меняем статус
                     paymentStatus.textContent = "Оплата прошла успешно!";
                     paymentStatus.className = "payment-status payment-success";
                     
-                    // Показываем рулетку
-                    setTimeout(showRoulette, 1000);
+                    // Показываем раздел с рулеткой
+                    setTimeout(showRouletteSection, 1000);
                 }, 2000);
             });
             
-            function showRoulette() {
+            function showRouletteSection() {
                 paymentContainer.classList.add('hidden');
-                rouletteWrapper.classList.remove('hidden');
-                spinButton.classList.remove('hidden');
+                afterPaymentSection.classList.remove('hidden');
                 
                 initializeRoulette();
+            }
+            
+            function showResult() {
+                paymentContainer.classList.add('hidden');
+                afterPaymentSection.classList.add('hidden');
+                resultContainer.style.display = 'block';
+                
+                // Показываем полученный ранее приз
+                const prizeIndex = parseInt(localStorage.getItem('box_us8_prize_index') || '0');
+                const prize = items[prizeIndex];
+                resultImage.src = prize.image;
+                resultName.textContent = prize.name;
             }
             
             // Заполняем рулетку элементами
@@ -407,22 +430,6 @@
             }
             
             let isSpinning = false;
-            let currentWinner = null;
-            
-            // Функция определения элемента под указателем
-            function getElementUnderPointer() {
-                const centerLine = document.querySelector('.roulette-center');
-                const centerX = centerLine.getBoundingClientRect().left + centerLine.offsetWidth / 2;
-                
-                const items = document.querySelectorAll('.roulette-item');
-                for (let item of items) {
-                    const rect = item.getBoundingClientRect();
-                    if (centerX >= rect.left && centerX <= rect.right) {
-                        return item;
-                    }
-                }
-                return null;
-            }
             
             // Функция запуска рулетки
             spinButton.addEventListener('click', function() {
@@ -430,11 +437,14 @@
                 
                 isSpinning = true;
                 spinButton.disabled = true;
-                resultContainer.style.display = 'none';
                 
                 // Случайный выбор приза
                 const winnerIndex = Math.floor(Math.random() * items.length);
-                currentWinner = items[winnerIndex];
+                const winner = items[winnerIndex];
+                
+                // Сохраняем выигрыш
+                localStorage.setItem('box_us8_prize_index', winnerIndex);
+                localStorage.setItem('box_us8_prize_received', 'true');
                 
                 // Расчет позиции для остановки (центрируем выбранный элемент)
                 const itemWidth = 190; // width + margin
@@ -450,52 +460,26 @@
                     rouletteItems.style.left = `${targetPosition}px`;
                 }, 10);
                 
-                // Определяем победителя после завершения анимации
+                // Показываем результат после завершения анимации
                 setTimeout(() => {
-                    const winningElement = getElementUnderPointer();
-                    if (winningElement) {
-                        const winnerIndex = parseInt(winningElement.dataset.index);
-                        currentWinner = items[winnerIndex];
-                        
-                        // Подсвечиваем выигрышный элемент
-                        document.querySelectorAll('.roulette-item').forEach(item => {
-                            item.classList.remove('active');
-                        });
-                        winningElement.classList.add('active');
-                        
-                        // Показываем результат
-                        resultImage.src = currentWinner.image;
-                        resultName.textContent = currentWinner.name;
-                        resultContainer.style.display = 'block';
-                    } else {
-                        // Fallback - если не удалось определить элемент под указателем
-                        resultImage.src = currentWinner.image;
-                        resultName.textContent = currentWinner.name;
-                        resultContainer.style.display = 'block';
-                    }
+                    // Подсвечиваем выигрышный элемент
+                    document.querySelectorAll('.roulette-item').forEach(item => {
+                        item.classList.remove('active');
+                        if (parseInt(item.dataset.index) === winnerIndex) {
+                            item.classList.add('active');
+                        }
+                    });
                     
-                    // Блокируем кнопку прокрутки
-                    spinButton.disabled = true;
-                    spinButton.textContent = 'Прокрутка завершена';
+                    // Показываем результат
+                    resultImage.src = winner.image;
+                    resultName.textContent = winner.name;
+                    resultContainer.style.display = 'block';
+                    
+                    // Скрываем рулетку
+                    afterPaymentSection.classList.add('hidden');
                     
                     isSpinning = false;
-                    
-                    // Помечаем, что рулетка уже была прокручена
-                    localStorage.setItem('box_us8_spun', 'true');
                 }, 4100); // Чуть больше времени чем анимация
-            });
-            
-            // Сброс рулетки при нажатии "Забрать приз"
-            claimButton.addEventListener('click', function(e) {
-                e.preventDefault();
-                alert("Спасибо за заказ! Мы свяжемся с вами для уточнения деталей доставки.");
-                
-                // Очищаем данные о оплате и прокрутке
-                localStorage.removeItem('box_us8_paid');
-                localStorage.removeItem('box_us8_spun');
-                
-                // Перезагружаем страницу
-                location.reload();
             });
         });
     </script>
