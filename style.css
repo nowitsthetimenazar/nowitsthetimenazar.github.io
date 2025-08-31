@@ -217,6 +217,7 @@ body.box-us9-page {
     border-radius: 20px;
     text-align: center;
     color: #333 !important;
+    margin-bottom: 30px;
 }
 
 .raffle-cover {
@@ -224,6 +225,7 @@ body.box-us9-page {
     max-width: 500px;
     border-radius: 15px;
     margin-bottom: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
 .raffle-info {
@@ -232,22 +234,40 @@ body.box-us9-page {
 
 .raffle-info h2 {
     color: #222 !important;
+    margin-top: 0;
 }
 
 .raffle-info p {
     color: #666 !important;
+    font-size: 1.1rem;
+    margin: 10px 0;
 }
 
 .raffle-info strong {
     color: #000 !important;
 }
 
+/* Улучшенный прогресс-бар для мобильных */
+.progress-container {
+    margin: 25px 0;
+    position: relative;
+}
+
+.progress-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #444;
+}
+
 .progress-bar {
-    background: #ddd;
-    border-radius: 10px;
-    height: 20px;
-    margin: 20px 0;
+    background: #e9ecef;
+    border-radius: 20px;
+    height: 26px;
     overflow: hidden;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
+    position: relative;
 }
 
 .progress {
@@ -256,21 +276,45 @@ body.box-us9-page {
     color: white;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
     font-weight: bold;
+    font-size: 0.85rem;
+    padding-right: 12px;
+    position: relative;
+    transition: width 0.5s ease;
+}
+
+/* Альтернативное отображение процентов для мобильных */
+.progress-percent {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-weight: bold;
+    font-size: 0.85rem;
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+    z-index: 2;
 }
 
 .rules {
     text-align: left;
     background: #f8f9fa;
-    padding: 20px;
-    border-radius: 10px;
-    margin-top: 20px;
+    padding: 25px;
+    border-radius: 15px;
+    margin-top: 40px;
     color: #333 !important;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .rules h3 {
     color: #222 !important;
+    margin-top: 0;
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
 }
 
 .rules ul {
@@ -279,8 +323,19 @@ body.box-us9-page {
 }
 
 .rules li {
-    margin-bottom: 8px;
+    margin-bottom: 12px;
     color: #666 !important;
+    line-height: 1.5;
+}
+
+.rules a {
+    color: #2481cc;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.rules a:hover {
+    text-decoration: underline;
 }
 
 /* Для мобильных устройств */
@@ -346,5 +401,49 @@ body.box-us9-page {
     
     .box-card {
         margin: 0 10px;
+    }
+    
+    /* Улучшенный прогресс-бар для мобильных */
+    .progress-bar {
+        height: 32px;
+    }
+    
+    .progress {
+        font-size: 0.8rem;
+        padding-right: 10px;
+    }
+    
+    .progress-info {
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+    }
+    
+    .progress-percent {
+        font-size: 0.8rem;
+        right: 8px;
+    }
+}
+
+/* Для очень маленьких экранов */
+@media (max-width: 480px) {
+    .progress-bar {
+        height: 28px;
+    }
+    
+    .progress {
+        font-size: 0.75rem;
+    }
+    
+    .progress-percent {
+        font-size: 0.75rem;
+    }
+    
+    .raffle-info h2 {
+        font-size: 1.4rem;
+    }
+    
+    .raffle-info p {
+        font-size: 1rem;
     }
 }
