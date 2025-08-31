@@ -115,7 +115,7 @@ footer a {
 /* 1. Фон для ГЛАВНОЙ СТРАНИЦЫ (index.html) */
 body.index-page {
     /* ЗАМЕНИТЕ на ссылку для главной */
-    background-image: url('<a href="https://ibb.co/fdK4rgqZ"><img src="https://i.ibb.co/xqcJzkXw/1.jpg" alt="1" border="0"></a>');
+    background-image: url('https://i.ibb.co/xqcJzkXw/1.jpg');
 }
 body.index-page::before {
     background: rgba(0, 0, 0, 0.5); /* Степень затемнения для главной */
