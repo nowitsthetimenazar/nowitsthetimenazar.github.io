@@ -246,3 +246,58 @@ body.box-us9-page {
         font-size: 2.2rem;
     }
 }
+/* Стили для страницы аукциона */
+.raffle-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+}
+
+.raffle-cover {
+    width: 100%;
+    max-width: 500px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+
+.raffle-info {
+    margin: 20px 0;
+}
+
+.progress-bar {
+    background: #ddd;
+    border-radius: 10px;
+    height: 20px;
+    margin: 20px 0;
+    overflow: hidden;
+}
+
+.progress {
+    background: linear-gradient(135deg, #28a745, #20c997);
+    height: 100%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.rules {
+    text-align: left;
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.rules ul {
+    margin: 10px 0;
+    padding-left: 20px;
+}
+
+.rules li {
+    margin-bottom: 8px;
+}
