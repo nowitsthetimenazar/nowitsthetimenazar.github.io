@@ -332,3 +332,42 @@ footer a {
 .raffle-info strong {
     color: #000 !important;
 }
+/* Для мобильных устройств */
+@media (max-width: 768px) {
+    .box-cover {
+        max-width: 95%;
+        max-height: 40vh;
+    }
+    
+    .container {
+        padding: 10px;
+    }
+    
+    header h1 {
+        font-size: 2rem;
+    }
+    
+    .box-description {
+        padding: 15px;
+        margin: 15px 0;
+    }
+    
+    .buy-btn {
+        padding: 18px 35px;
+        font-size: 1.1rem;
+        margin: 15px 0;
+        width: 90%;
+        text-align: center;
+    }
+    
+    .back-btn {
+        padding: 14px 25px;
+        font-size: 0.95rem;
+        width: 90%;
+        text-align: center;
+    }
+    
+    header h1 {
+        font-size: 2.2rem;
+    }
+}
