@@ -125,7 +125,11 @@ footer a {
 
 /* Фон для ГЛАВНОЙ СТРАНИЦЫ (index.html) */
 body.index-page {
-    background-image: url('https://i.ibb.co/xqcJzkXw/1.jpg');
+    background-image: url('body.box-us8-page {
+    background-image: url('https://i.ibb.co/5WpQS3K9/images.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;');
 }
 
 /* Фон для страницы бокса US 8 (box_us8.html) */
