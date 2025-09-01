@@ -1,1 +1,395 @@
+Nazar, [31.08.2025 10:18]
+Бесконечная рулетка:
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Mystery Box US 8 | Shoes With History</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Стили для анимации рулетки */
+        .roulette-wrapper {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            margin: 30px 0;
+        }
+        
+        .roulette-container {
+            position: relative;
+            height: 220px;
+            overflow: hidden;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+        
+        .roulette-items {
+            display: flex;
+            position: absolute;
+            left: 0;
+            transition: left 5s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        
+        .roulette-item {
+            width: 160px;
+            height: 160px;
+            margin: 30px 15px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+        
+        .roulette-item.active {
+            transform: scale(1.15);
+            box-shadow: 0 0 25px gold;
+            border: 2px solid gold;
+            z-index: 5;
+        }
+        
+        .roulette-item img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+        
+        .roulette-item p {
+            margin: 8px 0 0 0;
+            font-size: 0.9rem;
+            font-weight: bold;
+            text-align: center;
+            color: #333;
+        }
+        
+        .roulette-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 5px;
+            height: 85%;
+            background: gold;
+            box-shadow: 0 0 20px gold;
+            z-index: 10;
+        }
+        
+        .spin-button {
+            display: block;
+            margin: 25px auto;
+            padding: 16px 45px;
+            background: linear-gradient(135deg, #ff6b35, #e55a2a);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(229, 90, 42, 0.5);
+        }
+        
+        .spin-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(229, 90, 42, 0.7);
+        }
+        
+        .spin-button:disabled {
+            background: #cccccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .result-container {
+            text-align: center;
+            margin: 25px 0;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .result-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        
+        .result-item img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 
+Nazar, [31.08.2025 10:18]
+border: 3px solid gold;
+        }
+        
+        .result-text {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .winner-text {
+            color: #28a745;
+            font-weight: bold;
+            margin-top: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .roulette-instruction {
+            text-align: center;
+            color: #fff;
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body class="body-background box-us8-page">
+    <!-- Переключатель языка -->
+    <div class="language-switcher">
+        <a href="box_us8-en.html">
+            <i class="fas fa-globe"></i> 🇺🇸 English Version
+        </a> 
+    </div>
+
+    <div class="container">
+        <header>
+            <h1>MYSTERY BOX #08</h1>
+            <p>Размер US 8 (EU 41)</p>
+            
+            <!-- Кнопка назад -->
+            <div style="text-align: center; margin-bottom: 20px;">
+                <a href="index.html" class="back-btn">
+                    <i class="fas fa-arrow-left"></i> На главную
+                </a>
+            </div>
+        </header>
+
+        <div class="box-page">
+            <img src="https://i.ibb.co/pvHCqFPj/2.jpg" alt="Mystery Box US 8" class="box-cover">
+            
+            <div class="box-description">
+                <h3>Что скрывается внутри?</h3>
+                <p>Этот бокс собран специально для размера US 8. Здесь может быть всё что угодно: от классических Air Force 1 до редких Dunk. Каждая пара — это сюрприз, история и уникальный стиль. <strong>Гарантируем только одно: это будут крутые кросовки.</strong></p>
+                <p>Состояние: 7/10 - 9/10</p>
+                <p>Бренды: Nike, Jordan, New Balance, Asics</p>
+            </div>
+            
+            <!-- Рулетка -->
+            <div class="roulette-wrapper">
+                <p class="roulette-instruction">Прокрутите рулетку, чтобы узнать, что вам достанется!</p>
+                
+                <div class="roulette-container">
+                    <div class="roulette-center"></div>
+                    <div class="roulette-items" id="rouletteItems">
+                        <!-- Элементы будут добавлены через JavaScript -->
+                    </div>
+                </div>
+            </div>
+            
+            <button class="spin-button" id="spinButton">Крутить рулетку</button>
+            
+            <div class="result-container" id="resultContainer">
+                <h3>Поздравляем! Вы выиграли:</h3>
+                <div class="result-item">
+                    <img id="resultImage" src="" alt="Выигрыш">
+                    <div class="result-text">
+                        <span id="resultName"></span>
+                        <div class="winner-text">Это отличный результат!</div>
+                    </div>
+                </div>
+                
+                <a href="https://your-lavapay-link-for-size-8" class="buy-btn" style="margin-top: 20px;" target="_blank" id="claimButton">
+                    🎉 Забрать приз
+                </a>
+            </div>
+            
+            <div class="rules">
+                <h3>Как это работает?</h3>
+                <ul>
+                    <li>Нажмите кнопку "Крутить рулетку" для запуска анимации</li>
+                    <li>Рулетка остановится на случайном предмете из бокса</li>
+                    <li>После остановки вы увидите, что вы выиграли</li>
+                    <li>Нажмите "Забрать приз" для оформления заказа</li>
+                </ul>
+            </div>
+        </div>
+
+Nazar, [31.08.2025 10:18]
+<footer>
+            <div class="footer-content">
+                <p>Найди свой уникальный стиль. Свяжись с нами:</p>
+                <div class="social-links">
+                    <a href="https://t.me/taizario">
+                        <i class="fab fa-telegram"></i>
+                    </a>
+                    <a href="https://instagram.com/taizario">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const rouletteItems = document.getElementById('rouletteItems');
+            const spinButton = document.getElementById('spinButton');
+            const resultContainer = document.getElementById('resultContainer');
+            const resultImage = document.getElementById('resultImage');
+            const resultName = document.getElementById('resultName');
+            const claimButton = document.getElementById('claimButton');
+            
+            // Данные для рулетки (предметы в боксе)
+            const items = [
+                { name: "Nike Air Max 90", image: "https://i.ibb.co/0Q8N4y2/travis-scott.jpg" },
+                { name: "Adidas Ultraboost", image: "https://i.ibb.co/7QvLzC0/off-white.jpg" },
+                { name: "Jordan 1 Retro", image: "https://i.ibb.co/kg3Kw6d7/3.jpg" },
+                { name: "New Balance 550", image: "https://i.ibb.co/0Q8N4y2/travis-scott.jpg" },
+                { name: "Puma RS-X", image: "https://i.ibb.co/7QvLzC0/off-white.jpg" },
+                { name: "Reebok Classic", image: "https://i.ibb.co/kg3Kw6d7/3.jpg" },
+                { name: "Vans Old Skool", image: "https://i.ibb.co/0Q8N4y2/travis-scott.jpg" },
+                { name: "Converse Chuck Taylor", image: "https://i.ibb.co/7QvLzC0/off-white.jpg" },
+                { name: "Nike Dunk Low", image: "https://i.ibb.co/0Q8N4y2/travis-scott.jpg" },
+                { name: "Asics Gel-Lyte", image: "https://i.ibb.co/7QvLzC0/off-white.jpg" }
+            ];
+            
+            // Заполняем рулетку элементами
+            function initializeRoulette() {
+                rouletteItems.innerHTML = '';
+                
+                // Добавляем элементы (дублируем для бесшовной анимации)
+                for (let i = 0; i < items.length * 3; i++) {
+                    const itemIndex = i % items.length;
+                    const item = items[itemIndex];
+                    const itemElement = document.createElement('div');
+                    itemElement.className = 'roulette-item';
+                    itemElement.dataset.index = itemIndex;
+                    itemElement.innerHTML = `
+                        <img src="${item.image}" alt="${item.name}">
+                        <p>${item.name}</p>
+                    `;
+                    rouletteItems.appendChild(itemElement);
+                }
+            }
+            
+            initializeRoulette();
+            
+            let isSpinning = false;
+            let currentWinner = null;
+            
+            // Функция определения элемента под указателем
+            function getElementUnderPointer() {
+                const centerLine = document.querySelector('.roulette-center');
+                const centerX = centerLine.getBoundingClientRect().left + centerLine.offsetWidth / 2;
+                
+                const items = document.querySelectorAll('.roulette-item');
+                for (let item of items) {
+                    const rect = item.getBoundingClientRect();
+                    if (centerX >= rect.left && centerX <= rect.right) {
+                        return item;
+                    }
+                }
+                return null;
+            }
+            
+            // Функция запуска рулетки
+            spinButton.addEventListener('click', function() {
+                if (isSpinning) return;
+                
+                isSpinning = true;
+                spinButton.disabled = true;
+                resultContainer.style.display = 'none';
+
+Nazar, [31.08.2025 10:18]
+// Случайный выбор приза
+                const winnerIndex = Math.floor(Math.random() * items.length);
+                currentWinner = items[winnerIndex];
+                
+                // Расчет позиции для остановки (центрируем выбранный элемент)
+                const itemWidth = 190; // width + margin
+                const targetPosition = -((winnerIndex + items.length) * itemWidth);
+                
+                // Начальная позиция
+                rouletteItems.style.transition = 'none';
+                rouletteItems.style.left = '0px';
+                
+                // Запускаем анимацию
+                setTimeout(() => {
+                    rouletteItems.style.transition = 'left 4s cubic-bezier(0.1, 0.8, 0.2, 1)';
+                    rouletteItems.style.left = `${targetPosition}px`;
+                }, 10);
+                
+                // Определяем победителя после завершения анимации
+                setTimeout(() => {
+                    const winningElement = getElementUnderPointer();
+                    if (winningElement) {
+                        const winnerIndex = parseInt(winningElement.dataset.index);
+                        currentWinner = items[winnerIndex];
+                        
+                        // Подсвечиваем выигрышный элемент
+                        document.querySelectorAll('.roulette-item').forEach(item => {
+                            item.classList.remove('active');
+                        });
+                        winningElement.classList.add('active');
+                        
+                        // Показываем результат
+                        resultImage.src = currentWinner.image;
+                        resultName.textContent = currentWinner.name;
+                        resultContainer.style.display = 'block';
+                    } else {
+                        // Fallback - если не удалось определить элемент под указателем
+                        resultImage.src = currentWinner.image;
+                        resultName.textContent = currentWinner.name;
+                        resultContainer.style.display = 'block';
+                    }
+                    
+                    // Блокируем кнопку прокрутки до нажатия "Забрать приз"
+                    spinButton.disabled = true;
+                    spinButton.textContent = 'Прокрутка завершена';
+                    
+                    isSpinning = false;
+                }, 4100); // Чуть больше времени чем анимация
+            });
+            
+            // Сброс рулетки при нажатии "Забрать приз"
+            claimButton.addEventListener('click', function() {
+                // В реальном приложении здесь would be redirect to payment
+                setTimeout(function() {
+                    spinButton.disabled = false;
+                    spinButton.textContent = 'Крутить рулетку';
+                    resultContainer.style.display = 'none';
+                    
+                    // Убираем подсветку
+                    document.querySelectorAll('.roulette-item').forEach(item => {
+                        item.classList.remove('active');
+                    });
+                    
+                    initializeRoulette();
+                }, 100);
+            });
+        });
+    </script>
+</body>
+</html>
