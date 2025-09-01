@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Аукцион | Розыгрыш редких кроссовок</title>
+    <title>Raffle Auction | Rare Sneaker Raffle</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        /* Подключаем красивый шрифт */
+        /* Import beautiful font */
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
         
-        /* ОБЩИЕ стили для всего сайта */
+        /* GENERAL styles for the whole site */
         body {
             font-family: 'Montserrat', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
@@ -24,7 +24,7 @@
             background-color: #2c3e50;
         }
 
-        /* Затемнение фона для лучшей читаемости */
+        /* Darken background for better readability */
         body::before {
             content: "";
             position: fixed;
@@ -36,7 +36,7 @@
             z-index: -1;
         }
 
-        /* Контейнер */
+        /* Container */
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -45,7 +45,7 @@
             z-index: 1;
         }
 
-        /* Заголовок */
+        /* Header */
         header {
             text-align: center;
             margin-bottom: 40px;
@@ -63,7 +63,7 @@
             color: #ccc;
         }
 
-        /* БОЛЬШАЯ ЗЕЛЕНАЯ кнопка покупки */
+        /* BIG GREEN purchase button */
         .buy-btn {
             display: inline-block;
             background: linear-gradient(135deg, #28a745, #20c997);
@@ -88,7 +88,362 @@
             background: linear-gradient(135deg, #25a03e, #1baa80);
         }
 
-        /* КРАСНАЯ кнопка "Назад" */
+        /* RED "Back" button */
         .back-btn {
             display: inline-block;
-            background: linear-gradient(135deg
+            background: linear-gradient(135deg, #dc3545, #c82333);
+            color: white !important;
+            padding: 15px 30px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1rem;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(220, 53, 69, 0.4);
+        }
+
+        /* Auction page styles */
+        .raffle-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            color: #333 !important;
+            margin-bottom: 30px;
+        }
+
+        .raffle-cover {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .raffle-info {
+            margin: 20px 0;
+        }
+
+        .raffle-info h2 {
+            color: #222 !important;
+            margin-top: 0;
+        }
+
+        .raffle-info p {
+            color: #666 !important;
+            font-size: 1.1rem;
+            margin: 10px 0;
+        }
+
+        .raffle-info strong {
+            color: #000 !important;
+        }
+
+        /* Improved progress bar for mobile */
+        .progress-container {
+            margin: 25px 0;
+            position: relative;
+        }
+        
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #444;
+        }
+        
+        .progress-bar {
+            background: #e9ecef;
+            border-radius: 20px;
+            height: 26px;
+            overflow: hidden;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
+            position: relative;
+        }
+
+        .progress {
+            background: linear-gradient(135deg, #28a745, #20c997);
+            height: 100%;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            font-weight: bold;
+            font-size: 0.85rem;
+            padding-right: 12px;
+            position: relative;
+            transition: width 0.5s ease;
+        }
+        
+        /* Alternative percentage display for mobile */
+        .progress-percent {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-weight: bold;
+            font-size: 0.85rem;
+            color: white;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+            z-index: 2;
+        }
+
+        .rules {
+            text-align: left;
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 15px;
+            margin-top: 40px;
+            color: #333 !important;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .rules h3 {
+            color: #222 !important;
+            margin-top: 0;
+            text-align: center;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .rules ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+
+        .rules li {
+            margin-bottom: 12px;
+            color: #666 !important;
+            line-height: 1.5;
+        }
+
+        .rules a {
+            color: #2481cc;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .rules a:hover {
+            text-decoration: underline;
+        }
+
+        /* For mobile devices */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            .raffle-container {
+                padding: 20px 15px;
+                margin: 10px 0;
+            }
+            
+            .raffle-cover {
+                max-width: 100%;
+            }
+            
+            .buy-btn {
+                padding: 16px 30px;
+                font-size: 1.1rem;
+                margin: 15px 0;
+                width: 100%;
+                text-align: center;
+                box-sizing: border-box;
+            }
+            
+            .back-btn {
+                padding: 14px 25px;
+                font-size: 0.95rem;
+                width: 100%;
+                text-align: center;
+                box-sizing: border-box;
+            }
+            
+            .rules {
+                padding: 20px 15px;
+                margin: 20px 0;
+            }
+            
+            .rules ul {
+                padding-left: 15px;
+            }
+            
+            /* Improved progress bar for mobile */
+            .progress-bar {
+                height: 32px;
+            }
+            
+            .progress {
+                font-size: 0.8rem;
+                padding-right: 10px;
+            }
+            
+            .progress-info {
+                flex-direction: column;
+                align-items: center;
+                gap: 5px;
+            }
+            
+            .progress-percent {
+                font-size: 0.8rem;
+                right: 8px;
+            }
+        }
+        
+        /* For very small screens */
+        @media (max-width: 480px) {
+            .progress-bar {
+                height: 28px;
+            }
+            
+            .progress {
+                font-size: 0.75rem;
+            }
+            
+            .progress-percent {
+                font-size: 0.75rem;
+            }
+            
+            .raffle-info h2 {
+                font-size: 1.4rem;
+            }
+            
+            .raffle-info p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body class="body-background">
+    <div class="container">
+        <header>
+            <h1>🎯 SNEAKER RAFFLE</h1>
+            <p>Buy a spot and win rare sneakers!</p>
+        </header>
+
+        <!-- Back to main button -->
+        <div style="text-align: center; margin-bottom: 30px;">
+            <a href="index-en.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i> Back to Main
+            </a>
+        </div>
+
+        <!-- Pair 1 -->
+        <div class="raffle-container">
+            <img src="https://i.ibb.co/4Z0L5yP/dior-jordan.jpg" alt="Dior x Air Jordan 1" class="raffle-cover">
+            
+            <div class="raffle-info">
+                <h2>Dior x Air Jordan 1 High</h2>
+                <p>Retail price: <strong>$1000</strong></p>
+                <p>Total spots: <strong>200</strong></p>
+                <p>Price per spot: <strong>$10</strong></p>
+                <p>Your chance: <strong>0.5%</strong></p>
+
+                <div class="progress-container">
+                    <div class="progress-info">
+                        <span>Sold: 50/200</span>
+                        <span>25%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 25%;">
+                            <span class="progress-percent">25%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="https://lavapay-link-for-dior" class="buy-btn" target="_blank">
+                    🎫 Buy spot ($10)
+                </a>
+            </div>
+        </div>
+
+        <!-- Pair 2 -->
+        <div class="raffle-container">
+            <img src="https://i.ibb.co/0Q8N4y2/travis-scott.jpg" alt="Travis Scott x Air Jordan 1" class="raffle-cover">
+            
+            <div class="raffle-info">
+                <h2>Travis Scott x Air Jordan 1 High</h2>
+                <p>Retail price: <strong>$800</strong></p>
+                <p>Total spots: <strong>160</strong></p>
+                <p>Price per spot: <strong>$10</strong></p>
+                <p>Your chance: <strong>0.6%</strong></p>
+
+                <div class="progress-container">
+                    <div class="progress-info">
+                        <span>Sold: 24/160</span>
+                        <span>15%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 15%;">
+                            <span class="progress-percent">15%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="https://lavapay-link-for-travis" class="buy-btn" target="_blank">
+                    🎫 Buy spot ($10)
+                </a>
+            </div>
+        </div>
+
+        <!-- Pair 3 -->
+        <div class="raffle-container">
+            <img src="https://i.ibb.co/7QvLzC0/off-white.jpg" alt="Off-White x Nike Dunk" class="raffle-cover">
+            
+            <div class="raffle-info">
+                <h2>Off-White x Nike Dunk Low</h2>
+                <p>Retail price: <strong>$600</strong></p>
+                <p>Total spots: <strong>120</strong></p>
+                <p>Price per spot: <strong>$10</strong></p>
+                <p>Your chance: <strong>0.8%</strong></p>
+
+                <div class="progress-container">
+                    <div class="progress-info">
+                        <span>Sold: 12/120</span>
+                        <span>10%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 10%;">
+                            <span class="progress-percent">10%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="https://lavapay-link-for-offwhite" class="buy-btn" target="_blank">
+                    🎫 Buy spot ($10)
+                </a>
+            </div>
+        </div>
+
+        <!-- General rules -->
+        <div class="rules">
+            <h3>📋 Raffle Rules:</h3>
+            <ul>
+                <li>🎯 <strong>Mechanics:</strong> Buy a number from 1 to 200. After all spots are sold, random selection determines the winner.</li>
+                <li>💰 <strong>Refund:</strong> If all spots are not sold within 14 days, all funds are refunded.</li>
+                <li>🎥 <strong>Transparency:</strong> Draw is conducted live on Instagram with recording.</li>
+                <li>📦 <strong>Shipping:</strong> Free worldwide shipping to the winner.</li>
+                <li>⏰ <strong>Timing:</strong> Draw occurs within 24 hours after the last spot is sold.</li>
+                <li>📞 <strong>Contacts:</strong> All questions via <a href="https://t.me/taizario">Telegram</a>.</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
