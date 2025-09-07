@@ -3,9 +3,499 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ЕвроРабота - трудоустройство в Европе</title>
+    <title>ЕвроРабота - трудоустройство в Европе для граждан СНГ</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #3498db;
+        }
+
+        .btn {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #2980b9;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 150px 0 100px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .search-box {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto 60px;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            border-radius: 5px 0 0 5px;
+            font-size: 16px;
+        }
+
+        .search-btn {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+
+        .stat-text {
+            font-size: 1rem;
+        }
+
+        /* Sections Common Styles */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            font-size: 1.2rem;
+            color: #7f8c8d;
+        }
+
+        /* How it Works Section */
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .step {
+            text-align: center;
+            padding: 30px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background-color: #3498db;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 auto 20px;
+        }
+
+        .step h3 {
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+
+        /* Features Section */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 40px 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+
+        /* Testimonials */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .testimonial-content {
+            margin-bottom: 20px;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .testimonial-author img {
+            border-radius: 50%;
+        }
+
+        /* Countries Section */
+        .countries-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .country-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .country-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .country-info {
+            padding: 20px;
+        }
+
+        .country-info h3 {
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+
+        .country-link {
+            display: inline-block;
+            margin-top: 15px;
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .section-cta {
+            text-align: center;
+        }
+
+        .btn-large {
+            padding: 15px 30px;
+            font-size: 1.1rem;
+        }
+
+        /* FAQ Section */
+        .faq-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: white;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .faq-question {
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .faq-answer {
+            padding: 0 20px 20px;
+            display: none;
+        }
+
+        /* CTA Section */
+        .cta {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+            text-align: center;
+            padding: 100px 0;
+        }
+
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .cta p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+        }
+
+        .btn-accent {
+            background-color: #2c3e50;
+        }
+
+        .btn-accent:hover {
+            background-color: #1a252f;
+        }
+
+        /* Social Media Section */
+        .social-media {
+            text-align: center;
+            background: #f8f9fa;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .social-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
+
+        .social-icon:hover {
+            transform: translateY(-5px);
+        }
+
+        .instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+        .whatsapp { background-color: #25D366; }
+        .telegram { background-color: #0088cc; }
+        .facebook { background-color: #3b5998; }
+
+        /* Footer */
+        footer {
+            background: #2c3e50;
+            color: white;
+            padding: 50px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #34495e;
+        }
+
+        /* Background Selector */
+        .background-selector {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
+
+        .background-selector h4 {
+            margin-bottom: 10px;
+        }
+
+        .background-option {
+            width: 30px;
+            height: 30px;
+            display: inline-block;
+            margin: 5px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .background-option.active {
+            border-color: #3498db;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .search-box {
+                flex-direction: column;
+            }
+
+            .search-input {
+                border-radius: 5px;
+                margin-bottom: 10px;
+            }
+
+            .search-btn {
+                border-radius: 5px;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Header -->
@@ -14,13 +504,13 @@
             <nav>
                 <div class="logo">ЕвроРабота</div>
                 <ul class="nav-links">
-                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="index.html" class="active">Главная</a></li>
                     <li><a href="vacancies.html">Вакансии</a></li>
                     <li><a href="countries.html">Страны</a></li>
                     <li><a href="about.html">О нас</a></li>
                     <li><a href="contacts.html">Контакты</a></li>
                 </ul>
-                <a href="dashboard.html" class="btn">Войти</a>
+                <a href="#" class="btn">Войти</a>
             </nav>
         </div>
     </header>
@@ -33,6 +523,52 @@
             <div class="search-box">
                 <input type="text" class="search-input" placeholder="Должность, страна, город...">
                 <button class="search-btn">Найти</button>
+            </div>
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-number">5000+</span>
+                    <span class="stat-text">трудоустроенных</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">12</span>
+                    <span class="stat-text">стран ЕС</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">98%</span>
+                    <span class="stat-text">успешных случаев</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How it Works Section -->
+    <section class="how-it-works">
+        <div class="container">
+            <div class="section-title">
+                <h2>Как мы работаем</h2>
+                <p>4 простых шага к вашей новой работе в Европе</p>
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Регистрация</h3>
+                    <p>Заполните анкету на нашем сайте или свяжитесь с нашим консультантом</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Подбор вакансии</h3>
+                    <p>Мы подберем для вас подходящие варианты based on вашего опыта и пожеланий</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Оформление документов</h3>
+                    <p>Поможем подготовить все необходимые документы для трудоустройства</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Переезд и начало работы</h3>
+                    <p>Организуем трансфер и поможем с адаптацией в новой стране</p>
+                </div>
             </div>
         </div>
     </section>
@@ -60,6 +596,69 @@
                     <h3>Медицинская страховка</h3>
                     <p>Полное медицинское страхование для работников</p>
                 </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏠</div>
+                    <h3>Помощь с жильем</h3>
+                    <p>Помогаем найти и арендовать жилье в новой стране</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📚</div>
+                    <h3>Языковые курсы</h3>
+                    <p>Предоставляем базовые языковые курсы для адаптации</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔍</div>
+                    <h3>Поддержка 24/7</h3>
+                    <p>Наши консультанты всегда на связи для решения вопросов</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>Истории успеха</h2>
+                <p>Реальные отзывы от наших клиентов</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"Благодаря ЕвроРаботе нашел работу в Германии всего за 3 недели. Все документы оформили быстро, помогли с переездом."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://placehold.co/50x50" alt="Андрей">
+                        <div class="author-info">
+                            <h4>Андрей, 32 года</h4>
+                            <p>Инженер в Берлине</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"Работаю в Польше уже 2 года через эту компанию. Все легально, зарплата вовремя, условия соответствуют договору."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://placehold.co/50x50" alt="Ольга">
+                        <div class="author-info">
+                            <h4>Ольга, 28 лет</h4>
+                            <p>Повар в Варшаве</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"Переехал в Чехию с семьей. Компания помогла не только с работой, но и с жильем, документами для семьи."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://placehold.co/50x50" alt="Дмитрий">
+                        <div class="author-info">
+                            <h4>Дмитрий, 40 лет</h4>
+                            <p>Строитель в Праге</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -77,6 +676,7 @@
                     <div class="country-info">
                         <h3>Германия</h3>
                         <p>Зарплаты от 2500€ в месяц</p>
+                        <a href="vacancies.html?country=germany" class="country-link">Смотреть вакансии →</a>
                     </div>
                 </div>
                 <div class="country-card">
@@ -84,6 +684,7 @@
                     <div class="country-info">
                         <h3>Польша</h3>
                         <p>Зарплаты от 1500€ в месяц</p>
+                        <a href="vacancies.html?country=poland" class="country-link">Смотреть вакансии →</a>
                     </div>
                 </div>
                 <div class="country-card">
@@ -91,6 +692,7 @@
                     <div class="country-info">
                         <h3>Чехия</h3>
                         <p>Зарплаты от 1600€ в месяц</p>
+                        <a href="vacancies.html?country=czech" class="country-link">Смотреть вакансии →</a>
                     </div>
                 </div>
                 <div class="country-card">
@@ -98,9 +700,61 @@
                     <div class="country-info">
                         <h3>Нидерланды</h3>
                         <p>Зарплаты от 2200€ в месяц</p>
+                        <a href="vacancies.html?country=netherlands" class="country-link">Смотреть вакансии →</a>
                     </div>
                 </div>
             </div>
+            <div class="section-cta">
+                <a href="countries.html" class="btn btn-large">Все страны</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq">
+        <div class="container">
+            <div class="section-title">
+                <h2>Частые вопросы</h2>
+                <p>Мы ответили на самые популярные вопросы</p>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Нужно ли знать язык страны, в которую я хочу поехать?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Для многих вакансий достаточно базового уровня языка или даже его отсутствия (особенно в сферах, где работают международные коллективы). Однако знание языка увеличивает ваши шансы на получение более высокооплачиваемой работы.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Сколько времени занимает процесс трудоустройства?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>В среднем процесс занимает от 2 до 6 недель в зависимости от страны, специфики вакансии и скорости подготовки документов.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Какие документы нужны для трудоустройства?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Основные документы: загранпаспорт, резюме, документы об образовании. Полный список зависит от конкретной страны и вакансии. Наши консультанты предоставят точный перечень после выбора вакансии.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Готовы начать новую жизнь в Европе?</h2>
+            <p>Зарегистрируйтесь сейчас и получите консультацию бесплатно</p>
+            <a href="contacts.html" class="btn btn-large btn-accent">Начать сейчас</a>
         </div>
     </section>
 
@@ -110,9 +764,9 @@
             <div class="section-title">
                 <h2>Свяжитесь с нами</h2>
                 <p>Мы всегда на связи в ваших любимых мессенджерах и социальных сетях</p>
-            </div>         
+            </div>
+            
             <div class="social-icons">
-                <!-- Исправленные ссылки -->
                 <a href="https://www.instagram.com/Taizario/" class="social-icon instagram" target="_blank">
                     <i class="fab fa-instagram"></i>
                 </a>
@@ -132,8 +786,30 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p>ЕвроРабота - помощь в трудоустройстве в ЕС для граждан СНГ</p>
-            <p>© 2023 Все права защищены</p>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>ЕвроРабота</h3>
+                    <p>Помощь в трудоустройстве в ЕС для граждан СНГ с 2015 года</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Навигация</h3>
+                    <ul>
+                        <li><a href="index.html">Главная</a></li>
+                        <li><a href="vacancies.html">Вакансии</a></li>
+                        <li><a href="countries.html">Страны</a></li>
+                        <li><a href="about.html">О нас</a></li>
+                        <li><a href="contacts.html">Контакты</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Контакты</h3>
+                    <p>Email: info@evrorabota.com</p>
+                    <p>Телефон: +38 (099) 123-45-67</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2023 ЕвроРабота. Все права защищены</p>
+            </div>
         </div>
     </footer>
 
@@ -146,6 +822,97 @@
         <div class="background-option" style="background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)" onclick="changeBackground('gradient', event)"></div>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        // FAQ Toggle Functionality
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const toggle = question.querySelector('.faq-toggle');
+                
+                if (answer.style.display === 'block') {
+                    answer.style.display = 'none';
+                    toggle.textContent = '+';
+                } else {
+                    answer.style.display = 'block';
+                    toggle.textContent = '-';
+                }
+            });
+        });
+
+        // Background Change Function
+        function changeBackground(type, event) {
+            const body = document.body;
+            const options = document.querySelectorAll('.background-option');
+            
+            options.forEach(opt => opt.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            switch(type) {
+                case 'default':
+                    body.style.backgroundColor = '#f9f9f9';
+                    body.style.backgroundImage = 'none';
+                    break;
+                case 'lightblue':
+                    body.style.backgroundColor = '#e6f7ff';
+                    body.style.backgroundImage = 'none';
+                    break;
+                case 'aliceblue':
+                    body.style.backgroundColor = '#f0f8ff';
+                    body.style.backgroundImage = 'none';
+                    break;
+                case 'gradient':
+                    body.style.backgroundColor = '';
+                    body.style.backgroundImage = 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)';
+                    break;
+            }
+            
+            // Сохраняем предпочтение в localStorage
+            localStorage.setItem('backgroundPreference', type);
+        }
+
+        // Search Functionality
+        document.querySelector('.search-btn').addEventListener('click', () => {
+            const searchTerm = document.querySelector('.search-input').value;
+            if (searchTerm) {
+                alert('Поиск: ' + searchTerm);
+                // Здесь можно добавить перенаправление на страницу с результатами поиска
+            }
+        });
+        
+        // Загрузка сохраненного фона
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedBackground = localStorage.getItem('backgroundPreference');
+            if (savedBackground) {
+                const body = document.body;
+                const options = document.querySelectorAll('.background-option');
+                
+                switch(savedBackground) {
+                    case 'default':
+                        body.style.backgroundColor = '#f9f9f9';
+                        body.style.backgroundImage = 'none';
+                        break;
+                    case 'lightblue':
+                        body.style.backgroundColor = '#e6f7ff';
+                        body.style.backgroundImage = 'none';
+                        break;
+                    case 'aliceblue':
+                        body.style.backgroundColor = '#f0f8ff';
+                        body.style.backgroundImage = 'none';
+                        break;
+                    case 'gradient':
+                        body.style.backgroundColor = '';
+                        body.style.backgroundImage = 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)';
+                        break;
+                }
+                
+                options.forEach(option => {
+                    option.classList.remove('active');
+                    if (option.onclick && option.onclick.toString().includes(savedBackground)) {
+                        option.classList.add('active');
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>
