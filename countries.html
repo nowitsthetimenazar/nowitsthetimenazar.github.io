@@ -1,1 +1,620 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Страны для трудоустройства - ЕвроРабота</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #3b5998;
+            --secondary-color: #f5f5f5;
+            --accent-color: #4caf50;
+            --background-color: #f9f9f9;
+            --custom-background: none;
+        }
 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--background-color);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Если выбран пользовательский фон */
+        body.custom-bg {
+            background-image: var(--custom-background);
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 25px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-links a.active {
+            color: var(--primary-color);
+            font-weight: bold;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #2d4373;
+        }
+
+        /* Page content */
+        .page-content {
+            padding: 80px 0;
+            min-height: 60vh;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h1 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Country filters */
+        .country-filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 40px;
+        }
+
+        .filter-btn {
+            padding: 8px 20px;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        /* Countries grid */
+        .countries-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .country-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .country-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .country-header {
+            position: relative;
+            height: 180px;
+            overflow: hidden;
+        }
+
+        .country-header img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .country-card:hover .country-header img {
+            transform: scale(1.05);
+        }
+
+        .country-name {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white;
+            padding: 15px;
+            font-size: 1.4rem;
+            font-weight: bold;
+        }
+
+        .country-info {
+            padding: 20px;
+        }
+
+        .country-stat {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .country-stat:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .stat-value {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .country-description {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #f0f0f0;
+            font-size: 0.95rem;
+            color: #666;
+        }
+
+        .vacancies-link {
+            display: block;
+            margin-top: 20px;
+            text-align: center;
+            padding: 12px;
+            background: var(--accent-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+
+        .vacancies-link:hover {
+            background: #3d8b40;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        /* Background selector */
+        .background-selector {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+        }
+
+        .background-option {
+            width: 30px;
+            height: 30px;
+            display: inline-block;
+            margin: 5px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .background-option.active {
+            border-color: var(--primary-color);
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .section-title h1 {
+                font-size: 2rem;
+            }
+            
+            .countries-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .country-filters {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .filter-btn {
+                width: 100%;
+                max-width: 250px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">ЕвроРабота</div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="vacancies.html">Вакансии</a></li>
+                    <li><a href="countries.html" class="active">Страны</a></li>
+                    <li><a href="about.html">О нас</a></li>
+                    <li><a href="contacts.html">Контакты</a></li>
+                </ul>
+                <a href="#" class="btn">Войти</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <section class="page-content">
+        <div class="container">
+            <div class="section-title">
+                <h1>Страны для трудоустройства</h1>
+                <p>Выберите страну, чтобы узнать об условиях работы и доступных вакансиях</p>
+            </div>
+
+            <div class="country-filters">
+                <button class="filter-btn active" data-filter="all">Все страны</button>
+                <button class="filter-btn" data-filter="europe">Европа</button>
+                <button class="filter-btn" data-filter="asia">Азия</button>
+                <button class="filter-btn" data-filter="high-salary">Высокая зарплата</button>
+                <button class="filter-btn" data-filter="accommodation">С проживанием</button>
+            </div>
+
+            <div class="countries-grid">
+                <!-- Germany -->
+                <div class="country-card" data-country="germany" data-category="europe high-salary">
+                    <div class="country-header">
+                        <img src="https://images.unsplash.com/photo-1599946347371-68eb71f16bb6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&q=80" alt="Германия">
+                        <div class="country-name">Германия</div>
+                    </div>
+                    <div class="country-info">
+                        <div class="country-stat">
+                            <span>Средняя зарплата:</span>
+                            <span class="stat-value">2500-4000€</span>
+                        </div>
+                        <div class="country-stat">
+                            <span>Востребованные специальности:</span>
+                            <span class="stat-value">IT, инженерия, медицина</span>
+                        </div>
+                        <div class="country-stat">
+                            <span>Требуемый язык:</span>
+                            <span class="stat-value">Немецкий (B1)</span>
+                        </div>
+                        <div class="country-description">
+                            Германия предлагает одни из лучших условий труда в Европе. Высокие зарплаты, социальные гарантии и возможность получения вида на жительство.
+                        </div>
+                        <a href="vacancies.html?country=germany" class="vacancies-link">Смотреть вакансии</a>
+                    </div>
+                </div>
+
+                <!-- Poland -->
+                <div class="country-card" data-country="poland" data-category="europe accommodation">
+                    <div class="country-header">
+                        <img src="https://images.unsplash.com/photo-1596478758121-5b59d1d0b5e8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&q=80" alt="Польша">
+                        <div class="country-name">Польша</div>
+                    </div>
+                    <div class="country-info">
+                        <div class="country-stat">
+                            <span>Средняя зарплата:</span>
+                            <span class="stat-value">1500-2500€</span>
+                        </div>
+                        <div class="country-stat">
+                            <span>Востребованные специальности:</span>
+                            <span class="stat-value">Строители, водители, рабочие</span>
+                        </div>
+                        <div class="country-stat">
+                            <span>Требуемый язык:</span>
+                            <span class="stat-value">Польский (А2)</span>
+                        </div>
+                        <div class="country-description">
+                            Польша - популярное направление для трудоустройства благодаря близкому расположению и большому количеству вакансий с предоставлением жилья.
+                        </div>
+                        <a href="vacancies.html?country=poland" class="vacancies-link">Смотреть вакансии</a>
+                    </div>
+                </div>
+
+                <!-- Czech Republic -->
+                <div class="country-card" data-country="czech" data-category="europe high-salary">
+                    <div class="country-header">
+                        <img src="https://images.unsplash.com/photo-1519677100203-a0e668c92439?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&q=80" alt="Чехия">
+                        <div class="country-name">Чехия</div>
+                    </div>
+                    <div class="country-info">
+                        <div class="country-stat">
+                            <span>Средняя зарплата:</span>
+                            <span class="stat-value">1800-3000€</span>
+                        </div>
+                        <div class="country-stat">
+                            <span>Востребованные специальности:</span>
+                            <span class="stat-value">IT, туризм, производство</span>
+                        </div>
+                        <div class="country-stat">
+                            <span>Требуемый язык:</span>
+                            <span class="stat-value">Чешский (А2)</span>
+                        </div>
+                        <div class="country-description">
+                            Чехия привлекает работников красивыми городами, высоким уровнем жизни и стабильной экономикой. Многие компании предлагают помощь с адаптацией.
+                        </div>
+                        <a href="vacancies.html?country=czech" class="vacancies-link">Смотреть вакансии</a>
+                    </div>
+                </div>
+
+                <!-- Netherlands -->
+                <div class="country-card" data-country="netherlands" data-category="europe high-salary">
+                    <div class="country-header">
+                        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&q=80" alt="Нидерланды">
+                        <div class="country-name">Нидерланды</div>
+                    </div>
+                    <div class="country-info">
+                        <div class="country-stat">
+                            <span>Средняя зарплата:</span>
+                            <span class="stat-value">2200-3500€</span>
+                        </div>
+                        <div class="country-stat">
+                            <span>Востребованные специальности:</span>
+                            <span class="stat-value">IT, инженерия, сельское хозяйство</span>
+                        </div>
+                        <div class="country-stat">
+                            <span>Требуемый язык:</span>
+                            <span class="stat-value">Английский (B1)</span>
+                        </div>
+                        <div class="country-description">
+                            Нидерланды известны своими высокими стандартами труда, развитой инфраструктурой и толерантным обществом. Отличные возможности для карьерного роста.
+                        </div>
+                        <a href="vacancies.html?country=netherlands" class="vacancies-link">Смотреть вакансии</a>
+                    </div>
+                </div>
+
+                <!-- South Korea -->
+                <div class="country-card" data-country="korea" data-category="asia high-salary">
+                    <div class="country-header">
+                        <img src="https://images.unsplash.com/photo-1534274867514-d5b47ef89ed7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&q=80" alt="Южная Корея">
+                        <div class="country-name">Южная Корея</div>
+                    </div>
+                    <div class="country-info">
+                        <div class="country-stat">
+                            <span>Средняя зарплата:</span>
+                            <span class="stat-value">2300-3800€</span>
+                        </div>
+                        <div class="country-stat">
+                            <span>Востребованные специальности:</span>
+                            <span class="stat-value">IT, инженерия, преподавание</span>
+                        </div>
+                        <div class="country-stat">
+                            <span>Требуемый язык:</span>
+                            <span class="stat-value">Английский (B2)</span>
+                        </div>
+                        <div class="country-description">
+                            Южная Корея предлагает интересные возможности для работы в сфере высоких технологий. Компании часто предоставляют жилье и помощь с переездом.
+                        </div>
+                        <a href="vacancies.html?country=korea" class="vacancies-link">Смотреть вакансии</a>
+                    </div>
+                </div>
+
+                <!-- Lithuania -->
+                <div class="country-card" data-country="lithuania" data-category="europe accommodation">
+                    <div class="country-header">
+                        <img src="https://images.unsplash.com/photo-1582521763356-43c13c8c60e7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&q=80" alt="Литва">
+                        <div class="country-name">Литва</div>
+                    </div>
+                    <div class="country-info">
+                        <div class="country-stat">
+                            <span>Средняя зарплата:</span>
+                            <span class="stat-value">1200-2000€</span>
+                        </div>
+                        <div class="country-stat">
+                            <span>Востребованные специальности:</span>
+                            <span class="stat-value">Водители, рабочие, логистика</span>
+                        </div>
+                        <div class="country-stat">
+                            <span>Требуемый язык:</span>
+                            <span class="stat-value">Английский (А2)</span>
+                        </div>
+                        <div class="country-description">
+                            Литва привлекает работников из СНГ географической близостью и простыми процедурами оформления. Многие вакансии включают проживание и питание.
+                        </div>
+                        <a href="vacancies.html?country=lithuania" class="vacancies-link">Смотреть вакансии</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>ЕвроРабота - помощь в трудоустройстве в ЕС для граждан СНГ</p>
+            <p>© 2023 Все права защищены</p>
+        </div>
+    </footer>
+
+    <!-- Background Selector -->
+    <div class="background-selector">
+        <h4>Выберите фон:</h4>
+        <div class="background-option active" style="background-color: #f9f9f9" onclick="changeBackground('default', event)"></div>
+        <div class="background-option" style="background-color: #e6f7ff" onclick="changeBackground('lightblue', event)"></div>
+        <div class="background-option" style="background-color: #f0f8ff" onclick="changeBackground('aliceblue', event)"></div>
+        <div class="background-option" style="background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)" onclick="changeBackground('gradient', event)"></div>
+    </div>
+
+    <script>
+        // Фильтрация стран
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const countryCards = document.querySelectorAll('.country-card');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Убираем активный класс у всех кнопок
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    // Добавляем активный класс к текущей кнопке
+                    this.classList.add('active');
+                    
+                    const filter = this.getAttribute('data-filter');
+                    
+                    // Показываем/скрываем карточки в зависимости от фильтра
+                    countryCards.forEach(card => {
+                        if (filter === 'all') {
+                            card.style.display = 'block';
+                        } else {
+                            const categories = card.getAttribute('data-category').split(' ');
+                            if (categories.includes(filter)) {
+                                card.style.display = 'block';
+                            } else {
+                                card.style.display = 'none';
+                            }
+                        }
+                    });
+                });
+            });
+            
+            // Функция смены фона
+            window.changeBackground = function(type, event) {
+                const body = document.body;
+                const options = document.querySelectorAll('.background-option');
+                
+                // Убираем активный класс у всех options
+                options.forEach(option => option.classList.remove('active'));
+                
+                // Добавляем активный класс к clicked option
+                event.target.classList.add('active');
+                
+                // Меняем фон в зависимости от выбора
+                switch(type) {
+                    case 'default':
+                        body.style.background = '#f9f9f9';
+                        body.classList.remove('custom-bg');
+                        break;
+                    case 'lightblue':
+                        body.style.background = '#e6f7ff';
+                        body.classList.remove('custom-bg');
+                        break;
+                    case 'aliceblue':
+                        body.style.background = '#f0f8ff';
+                        body.classList.remove('custom-bg');
+                        break;
+                    case 'gradient':
+                        body.style.background = 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)';
+                        body.classList.remove('custom-bg');
+                        break;
+                }
+                
+                // Сохраняем предпочтение в localStorage
+                localStorage.setItem('backgroundPreference', type);
+            }
+            
+            // Загрузка сохраненного фона
+            const savedBackground = localStorage.getItem('backgroundPreference');
+            if (savedBackground) {
+                // Применяем сохраненный фон
+                const body = document.body;
+                switch(savedBackground) {
+                    case 'default':
+                        body.style.background = '#f9f9f9';
+                        break;
+                    case 'lightblue':
+                        body.style.background = '#e6f7ff';
+                        break;
+                    case 'aliceblue':
+                        body.style.background = '#f0f8ff';
+                        break;
+                    case 'gradient':
+                        body.style.background = 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)';
+                        break;
+                }
+                
+                // Активируем соответствующую кнопку
+                const options = document.querySelectorAll('.background-option');
+                options.forEach(option => {
+                    if (option.onclick && option.onclick.toString().includes(savedBackground)) {
+                        option.classList.add('active');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
