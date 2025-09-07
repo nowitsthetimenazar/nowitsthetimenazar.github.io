@@ -1,103 +1,111 @@
-/* Добавьте эти стили в конец файла */
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ЕвроРабота</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">ЕвроРабота</div>
+                <ul class="nav-links">
+                    <li><a href="#">Главная</a></li>
+                    <li><a href="#">Вакансии</a></li>
+                    <li><a href="#">Страны</a></li>
+                    <li><a href="#">О нас</a></li>
+                    <li><a href="#">Контакты</a></li>
+                </ul>
+                <a href="#" class="btn">Войти</a>
+            </nav>
+        </div>
+    </header>
 
-/* Header styles */
-header {
-    background-color: white;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-}
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Работа в Европе для граждан СНГ</h1>
+            <p>Найдите лучшие вакансии в Европе с официальным трудоустройством и полным пакетом документов</p>
+            <div class="search-box">
+                <input type="text" class="search-input" placeholder="Должность, страна, город...">
+                <button class="search-btn">Найти</button>
+            </div>
+        </div>
+    </section>
 
-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 0;
-}
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Почему выбирают нас</h2>
+                <p>Комплексный подход к трудоустройству в Европе</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📋</div>
+                    <h3>Официальное трудоустройство</h3>
+                    <p>Полный пакет документов и легальное трудоустройство</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💰</div>
+                    <h3>Конкурентная зарплата</h3>
+                    <p>Зарплаты от 2000€ в месяц с проживанием</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏥</div>
+                    <h3>Медицинская страховка</h3>
+                    <p>Полное медицинское страхование для работников</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-.logo {
-    font-size: 24px;
-    font-weight: bold;
-    color: var(--primary-color);
-}
+    <!-- Social Media Section (ваш код) -->
+    <section class="social-media">
+        <div class="container">
+            <div class="section-title">
+                <h2>Свяжитесь с нами</h2>
+                <p>Мы всегда на связи в ваших любимых мессенджерах и социальных сетях</p>
+            </div>
+            
+            <div class="social-icons">
+                <a href="#" class="social-icon instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" class="social-icon whatsapp">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="#" class="social-icon telegram">
+                    <i class="fab fa-telegram"></i>
+                </a>
+                <a href="#" class="social-icon facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+            </div>
+        </div>
+    </section>
 
-.nav-links {
-    display: flex;
-    list-style: none;
-}
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>ЕвроРабота - помощь в трудоустройстве в ЕС для граждан СНГ</p>
+            <p>© 2023 Все права защищены</p>
+        </div>
+    </footer>
 
-.nav-links li {
-    margin-left: 25px;
-}
+    <!-- Background Selector -->
+    <div class="background-selector">
+        <h4>Выберите фон:</h4>
+        <div class="background-option active" style="background-color: #f9f9f9" onclick="changeBackground('default', event)"></div>
+        <div class="background-option" style="background-color: #e6f7ff" onclick="changeBackground('lightblue', event)"></div>
+        <div class="background-option" style="background-color: #f0f8ff" onclick="changeBackground('aliceblue', event)"></div>
+        <div class="background-option" style="background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)" onclick="changeBackground('gradient', event)"></div>
+    </div>
 
-.nav-links a {
-    text-decoration: none;
-    color: #333;
-    font-weight: 500;
-    transition: color 0.3s;
-}
-
-.nav-links a:hover {
-    color: var(--primary-color);
-}
-
-.btn {
-    display: inline-block;
-    background-color: var(--primary-color);
-    color: white;
-    padding: 10px 20px;
-    border-radius: 4px;
-    text-decoration: none;
-    font-weight: 500;
-    transition: background-color 0.3s;
-}
-
-.btn:hover {
-    background-color: #2d4373;
-}
-
-/* Hero section */
-.hero {
-    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://placehold.co/1200x600') no-repeat center center/cover;
-    color: white;
-    padding: 100px 0;
-    text-align: center;
-}
-
-.hero h1 {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-}
-
-.hero p {
-    font-size: 1.2rem;
-    max-width: 700px;
-    margin: 0 auto 30px;
-}
-
-.search-box {
-    background: white;
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 15px;
-    border-radius: 8px;
-    display: flex;
-}
-
-.search-input {
-    flex: 1;
-    padding: 12px;
-    border: 1px solid #ddd;
-    border-radius: 4px 0 0 4px;
-    outline: none;
-}
-
-.search-btn {
-    background: var(--accent-color);
-    color: white;
-    border: none;
-    padding: 0 20px;
-    border-radius: 0 4px 4px 0;
-    cursor: pointer;
-}
+    <script src="script.js"></script>
+</body>
+</html>
