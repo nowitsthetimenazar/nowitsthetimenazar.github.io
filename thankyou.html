@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Спасибо! - ЕвроРабота</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .thank-you-content {
+            text-align: center;
+            padding: 60px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .thank-you-icon {
+            font-size: 80px;
+            color: #4caf50;
+            margin-bottom: 30px;
+            animation: bounce 1s infinite alternate;
+        }
+        
+        @keyframes bounce {
+            from { transform: translateY(0); }
+            to { transform: translateY(-15px); }
+        }
+        
+        .thank-you-content h1 {
+            font-size: 2.5rem;
+            color: #3b5998;
+            margin-bottom: 20px;
+        }
+        
+        .thank-you-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        
+        .next-steps {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            margin: 40px 0;
+            text-align: left;
+        }
+        
+        .next-steps h2 {
+            color: #3b5998;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .step {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .step-number {
+            background: #3b5998;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-weight: bold;
+        }
+        
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+        
+        @media (max-width: 768px) {
+            .thank-you-icon {
+                font-size: 60px;
+            }
+            
+            .thank-you-content h1 {
+                font-size: 2rem;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .action-buttons .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">ЕвроРабота</div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="vacancies.html">Вакансии</a></li>
+                    <li><a href="countries.html">Страны</a></li>
+                    <li><a href="about.html">О нас</a></li>
+                    <li><a href="contacts.html">Контакты</a></li>
+                </ul>
+                <a href="dashboard.html" class="btn">Войти</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Thank You Content -->
+    <section class="page-content">
+        <div class="container">
+            <div class="thank-you-content">
+                <div class="thank-you-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                
+                <h1>Спасибо за ваше сообщение!</h1>
+                
+                <p>Мы получили ваше сообщение и свяжемся с вами в ближайшее время. Обычно мы отвечаем в течение 24 часов в рабочие дни.</p>
+                
+                <div class="next-steps">
+                    <h2>Что дальше?</h2>
+                    <div class="steps">
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <h3>Проверьте почту</h3>
+                            <p>В ближайшее время вы получите ответ от нашего специалиста</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <h3>Подготовьте документы</h3>
+                            <p>Паспорт, резюме и другие документы для трудоустройства</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <h3>Ожидайте консультацию</h3>
+                            <p>Наш менеджер свяжется с вами для уточнения деталей</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <p>А пока вы ждете ответа, ознакомьтесь с актуальными вакансиями или узнайте больше о работе в Европе.</p>
+                
+                <div class="action-buttons">
+                    <a href="vacancies.html" class="btn"><i class="fas fa-briefcase"></i> Смотреть вакансии</a>
+                    <a href="index.html" class="btn" style="background-color: #4caf50;"><i class="fas fa-home"></i> На главную</a>
+                    <a href="contacts.html" class="btn" style="background-color: #ff9800;"><i class="fas fa-phone"></i> Контакты</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Media Section -->
+    <section class="social-media">
+        <div class="container">
+            <div class="section-title">
+                <h2>Мы в социальных сетях</h2>
+                <p>Подписывайтесь на наши страницы, чтобы быть в курсе новых вакансий</p>
+            </div>
+            
+            <div class="social-icons">
+                <a href="#" class="social-icon instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" class="social-icon whatsapp">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="#" class="social-icon telegram">
+                    <i class="fab fa-telegram"></i>
+                </a>
+                <a href="#" class="social-icon facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>ЕвроРабота - помощь в трудоустройстве в ЕС для граждан СНГ</p>
+            <p>© 2023 Все права защищены</p>
+        </div>
+    </footer>
+
+    <!-- Background Selector -->
+    <div class="background-selector">
+        <h4>Выберите фон:</h4>
+        <div class="background-option active" style="background-color: #f9f9f9" onclick="changeBackground('default', event)"></div>
+        <div class="background-option" style="background-color: #e6f7ff" onclick="changeBackground('lightblue', event)"></div>
+        <div class="background-option" style="background-color: #f0f8ff" onclick="changeBackground('aliceblue', event)"></div>
+        <div class="background-option" style="background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)" onclick="changeBackground('gradient', event)"></div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Анимация появления элементов при загрузке страницы
+        document.addEventListener('DOMContentLoaded', function() {
+            const elements = document.querySelectorAll('.thank-you-icon, .thank-you-content h1, .thank-you-content p, .next-steps, .action-buttons');
+            
+            elements.forEach((element, index) => {
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(20px)';
+                element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                
+                setTimeout(() => {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }, 100 + (index * 100));
+            });
+        });
+    </script>
+</body>
+</html>
