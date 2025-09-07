@@ -18,12 +18,6 @@
             font-size: 80px;
             color: #4caf50;
             margin-bottom: 30px;
-            animation: bounce 1s infinite alternate;
-        }
-        
-        @keyframes bounce {
-            from { transform: translateY(0); }
-            to { transform: translateY(-15px); }
         }
         
         .thank-you-content h1 {
@@ -38,47 +32,6 @@
             line-height: 1.6;
         }
         
-        .next-steps {
-            background: white;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-            margin: 40px 0;
-            text-align: left;
-        }
-        
-        .next-steps h2 {
-            color: #3b5998;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        
-        .steps {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-        
-        .step {
-            background: #f9f9f9;
-            padding: 20px;
-            border-radius: 8px;
-            text-align: center;
-        }
-        
-        .step-number {
-            background: #3b5998;
-            color: white;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 15px;
-            font-weight: bold;
-        }
-        
         .action-buttons {
             display: flex;
             justify-content: center;
@@ -88,14 +41,6 @@
         }
         
         @media (max-width: 768px) {
-            .thank-you-icon {
-                font-size: 60px;
-            }
-            
-            .thank-you-content h1 {
-                font-size: 2rem;
-            }
-            
             .action-buttons {
                 flex-direction: column;
                 align-items: center;
@@ -138,33 +83,11 @@
                 
                 <p>Мы получили ваше сообщение и свяжемся с вами в ближайшее время. Обычно мы отвечаем в течение 24 часов в рабочие дни.</p>
                 
-                <div class="next-steps">
-                    <h2>Что дальше?</h2>
-                    <div class="steps">
-                        <div class="step">
-                            <div class="step-number">1</div>
-                            <h3>Проверьте почту</h3>
-                            <p>В ближайшее время вы получите ответ от нашего специалиста</p>
-                        </div>
-                        <div class="step">
-                            <div class="step-number">2</div>
-                            <h3>Подготовьте документы</h3>
-                            <p>Паспорт, резюме и другие документы для трудоустройства</p>
-                        </div>
-                        <div class="step">
-                            <div class="step-number">3</div>
-                            <h3>Ожидайте консультацию</h3>
-                            <p>Наш менеджер свяжется с вами для уточнения деталей</p>
-                        </div>
-                    </div>
-                </div>
-                
                 <p>А пока вы ждете ответа, ознакомьтесь с актуальными вакансиями или узнайте больше о работе в Европе.</p>
                 
                 <div class="action-buttons">
                     <a href="vacancies.html" class="btn"><i class="fas fa-briefcase"></i> Смотреть вакансии</a>
                     <a href="index.html" class="btn" style="background-color: #4caf50;"><i class="fas fa-home"></i> На главную</a>
-                    <a href="contacts.html" class="btn" style="background-color: #ff9800;"><i class="fas fa-phone"></i> Контакты</a>
                 </div>
             </div>
         </div>
@@ -213,22 +136,5 @@
     </div>
 
     <script src="script.js"></script>
-    <script>
-        // Анимация появления элементов при загрузке страницы
-        document.addEventListener('DOMContentLoaded', function() {
-            const elements = document.querySelectorAll('.thank-you-icon, .thank-you-content h1, .thank-you-content p, .next-steps, .action-buttons');
-            
-            elements.forEach((element, index) => {
-                element.style.opacity = '0';
-                element.style.transform = 'translateY(20px)';
-                element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-                
-                setTimeout(() => {
-                    element.style.opacity = '1';
-                    element.style.transform = 'translateY(0)';
-                }, 100 + (index * 100));
-            });
-        });
-    </script>
 </body>
 </html>
