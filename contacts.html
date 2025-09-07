@@ -59,7 +59,7 @@
                         </div>
                         <div class="contact-details">
                             <h3>Email</h3>
-                            <p>stonezar@gmail.com<br>stonezar@gmail.com</p>
+                            <p>stonezar@gmail.com<br>support@europабота.com</p>
                         </div>
                     </div>
                     
@@ -77,7 +77,13 @@
                 <div class="contact-form">
                     <h2>Отправьте нам сообщение</h2>
                     <!-- Форма с настройкой для отправки на email -->
-                    <form id="contactForm">
+                    <form action="https://formsubmit.co/stonezar@gmail.com" method="POST" id="contactForm">
+                        <!-- Скрытые поля для настройки FormSubmit -->
+                        <input type="hidden" name="_subject" value="Новое сообщение с сайта ЕвроРабота">
+                        <input type="hidden" name="_template" value="table">
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_next" value="https://вашсайт.com/thank-you.html">
+                        
                         <div class="form-group">
                             <input type="text" name="name" placeholder="Ваше имя" required>
                         </div>
@@ -110,9 +116,8 @@
                 <h3><i class="fas fa-info-circle"></i> Настройка получения писем</h3>
                 
                 <div class="setup-steps">
-                    <h4><span class="step-number">1</span> Используйте FormSubmit для получения сообщений</h4>
-                    <p>Замените в форме атрибут action на: <span class="highlight">action="https://formsubmit.co/stonezar@gmail.com"</span></p>
-                    <p>Замените <span class="highlight">stonezar@gmail.com</span> на ваш реальный email адрес</p>
+                    <h4><span class="step-number">1</span> Форма настроена для отправки на stonezar@gmail.com</h4>
+                    <p>Если нужно изменить email, замените в форме атрибут action на: <span class="highlight">action="https://formsubmit.co/ваш_email@gmail.com"</span></p>
                 </div>
                 
                 <div class="setup-steps">
@@ -190,8 +195,6 @@
     <script>
         // Обработка формы контактов
         document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
             let valid = true;
             const inputs = this.querySelectorAll('input[required], select[required], textarea[required]');
             const notification = document.getElementById('notification');
@@ -206,20 +209,10 @@
             });
             
             if (!valid) {
+                e.preventDefault();
                 notification.textContent = 'Пожалуйста, заполните все обязательные поля';
                 notification.className = 'notification error';
                 notification.style.display = 'block';
-            } else {
-                // Здесь должна быть реальная отправка формы
-                // Для работы с Formsubmit раскомментируйте следующую строку:
-                // this.action = 'https://formsubmit.co/stonezar@gmail.com';
-                
-                notification.textContent = 'Сообщение отправлено! Мы свяжемся с вами в ближайшее время.';
-                notification.className = 'notification success';
-                notification.style.display = 'block';
-                
-                // Очистка формы
-                this.reset();
                 
                 // Скрыть уведомление через 5 секунд
                 setTimeout(() => {
