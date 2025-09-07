@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Контакты - ЕвроРабота</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
             --primary-color: #3b5998;
@@ -203,6 +202,23 @@
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            background-color: #f0f0f0;
+            height: 450px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        
+        .map-placeholder {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .map-placeholder i {
+            font-size: 48px;
+            color: var(--primary-color);
+            margin-bottom: 15px;
         }
         
         /* Notification */
@@ -249,6 +265,61 @@
             margin-bottom: 10px;
         }
         
+        /* Social Media Section */
+        .social-media {
+            background: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .social-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            transition: transform 0.3s;
+            text-decoration: none;
+        }
+        
+        .social-icon:hover {
+            transform: translateY(-5px);
+        }
+        
+        .instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+        .whatsapp { background: #25D366; }
+        .telegram { background: #0088cc; }
+        .facebook { background: #3b5998; }
+        
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+        
         /* Responsive adjustments */
         @media (max-width: 768px) {
             .contact-container {
@@ -258,6 +329,14 @@
             .nav-links {
                 display: none;
             }
+        }
+        
+        /* Font Awesome icons as SVG */
+        .icon {
+            display: inline-block;
+            width: 1em;
+            height: 1em;
+            background-size: cover;
         }
     </style>
 </head>
@@ -289,7 +368,9 @@
                 <div class="contact-info">
                     <div class="contact-item">
                         <div class="contact-icon">
-                            <i class="fas fa-map-marker-alt"></i>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" width="24" height="24" fill="white">
+                                <path d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 256c-35.3 0-64-28.7-64-64s28.7-64 64-64s64 28.7 64 64s-28.7 64-64 64z"/>
+                            </svg>
                         </div>
                         <div class="contact-details">
                             <h3>Адрес</h3>
@@ -299,7 +380,9 @@
                     
                     <div class="contact-item">
                         <div class="contact-icon">
-                            <i class="fas fa-phone"></i>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24" fill="white">
+                                <path d="M164.9 24.6c-7.7-18.6-28-28.5-47.4-23.2l-88 24C12.1 30.2 0 46 0 64C0 311.4 200.6 512 448 512c18 0 33.8-12.1 38.6-29.5l24-88c5.3-19.4-4.6-39.7-23.2-47.4l-96-40c-16.3-6.8-35.2-2.1-46.3 11.6L304.7 368C234.3 334.7 177.3 277.7 144 207.3L193.3 167c13.7-11.2 18.4-30 11.6-46.3l-40-96z"/>
+                            </svg>
                         </div>
                         <div class="contact-details">
                             <h3>Телефон</h3>
@@ -309,7 +392,9 @@
                     
                     <div class="contact-item">
                         <div class="contact-icon">
-                            <i class="fas fa-envelope"></i>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24" fill="white">
+                                <path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48H48zM0 176V384c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V176L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z"/>
+                            </svg>
                         </div>
                         <div class="contact-details">
                             <h3>Email</h3>
@@ -319,7 +404,9 @@
                     
                     <div class="contact-item">
                         <div class="contact-icon">
-                            <i class="fas fa-clock"></i>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24" fill="white">
+                                <path d="M464 256A208 208 0 1 1 48 256a208 208 0 1 1 416 0zM0 256a256 256 0 1 0 512 0A256 256 0 1 0 0 256zM232 120V256c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24z"/>
+                            </svg>
                         </div>
                         <div class="contact-details">
                             <h3>Время работы</h3>
@@ -331,7 +418,7 @@
                 <div class="contact-form">
                     <h2>Отправьте нам сообщение</h2>
                     <!-- Форма с настройкой для отправки на email -->
-                    <form action="https://formsubmit.co/your-stonezar@gmail.com" method="POST">
+                    <form action="https://formsubmit.co/your-email@example.com" method="POST">
                         <!-- Скрытые поля для настройки FormSubmit -->
                         <input type="hidden" name="_subject" value="Новое сообщение с сайта ЕвроРабота">
                         <input type="hidden" name="_template" value="table">
@@ -367,7 +454,7 @@
                 <h3>Инструкция по настройке отправки email</h3>
                 <p>Чтобы начать получать сообщения с формы на свою почту:</p>
                 <ol>
-                    <li>Замените <code>stonezar@gmail.com</code> в форме на ваш реальный email адрес</li>
+                    <li>Замените <code>your-email@example.com</code> в форме на ваш реальный email адрес</li>
                     <li>Сохраните файл как <code>contacts.html</code></li>
                     <li>Разместите файл на вашем хостинге</li>
                     <li>FormSubmit будет автоматически пересылать все сообщения на вашу почту</li>
@@ -378,7 +465,13 @@
             <div class="map-section">
                 <h2>Мы на карте</h2>
                 <div class="map-container">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2443.195066071987!2d21.01203797695311!3d52.22967557195898!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471ecc669a869f01%3A0x72f0be2a88ead3fc!2z0JPQsNC70YzRiNC10L3RgiDQstC-0LvQuNGH0LDRgA!5e0!3m2!1sru!2spl!4v1694012345678!5m2!1sru!2spl" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <div class="map-placeholder">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" width="48" height="48" fill="#3b5998">
+                            <path d="M408 120c0 54.6-73.1 151.9-105.2 192c-7.7 9.6-22 9.6-29.6 0C241.1 271.9 168 174.6 168 120C168 53.7 221.7 0 288 0s120 53.7 120 120zm8 80.4c3.5-6.9 6.7-13.8 9.6-20.6c.5-1.2 1-2.5 1.5-3.7l116-46.4C558.9 123.4 576 135 576 152V422.8c0 9.8-6 18.6-15.1 22.3L416 503V200.4zM137.6 138.3c2.4 14.1 7.2 28.3 12.8 41.5c2.9 6.8 6.1 13.7 9.6 20.6V451.8L32.9 502.7C17.1 509 0 497.4 0 480.4V209.6c0-9.8 6-18.6 15.1-22.3l122.6-49zM327.8 332c13.9-17.4 35.7-45.7 56.2-77V504.3L192 449.4V255c20.5 31.3 42.3 59.6 56.2 77c20.5 25.6 59.1 25.6 79.6 0zM288 152a40 40 0 1 0 0-80 40 40 0 1 0 0 80z"/>
+                        </svg>
+                        <h3>Карта расположения нашего офиса</h3>
+                        <p>Варшава, ул. Европейская, 123</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -393,18 +486,10 @@
             </div>
             
             <div class="social-icons">
-                <a href="#" class="social-icon instagram">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a href="#" class="social-icon whatsapp">
-                    <i class="fab fa-whatsapp"></i>
-                </a>
-                <a href="#" class="social-icon telegram">
-                    <i class="fab fa-telegram"></i>
-                </a>
-                <a href="#" class="social-icon facebook">
-                    <i class="fab fa-facebook-f"></i>
-                </a>
+                <a href="#" class="social-icon instagram">IG</a>
+                <a href="#" class="social-icon whatsapp">WA</a>
+                <a href="#" class="social-icon telegram">TG</a>
+                <a href="#" class="social-icon facebook">FB</a>
             </div>
         </div>
     </section>
