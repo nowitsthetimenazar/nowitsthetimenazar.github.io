@@ -1,113 +1,103 @@
-<head><link rel="stylesheet" href="style.css"></head>
-    <!-- Social Media Section -->
-    <section class="social-media">
-        <div class="container">
-            <div class="section-title">
-                <h2>Свяжитесь с нами</h2>
-                <p>Мы всегда на связи в ваших любимых мессенджерах и социальных сетях</p>
-            </div>
-            
-            <div class="social-icons">
-                <a href="#" class="social-icon instagram">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a href="#" class="social-icon whatsapp">
-                    <i class="fab fa-whatsapp"></i>
-                </a>
-                <a href="#" class="social-icon telegram">
-                    <i class="fab fa-telegram"></i>
-                </a>
-                <a href="#" class="social-icon facebook">
-                    <i class="fab fa-facebook-f"></i>
-                </a>
-            </div>
-        </div>
-    </section>
+/* Добавьте эти стили в конец файла */
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <p>ЕвроРабота - помощь в трудоустройстве в ЕС для граждан СНГ</p>
-            <p>© 2023 Все права защищены</p>
-        </div>
-    </footer>
+/* Header styles */
+header {
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
 
-    <!-- Background Selector -->
-    <div class="background-selector">
-        <h4>Выберите фон:</h4>
-        <div class="background-option active" style="background-color: #f9f9f9" onclick="changeBackground('default')"></div>
-        <div class="background-option" style="background-color: #e6f7ff" onclick="changeBackground('lightblue')"></div>
-        <div class="background-option" style="background-color: #f0f8ff" onclick="changeBackground('aliceblue')"></div>
-        <div class="background-option" style="background: url('https://placehold.co/600x400?text=Градиент')" onclick="changeBackground('gradient')"></div>
-        <div class="background-option" style="background: url('https://placehold.co/600x400?text=Текстура')" onclick="changeBackground('texture')"></div>
-    </div>
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+}
 
-    <!-- Font Awesome for icons -->
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--primary-color);
+}
 
-    <script>
-        // Basic search functionality
-        document.querySelector('.search-btn').addEventListener('click', function() {
-            const searchQuery = document.querySelector('.search-input').value;
-            if (searchQuery.trim() !== '') {
-                alert('Поиск: ' + searchQuery);
-                // В реальном приложении здесь будет переход к результатам поиска
-            }
-        });
-        
-        // Background changer function
-        function changeBackground(type) {
-            const body = document.body;
-            const options = document.querySelectorAll('.background-option');
-            
-            // Remove active class from all options
-            options.forEach(option => option.classList.remove('active'));
-            
-            // Add active class to clicked option
-            event.target.classList.add('active');
-            
-            // Change background based on selection
-            switch(type) {
-                case 'default':
-                    body.style.background = '#f9f9f9';
-                    body.classList.remove('custom-bg');
-                    break;
-                case 'lightblue':
-                    body.style.background = '#e6f7ff';
-                    body.classList.remove('custom-bg');
-                    break;
-                case 'aliceblue':
-                    body.style.background = '#f0f8ff';
-                    body.classList.remove('custom-bg');
-                    break;
-                case 'gradient':
-                    body.style.background = 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)';
-                    body.classList.remove('custom-bg');
-                    break;
-                case 'texture':
-                    body.classList.add('custom-bg');
-                    document.documentElement.style.setProperty('--custom-background', 'url("https://www.transparenttextures.com/patterns/45-degree-fabric-light.png")');
-                    break;
-            }
-            
-            // Save preference to localStorage
-            localStorage.setItem('backgroundPreference', type);
-        }
-        
-        // Load saved background preference
-        document.addEventListener('DOMContentLoaded', function() {
-            const savedBackground = localStorage.getItem('backgroundPreference');
-            if (savedBackground) {
-                // Find and click the corresponding option
-                const options = document.querySelectorAll('.background-option');
-                for (let i = 0; i < options.length; i++) {
-                    if (options[i].onclick.toString().includes(savedBackground)) {
-                        options[i].click();
-                        break;
-                    }
-                }
-            }
-        });
-    </script>
-</body>
-</html>
+.nav-links {
+    display: flex;
+    list-style: none;
+}
+
+.nav-links li {
+    margin-left: 25px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--primary-color);
+}
+
+.btn {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #2d4373;
+}
+
+/* Hero section */
+.hero {
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://placehold.co/1200x600') no-repeat center center/cover;
+    color: white;
+    padding: 100px 0;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    max-width: 700px;
+    margin: 0 auto 30px;
+}
+
+.search-box {
+    background: white;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 15px;
+    border-radius: 8px;
+    display: flex;
+}
+
+.search-input {
+    flex: 1;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px 0 0 4px;
+    outline: none;
+}
+
+.search-btn {
+    background: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 0 20px;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+}
