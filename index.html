@@ -1,357 +1,48 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ЕвроРабота - трудоустройство в ЕС для граждан СНГ</title>
-    <style>
-        :root {
-            --primary-color: #3b5998;
-            --secondary-color: #f5f5f5;
-            --accent-color: #4caf50;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body {
-            background-color: #f9f9f9;
-            color: #333;
-            line-height: 1.6;
-        }
-        
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 15px;
-        }
-        
-        /* Header styles */
-        header {
-            background-color: white;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 0;
-        }
-        
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: var(--primary-color);
-        }
-        
-        .nav-links {
-            display: flex;
-            list-style: none;
-        }
-        
-        .nav-links li {
-            margin-left: 25px;
-        }
-        
-        .nav-links a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-        
-        .nav-links a:hover {
-            color: var(--primary-color);
-        }
-        
-        .btn {
-            display: inline-block;
-            background-color: var(--primary-color);
-            color: white;
-            padding: 10px 20px;
-            border-radius: 4px;
-            text-decoration: none;
-            font-weight: 500;
-            transition: background-color 0.3s;
-        }
-        
-        .btn:hover {
-            background-color: #2d4373;
-        }
-        
-        /* Hero section */
-        .hero {
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://placehold.co/1200x600') no-repeat center center/cover;
-            color: white;
-            padding: 100px 0;
-            text-align: center;
-        }
-        
-        .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
-        
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto 30px;
-        }
-        
-        .search-box {
-            background: white;
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 15px;
-            border-radius: 8px;
-            display: flex;
-        }
-        
-        .search-input {
-            flex: 1;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 4px 0 0 4px;
-            outline: none;
-        }
-        
-        .search-btn {
-            background: var(--accent-color);
-            color: white;
-            border: none;
-            padding: 0 20px;
-            border-radius: 0 4px 4px 0;
-            cursor: pointer;
-        }
-        
-        /* Features section */
-        .features {
-            padding: 80px 0;
-            background: white;
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-        
-        .section-title h2 {
-            font-size: 2rem;
-            color: var(--primary-color);
-            margin-bottom: 15px;
-        }
-        
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-        
-        .feature-card {
-            background: var(--secondary-color);
-            padding: 30px;
-            border-radius: 8px;
-            text-align: center;
-            transition: transform 0.3s;
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .feature-icon {
-            font-size: 40px;
-            margin-bottom: 20px;
-            color: var(--primary-color);
-        }
-        
-        .feature-card h3 {
-            margin-bottom: 15px;
-        }
-        
-        /* Countries section */
-        .countries {
-            padding: 80px 0;
-            background: var(--secondary-color);
-        }
-        
-        .countries-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-        
-        .country-card {
-            background: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-        }
-        
-        .country-card img {
-            width: 100%;
-            height: 150px;
-            object-fit: cover;
-        }
-        
-        .country-info {
-            padding: 20px;
-        }
-        
-        .country-info h3 {
-            margin-bottom: 10px;
-        }
-        
-        /* Responsive design */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
-            .search-box {
-                flex-direction: column;
-            }
-            
-            .search-input {
-                border-radius: 4px;
-                margin-bottom: 10px;
-            }
-            
-            .search-btn {
-                border-radius: 4px;
-                padding: 12px;
-            }
-        }
-    </style>
-</head>
-<body>
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <nav>
-                <div class="logo">ЕвроРабота</div>
-                <ul class="nav-links">
-                    <li><a href="#">Главная</a></li>
-                    <li><a href="#">Вакансии</a></li>
-                    <li><a href="#">Страны</a></li>
-                    <li><a href="#">Документы</a></li>
-                    <li><a href="#">Блог</a></li>
-                    <li><a href="#">Контакты</a></li>
-                </ul>
-                <a href="#" class="btn">Личный кабинет</a>
-            </nav>
-        </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <h1>Трудоустройство в Европе для граждан СНГ</h1>
-            <p>Найдите легальную работу в странах ЕС с нашей помощью. Проверенные вакансии, помощь с документами и полное сопровождение.</p>
-            
-            <div class="search-box">
-                <input type="text" class="search-input" placeholder="Должность, страна, ключевые слова...">
-                <button class="search-btn">Найти</button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Features Section -->
-    <section class="features">
+    <!-- Social Media Section -->
+    <section class="social-media">
         <div class="container">
             <div class="section-title">
-                <h2>Почему выбирают нас</h2>
-                <p>Мы обеспечиваем полное сопровождение на всех этапах трудоустройства</p>
+                <h2>Свяжитесь с нами</h2>
+                <p>Мы всегда на связи в ваших любимых мессенджерах и социальных сетях</p>
             </div>
             
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">📋</div>
-                    <h3>Легальное трудоустройство</h3>
-                    <p>Только проверенные вакансии от прямых работодателей с официальным оформлением</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">📝</div>
-                    <h3>Помощь с документами</h3>
-                    <p>Подготовка всех необходимых документов для работы и визы в ЕС</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">🏠</div>
-                    <h3>Жилье и адаптация</h3>
-                    <p>Помощь в поиске жилья и адаптации в новой стране</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">🛡️</div>
-                    <h3>Защита от мошенников</h3>
-                    <p>Проверяем всех работодателей и предупреждаем о возможных рисках</p>
-                </div>
+            <div class="social-icons">
+                <a href="#" class="social-icon instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" class="social-icon whatsapp">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="#" class="social-icon telegram">
+                    <i class="fab fa-telegram"></i>
+                </a>
+                <a href="#" class="social-icon facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- Popular Countries Section -->
-    <section class="countries">
+    <!-- Footer -->
+    <footer>
         <div class="container">
-            <div class="section-title">
-                <h2>Популярные страны для трудоустройства</h2>
-                <p>Актуальные вакансии в самых востребованных направлениях</p>
-            </div>
-            
-            <div class="countries-grid">
-                <div class="country-card">
-                    <img src="https://placehold.co/300x150/3b5998/white?text=Германия" alt="Германия">
-                    <div class="country-info">
-                        <h3>Германия</h3>
-                        <p>IT, инженерия, медицина, строительство</p>
-                        <p>Зарплата: от 2500€</p>
-                    </div>
-                </div>
-                
-                <div class="country-card">
-                    <img src="https://placehold.co/300x150/3b5998/white?text=Польша" alt="Польша">
-                    <div class="country-info">
-                        <h3>Польша</h3>
-                        <p>Строительство, логистика, производство</p>
-                        <p>Зарплата: от 1200€</p>
-                    </div>
-                </div>
-                
-                <div class="country-card">
-                    <img src="https://placehold.co/300x150/3b5998/white?text=Чехия" alt="Чехия">
-                    <div class="country-info">
-                        <h3>Чехия</h3>
-                        <p>Производство, строительство, услуги</p>
-                        <p>Зарплата: от 1100€</p>
-                    </div>
-                </div>
-                
-                <div class="country-card">
-                    <img src="https://placehold.co/300x150/3b5998/white?text=Нидерланды" alt="Нидерланды">
-                    <div class="country-info">
-                        <h3>Нидерланды</h3>
-                        <p>IT, инженерия, сельское хозяйство</p>
-                        <p>Зарплата: от 2200€</p>
-                    </div>
-                </div>
-            </div>
+            <p>ЕвроРабота - помощь в трудоустройстве в ЕС для граждан СНГ</p>
+            <p>© 2023 Все права защищены</p>
         </div>
-    </section>
+    </footer>
+
+    <!-- Background Selector -->
+    <div class="background-selector">
+        <h4>Выберите фон:</h4>
+        <div class="background-option active" style="background-color: #f9f9f9" onclick="changeBackground('default')"></div>
+        <div class="background-option" style="background-color: #e6f7ff" onclick="changeBackground('lightblue')"></div>
+        <div class="background-option" style="background-color: #f0f8ff" onclick="changeBackground('aliceblue')"></div>
+        <div class="background-option" style="background: url('https://placehold.co/600x400?text=Градиент')" onclick="changeBackground('gradient')"></div>
+        <div class="background-option" style="background: url('https://placehold.co/600x400?text=Текстура')" onclick="changeBackground('texture')"></div>
+    </div>
+
+    <!-- Font Awesome for icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 
     <script>
         // Basic search functionality
@@ -363,10 +54,59 @@
             }
         });
         
-        // Можно добавить больше JavaScript для:
-        // 1. Фильтрации вакансий
-        // 2. Аутентификации пользователей
-        // 3. Работы с формами
+        // Background changer function
+        function changeBackground(type) {
+            const body = document.body;
+            const options = document.querySelectorAll('.background-option');
+            
+            // Remove active class from all options
+            options.forEach(option => option.classList.remove('active'));
+            
+            // Add active class to clicked option
+            event.target.classList.add('active');
+            
+            // Change background based on selection
+            switch(type) {
+                case 'default':
+                    body.style.background = '#f9f9f9';
+                    body.classList.remove('custom-bg');
+                    break;
+                case 'lightblue':
+                    body.style.background = '#e6f7ff';
+                    body.classList.remove('custom-bg');
+                    break;
+                case 'aliceblue':
+                    body.style.background = '#f0f8ff';
+                    body.classList.remove('custom-bg');
+                    break;
+                case 'gradient':
+                    body.style.background = 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)';
+                    body.classList.remove('custom-bg');
+                    break;
+                case 'texture':
+                    body.classList.add('custom-bg');
+                    document.documentElement.style.setProperty('--custom-background', 'url("https://www.transparenttextures.com/patterns/45-degree-fabric-light.png")');
+                    break;
+            }
+            
+            // Save preference to localStorage
+            localStorage.setItem('backgroundPreference', type);
+        }
+        
+        // Load saved background preference
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedBackground = localStorage.getItem('backgroundPreference');
+            if (savedBackground) {
+                // Find and click the corresponding option
+                const options = document.querySelectorAll('.background-option');
+                for (let i = 0; i < options.length; i++) {
+                    if (options[i].onclick.toString().includes(savedBackground)) {
+                        options[i].click();
+                        break;
+                    }
+                }
+            }
+        });
     </script>
 </body>
 </html>
