@@ -73,42 +73,31 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
-});
-// Плавная прокрутка к якорям
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth'
-            });
-        }
-    });
-});
-// FAQ toggle functionality
-document.querySelectorAll('.faq-question').forEach(question => {
-    question.addEventListener('click', () => {
-        const item = question.parentElement;
-        item.classList.toggle('active');
-    });
-});
 
-// Additional functionality for the main page
-document.addEventListener('DOMContentLoaded', function() {
-    // Smooth scrolling for anchor links
+    // Плавная прокрутка к якорям (исправленная версия)
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth'
-                });
+            // Проверяем, что это не ссылка с пустым якорем
+            if (this.getAttribute('href') !== '#') {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
             }
         });
     });
     
+    // FAQ toggle functionality
+    document.querySelectorAll('.faq-question').forEach(question => {
+        question.addEventListener('click', () => {
+            const item = question.parentElement;
+            item.classList.toggle('active');
+        });
+    });
+
     // Animation on scroll
     const animateOnScroll = function() {
         const elements = document.querySelectorAll('.step, .feature-card, .testimonial-card');
