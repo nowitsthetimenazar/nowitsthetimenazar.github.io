@@ -4,34 +4,143 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Контакты - ЕвроРабота</title>
-    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Стили для страницы контактов */
+        :root {
+            --primary-color: #3b5998;
+            --secondary-color: #f5f5f5;
+            --accent-color: #4caf50;
+            --text-color: #333;
+            --light-color: #fff;
+            --gray-color: #ddd;
+            --dark-gray: #444;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 25px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: #2d4373;
+        }
+        
+        /* Page Content */
+        .page-content {
+            padding: 80px 0;
+            min-height: 60vh;
+        }
+        
+        .page-content h1 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .page-content > p {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            font-size: 1.1rem;
+        }
+        
+        /* Contact Container */
         .contact-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 40px;
             margin-top: 50px;
         }
-
+        
         .contact-info {
             background: white;
             padding: 30px;
             border-radius: 8px;
             box-shadow: 0 3px 10px rgba(0,0,0,0.1);
         }
-
+        
         .contact-item {
             display: flex;
             margin-bottom: 30px;
             align-items: flex-start;
         }
-
+        
         .contact-item:last-child {
             margin-bottom: 0;
         }
-
+        
         .contact-icon {
             width: 50px;
             height: 50px;
@@ -44,58 +153,59 @@
             margin-right: 15px;
             flex-shrink: 0;
         }
-
+        
         .contact-details h3 {
             margin-bottom: 10px;
             color: var(--primary-color);
         }
-
+        
         .contact-form {
             background: white;
             padding: 30px;
             border-radius: 8px;
             box-shadow: 0 3px 10px rgba(0,0,0,0.1);
         }
-
+        
         .contact-form h2 {
             margin-bottom: 20px;
             color: var(--primary-color);
         }
-
+        
         .form-group {
             margin-bottom: 20px;
         }
-
+        
         .form-group input,
         .form-group select,
         .form-group textarea {
             width: 100%;
             padding: 12px;
-            border: 1px solid #ddd;
+            border: 1px solid var(--gray-color);
             border-radius: 4px;
             font-size: 1rem;
         }
-
+        
         .form-group textarea {
             resize: vertical;
         }
-
+        
         .map-section {
             margin-top: 80px;
         }
-
+        
         .map-section h2 {
             text-align: center;
             margin-bottom: 30px;
             color: var(--primary-color);
         }
-
+        
         .map-container {
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 3px 10px rgba(0,0,0,0.1);
         }
-
+        
+        /* Notification */
         .notification {
             display: none;
             padding: 15px;
@@ -103,23 +213,50 @@
             border-radius: 4px;
             text-align: center;
         }
-
+        
         .success {
             background-color: #d4edda;
             color: #155724;
             border: 1px solid #c3e6cb;
         }
-
+        
         .error {
             background-color: #f8d7da;
             color: #721c24;
             border: 1px solid #f5c6cb;
         }
-
+        
+        /* Email Setup Instructions */
+        .email-setup {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            margin-top: 40px;
+        }
+        
+        .email-setup h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        .email-setup ol {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .email-setup li {
+            margin-bottom: 10px;
+        }
+        
         /* Responsive adjustments */
         @media (max-width: 768px) {
             .contact-container {
                 grid-template-columns: 1fr;
+            }
+            
+            .nav-links {
+                display: none;
             }
         }
     </style>
@@ -193,7 +330,13 @@
                 
                 <div class="contact-form">
                     <h2>Отправьте нам сообщение</h2>
-                    <form id="contactForm">
+                    <!-- Форма с настройкой для отправки на email -->
+                    <form action="https://formsubmit.co/your-email@example.com" method="POST">
+                        <!-- Скрытые поля для настройки FormSubmit -->
+                        <input type="hidden" name="_subject" value="Новое сообщение с сайта ЕвроРабота">
+                        <input type="hidden" name="_template" value="table">
+                        <input type="hidden" name="_captcha" value="false">
+                        
                         <div class="form-group">
                             <input type="text" name="name" placeholder="Ваше имя" required>
                         </div>
@@ -216,9 +359,20 @@
                             <textarea name="message" placeholder="Ваше сообщение" rows="5" required></textarea>
                         </div>
                         <button type="submit" class="btn">Отправить сообщение</button>
-                        <div id="notification" class="notification"></div>
                     </form>
                 </div>
+            </div>
+            
+            <div class="email-setup">
+                <h3>Инструкция по настройке отправки email</h3>
+                <p>Чтобы начать получать сообщения с формы на свою почту:</p>
+                <ol>
+                    <li>Замените <code>your-email@example.com</code> в форме на ваш реальный email адрес</li>
+                    <li>Сохраните файл как <code>contacts.html</code></li>
+                    <li>Разместите файл на вашем хостинге</li>
+                    <li>FormSubmit будет автоматически пересылать все сообщения на вашу почту</li>
+                </ol>
+                <p>Пример правильного формата email: <code>ivanov@gmail.com</code> или <code>info@eurorabota.ru</code></p>
             </div>
             
             <div class="map-section">
@@ -263,62 +417,26 @@
         </div>
     </footer>
 
-    <!-- Background Selector -->
-    <div class="background-selector">
-        <h4>Выберите фон:</h4>
-        <div class="background-option active" style="background-color: #f9f9f9" onclick="changeBackground('default', event)"></div>
-        <div class="background-option" style="background-color: #e6f7ff" onclick="changeBackground('lightblue', event)"></div>
-        <div class="background-option" style="background-color: #f0f8ff" onclick="changeBackground('aliceblue', event)"></div>
-        <div class="background-option" style="background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)" onclick="changeBackground('gradient', event)"></div>
-    </div>
-
     <script>
-        // Обработка формы
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
+        // Простая валидация формы
+        document.querySelector('form').addEventListener('submit', function(e) {
+            let valid = true;
+            const inputs = this.querySelectorAll('input[required], select[required], textarea[required]');
             
-            // Здесь можно добавить код для отправки данных на сервер
-            // Например, через FormSubmit, Google Forms или Telegram бота
+            inputs.forEach(input => {
+                if (!input.value.trim()) {
+                    valid = false;
+                    input.style.borderColor = 'red';
+                } else {
+                    input.style.borderColor = '';
+                }
+            });
             
-            // Показываем уведомление об успешной отправке
-            const notification = document.getElementById('notification');
-            notification.textContent = 'Сообщение отправлено! Мы свяжемся с вами в ближайшее время.';
-            notification.className = 'notification success';
-            notification.style.display = 'block';
-            
-            // Очищаем форму
-            this.reset();
-            
-            // Скрываем уведомление через 5 секунд
-            setTimeout(() => {
-                notification.style.display = 'none';
-            }, 5000);
+            if (!valid) {
+                e.preventDefault();
+                alert('Пожалуйста, заполните все обязательные поля');
+            }
         });
-        
-        // Функция для отправки данных на email через FormSubmit
-        function sendToEmail(formData) {
-            // Замените на ваш email
-            const email = 'ваш-email@example.com';
-            
-            fetch('https://formsubmit.co/ajax/' + email, {
-                method: 'POST',
-                headers: { 
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                },
-                body: JSON.stringify({
-                    name: formData.get('name'),
-                    email: formData.get('email'),
-                    phone: formData.get('phone'),
-                    subject: formData.get('subject'),
-                    message: formData.get('message')
-                })
-            })
-            .then(response => response.json())
-            .then(data => console.log(data))
-            .catch(error => console.log(error));
-        }
     </script>
-    <script src="script.js"></script>
 </body>
 </html>
