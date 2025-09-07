@@ -1,1 +1,159 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контакты - ЕвроРабота</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">ЕвроРабота</div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="vacancies.html">Вакансии</a></li>
+                    <li><a href="countries.html">Страны</a></li>
+                    <li><a href="about.html">О нас</a></li>
+                    <li><a href="contacts.html" class="active">Контакты</a></li>
+                </ul>
+                <a href="#" class="btn">Войти</a>
+            </nav>
+        </div>
+    </header>
 
+    <!-- Page Content -->
+    <section class="page-content">
+        <div class="container">
+            <h1>Свяжитесь с нами</h1>
+            <p>Мы всегда готовы ответить на ваши вопросы и помочь с трудоустройством в Европе</p>
+            
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Адрес</h3>
+                            <p>ул. Европейская, 123, офис 45<br>Варшава, Польша</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Телефон</h3>
+                            <p>+48 123 456 789 (Польша)<br>+375 29 123-45-67 (Беларусь)</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Email</h3>
+                            <p>info@europабота.com<br>support@europабота.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Время работы</h3>
+                            <p>Пн-Пт: 9:00 - 18:00<br>Сб: 10:00 - 15:00<br>Вс: выходной</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <h2>Отправьте нам сообщение</h2>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <input type="text" placeholder="Ваше имя" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Ваш email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" placeholder="Ваш телефон">
+                        </div>
+                        <div class="form-group">
+                            <select required>
+                                <option value="" disabled selected>Тема обращения</option>
+                                <option value="employment">Трудоустройство</option>
+                                <option value="documents">Документы</option>
+                                <option value="vacancy">Конкретная вакансия</option>
+                                <option value="other">Другое</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="Ваше сообщение" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Отправить сообщение</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="map-section">
+                <h2>Мы на карте</h2>
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2443.195066071987!2d21.01203797695311!3d52.22967557195898!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471ecc669a869f01%3A0x72f0be2a88ead3fc!2z0JPQsNC70YzRiNC10L3RgiDQstC-0LvQuNGH0LDRgA!5e0!3m2!1sru!2spl!4v1694012345678!5m2!1sru!2spl" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Media Section -->
+    <section class="social-media">
+        <div class="container">
+            <div class="section-title">
+                <h2>Мы в социальных сетях</h2>
+                <p>Подписывайтесь на наши страницы, чтобы быть в курсе новых вакансий</p>
+            </div>
+            
+            <div class="social-icons">
+                <a href="#" class="social-icon instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" class="social-icon whatsapp">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="#" class="social-icon telegram">
+                    <i class="fab fa-telegram"></i>
+                </a>
+                <a href="#" class="social-icon facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>ЕвроРабота - помощь в трудоустройстве в ЕС для граждан СНГ</p>
+            <p>© 2023 Все права защищены</p>
+        </div>
+    </footer>
+
+    <!-- Background Selector -->
+    <div class="background-selector">
+        <h4>Выберите фон:</h4>
+        <div class="background-option active" style="background-color: #f9f9f9" onclick="changeBackground('default', event)"></div>
+        <div class="background-option" style="background-color: #e6f7ff" onclick="changeBackground('lightblue', event)"></div>
+        <div class="background-option" style="background-color: #f0f8ff" onclick="changeBackground('aliceblue', event)"></div>
+        <div class="background-option" style="background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)" onclick="changeBackground('gradient', event)"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
