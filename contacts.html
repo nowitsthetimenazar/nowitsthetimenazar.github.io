@@ -6,6 +6,123 @@
     <title>Контакты - ЕвроРабота</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Стили для страницы контактов */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .contact-info {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .contact-item {
+            display: flex;
+            margin-bottom: 30px;
+            align-items: flex-start;
+        }
+
+        .contact-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .contact-details h3 {
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        .contact-form {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .contact-form h2 {
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+        }
+
+        .map-section {
+            margin-top: 80px;
+        }
+
+        .map-section h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--primary-color);
+        }
+
+        .map-container {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .notification {
+            display: none;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Header -->
@@ -78,16 +195,16 @@
                     <h2>Отправьте нам сообщение</h2>
                     <form id="contactForm">
                         <div class="form-group">
-                            <input type="text" placeholder="Ваше имя" required>
+                            <input type="text" name="name" placeholder="Ваше имя" required>
                         </div>
                         <div class="form-group">
-                            <input type="email" placeholder="Ваш email" required>
+                            <input type="email" name="email" placeholder="Ваш email" required>
                         </div>
                         <div class="form-group">
-                            <input type="tel" placeholder="Ваш телефон">
+                            <input type="tel" name="phone" placeholder="Ваш телефон">
                         </div>
                         <div class="form-group">
-                            <select required>
+                            <select name="subject" required>
                                 <option value="" disabled selected>Тема обращения</option>
                                 <option value="employment">Трудоустройство</option>
                                 <option value="documents">Документы</option>
@@ -96,9 +213,10 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <textarea placeholder="Ваше сообщение" rows="5" required></textarea>
+                            <textarea name="message" placeholder="Ваше сообщение" rows="5" required></textarea>
                         </div>
                         <button type="submit" class="btn">Отправить сообщение</button>
+                        <div id="notification" class="notification"></div>
                     </form>
                 </div>
             </div>
@@ -154,19 +272,53 @@
         <div class="background-option" style="background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)" onclick="changeBackground('gradient', event)"></div>
     </div>
 
+    <script>
+        // Обработка формы
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Здесь можно добавить код для отправки данных на сервер
+            // Например, через FormSubmit, Google Forms или Telegram бота
+            
+            // Показываем уведомление об успешной отправке
+            const notification = document.getElementById('notification');
+            notification.textContent = 'Сообщение отправлено! Мы свяжемся с вами в ближайшее время.';
+            notification.className = 'notification success';
+            notification.style.display = 'block';
+            
+            // Очищаем форму
+            this.reset();
+            
+            // Скрываем уведомление через 5 секунд
+            setTimeout(() => {
+                notification.style.display = 'none';
+            }, 5000);
+        });
+        
+        // Функция для отправки данных на email через FormSubmit
+        function sendToEmail(formData) {
+            // Замените на ваш email
+            const email = 'ваш-email@example.com';
+            
+            fetch('https://formsubmit.co/ajax/' + email, {
+                method: 'POST',
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    name: formData.get('name'),
+                    email: formData.get('email'),
+                    phone: formData.get('phone'),
+                    subject: formData.get('subject'),
+                    message: formData.get('message')
+                })
+            })
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => console.log(error));
+        }
+    </script>
     <script src="script.js"></script>
 </body>
 </html>
-<form action="https://formsubmit.co/ваш-stonezar@gmail.com" method="POST">
-    <input type="hidden" name="_subject" value="Новая заявка с сайта ЕвроРабота">
-    <input type="hidden" name="_template" value="table">
-    <input type="hidden" name="_captcha" value="false">
-    
-    <!-- Ваши поля формы -->
-    <div class="form-group">
-        <input type="text" name="name" placeholder="Ваше имя" required>
-    </div>
-    <!-- ... остальные поля ... -->
-    
-    <button type="submit" class="btn">Отправить сообщение</button>
-</form>
